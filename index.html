@@ -1,60 +1,52 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nur – Premium Fashion Store 💎</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur ই-কমার্স | হোম</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="index.html" class="logo">Nur 🛍️</a>
+                <div class="search-bar">
+                    <input type="text" placeholder="প্রোডাক্ট খুঁজুন...">
+                    <button>খুঁজুন</button>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">হোম</a>
+                    <a href="#">ক্যাটেগরি</a>
+                    <a href="cart.html" class="cart-link">কার্ট <span class="cart-badge" id="cartBadge">0</span></a>
+                    <a href="admin/admin.html">অ্যাডমিন</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="container">
-        <div class="nav-logo">
-          <a href="index.html">Nur 💎</a>
+    <main class="container">
+        <!-- ব্যানার সেকশন -->
+        <section class="banner-slider" id="bannerSlider">
+            <!-- ব্যানারগুলো JavaScript দিয়ে লোড হবে -->
+        </section>
+
+        <!-- ফিচারড প্রোডাক্টস -->
+        <section class="product-section">
+            <h2>Featured Products</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- প্রোডাক্ট কার্ডগুলো JavaScript দিয়ে লোড হবে -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; ২০২৫ Nur ই-কমার্স। সর্বসত্ত্ব সংরক্ষিত।</p>
         </div>
-        <div class="nav-search">
-          <input type="text" placeholder="অনুসন্ধান করুন...">
-        </div>
-        <div class="nav-actions">
-          <a href="cart.html" class="cart-icon">
-            🛒
-            <span class="cart-count">0</span>
-          </a>
-          <button class="btn btn-primary" id="login-btn">লগইন</button>
-        </div>
-      </div>
-    </nav>
-  </header>
+    </footer>
 
-  <main>
-    <!-- Hero Banner Section -->
-    <section class="hero-banner" id="hero-banner">
-      <!-- Slides will be injected by JS -->
-    </section>
-
-    <!-- Featured Products Section -->
-    <section class="featured-products">
-      <div class="container">
-        <h2 class="section-title">জনপ্রিয় পণ্য ✨</h2>
-        <div class="product-grid" id="featured-product-grid">
-          <!-- Featured products will be injected by JS -->
-        </div>
-        <a href="products.html" class="btn btn-primary see-more-btn">আরও দেখুন</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 Nur – Premium Fashion Store. সর্বস্বত্ব সংরক্ষিত।</p>
-      <p>Developed with ❤️ by Nur Dev Team</p>
-    </div>
-  </footer>
-
-  <script type="module" src="script.js"></script>
+    <script src="js/sample-data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

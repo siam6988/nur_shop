@@ -3,50 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nur ই-কমার্স | হোম</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Nur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <a href="index.html" class="logo">Nur 🛍️</a>
-                <div class="search-bar">
-                    <input type="text" placeholder="প্রোডাক্ট খুঁজুন...">
-                    <button>খুঁজুন</button>
-                </div>
-                <div class="nav-links">
-                    <a href="index.html">হোম</a>
-                    <a href="#">ক্যাটেগরি</a>
-                    <a href="cart.html" class="cart-link">কার্ট <span class="cart-badge" id="cartBadge">0</span></a>
-                    <a href="admin/admin.html">অ্যাডমিন</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container">
-        <!-- ব্যানার সেকশন -->
-        <section class="banner-slider" id="bannerSlider">
-            <!-- ব্যানারগুলো JavaScript দিয়ে লোড হবে -->
-        </section>
-
-        <!-- ফিচারড প্রোডাক্টস -->
-        <section class="product-section">
-            <h2>Featured Products</h2>
-            <div class="product-grid" id="productGrid">
-                <!-- প্রোডাক্ট কার্ডগুলো JavaScript দিয়ে লোড হবে -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; ২০২৫ Nur ই-কমার্স। সর্বসত্ত্ব সংরক্ষিত।</p>
+    <!-- The entire app will be rendered inside this div -->
+    <div id="app">
+        <!-- Initial Loader -->
+        <div class="loader-container">
+            <div class="loader"></div>
+            <p>লোড হচ্ছে...</p>
         </div>
-    </footer>
+    </div>
 
-    <script src="js/sample-data.js"></script>
-    <script src="js/app.js"></script>
+    <!-- Main script, type="module" is important -->
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

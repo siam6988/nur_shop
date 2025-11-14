@@ -3,23 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nur</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
+    <title>Nur - Premium Online Shopping</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- The entire app will be rendered inside this div -->
-    <div id="app">
-        <!-- Initial Loader -->
-        <div class="loader-container">
-            <div class="loader"></div>
-            <p>লোড হচ্ছে...</p>
-        </div>
-    </div>
+    <!-- Premium Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo">Nur</a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">হোম</a>
+                <a href="shop.html" class="nav-link">শপ</a>
+                <a href="categories.html" class="nav-link">ক্যাটেগরি</a>
+                <a href="orders.html" class="nav-link">অর্ডার</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link">সহায়তা <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="customer-care.html" class="dropdown-link">কাস্টমার কেয়ার</a>
+                        <a href="help-center.html" class="dropdown-link">হেল্প সেন্টার</a>
+                        <a href="shipping-info.html" class="dropdown-link">শিপিং তথ্য</a>
+                        <a href="return-policy.html" class="dropdown-link">রিটার্ন পলিসি</a>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Main script, type="module" is important -->
-    <script type="module" src="js/app.js"></script>
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="প্রোডাক্ট খুঁজুন..." id="searchInput">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="wishlist.html" class="action-btn wishlist-btn">
+                        <i class="fas fa-heart"></i>
+                        <span class="action-count wishlist-count">0</span>
+                    </a>
+                    <a href="cart.html" class="action-btn cart-btn">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="action-count cart-count">0</span>
+                    </a>
+                    <div class="auth-buttons">
+                        <a href="auth.html" class="btn btn-outline">সাইন ইন</a>
+                        <a href="auth-signup.html" class="btn btn-primary">সাইন আপ</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Premium Hero Banner -->
+    <section class="hero-section">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <div class="hero-content">
+                    <div class="hero-badge">Limited Time</div>
+                    <h1 class="hero-title">Premium Collection 2024</h1>
+                    <p class="hero-subtitle">Experience the finest quality products with exclusive discounts</p>
+                    <div class="hero-actions">
+                        <a href="shop.html" class="btn btn-primary btn-large">শপ এখন</a>
+                        <a href="categories.html" class="btn btn-outline btn-large">ব্রাউজ ক্যাটেগরি</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <strong>50K+</strong>
+                            <span>সন্তুষ্ট কাস্টমার</span>
+                        </div>
+                        <div class="stat">
+                            <strong>10K+</strong>
+                            <span>প্রোডাক্ট</span>
+                        </div>
+                        <div class="stat">
+                            <strong>64</strong>
+                            <span>জেলা কভারেজ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-star"></i>
+                        <p>Premium Banner Image</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>দ্রুত ডেলিভারি</h3>
+                    <p>২-৩ কার্যদিবসে ডেলিভারি</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>সুরক্ষিত শপিং</h3>
+                    <p>১০০% সুরক্ষিত লেনদেন</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>সহজ রিটার্ন</h3>
+                    <p>৭ দিনের রিটার্ন পলিসি</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>২৪/৭ সাপোর্ট</h3>
+                    <p>সার্বক্ষণিক কাস্টমার কেয়ার</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>পপুলার ক্যাটেগরি</h2>
+                <a href="categories.html" class="view-all">সব দেখুন</a>
+            </div>
+            <div class="categories-grid">
+                <a href="shop.html?category=fashion" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>ফ্যাশন</h3>
+                    <p>৫০০+ প্রোডাক্ট</p>
+                </a>
+                <a href="shop.html?category=electronics" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>ইলেকট্রনিক্স</h3>
+                    <p>৩০০+ প্রোডাক্ট</p>
+                </a>
+                <a href="shop.html?category=home" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>হোম অ্যাপ্লায়েন্স</h3>
+                    <p>২০০+ প্রোডাক্ট</p>
+                </a>
+                <a href="shop.html?category=kitchen" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>কিচেন</h3>
+                    <p>১৫০+ প্রোডাক্ট</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>ফিচার্ড প্রোডাক্ট</h2>
+                <a href="shop.html" class="view-all">সব প্রোডাক্ট</a>
+            </div>
+            <div class="products-grid" id="featuredProducts">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Banner -->
+    <section class="offer-banner">
+        <div class="container">
+            <div class="offer-content">
+                <div class="offer-text">
+                    <h2>বিশেষ অফার!</h2>
+                    <p>৫০০০ টাকার উপর অর্ডারে ফ্রি ডেলিভারি</p>
+                    <a href="shop.html" class="btn btn-primary">এভান্টেজ নিন</a>
+                </div>
+                <div class="offer-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">Nur</div>
+                    <p class="footer-description">বাংলাদেশের প্রিমিয়াম অনলাইন শপিং experience</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link coming-soon" title="Coming Soon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link coming-soon" title="Coming Soon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link coming-soon" title="Coming Soon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link coming-soon" title="Coming Soon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>শপ</h3>
+                    <a href="shop.html" class="footer-link">সব প্রোডাক্ট</a>
+                    <a href="categories.html" class="footer-link">ক্যাটেগরি</a>
+                    <a href="shop.html?featured=true" class="footer-link">ফিচার্ড</a>
+                    <a href="shop.html?discount=true" class="footer-link">ডিসকাউন্ট</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>সহায়তা</h3>
+                    <a href="customer-care.html" class="footer-link">কাস্টমার কেয়ার</a>
+                    <a href="help-center.html" class="footer-link">হেল্প সেন্টার</a>
+                    <a href="shipping-info.html" class="footer-link">শিপিং তথ্য</a>
+                    <a href="return-policy.html" class="footer-link">রিটার্ন পলিসি</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>কোম্পানি</h3>
+                    <a href="about.html" class="footer-link">আমাদের সম্পর্কে</a>
+                    <a href="contact.html" class="footer-link">যোগাযোগ</a>
+                    <a href="privacy.html" class="footer-link">প্রাইভেসি পলিসি</a>
+                    <a href="terms.html" class="footer-link">টার্মস অফ সার্ভিস</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>যোগাযোগ</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <a href="tel:+8801634567890" class="phone-link">+৮৮০ ১৬৩৪-৫৬৭৮৯০</a>
+                                <a href="tel:+8801987654321" class="phone-link">+৮৮০ ১৯৮৭-৬৫৪৩২১</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <a href="mailto:support@nur.com" class="email-link">support@nur.com</a>
+                                <a href="mailto:info@nur.com" class="email-link">info@nur.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>নুর টাওয়ার, ১২/ক, ধানমন্ডি, ঢাকা-১২০৯</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>শনি-বৃহস্পতি: সকাল ৯টা - রাত ১১টা<br>শুক্রবার: বন্ধ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; ২০২৪ Nur. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="privacy.html">প্রাইভেসি</a>
+                        <a href="terms.html">টার্মস</a>
+                        <a href="sitemap.html">সাইটম্যাপ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/home.js"></script>
 </body>
 </html>

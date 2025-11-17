@@ -3,300 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nur - Premium Online Shopping</title>
+    <title>নুর - প্রিমিয়াম ই-কমার্স</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Premium Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html" class="logo">Nur</a>
-            </div>
-            
-            <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link active">হোম</a>
-                <a href="shop.html" class="nav-link">শপ</a>
-                <a href="categories.html" class="nav-link">ক্যাটেগরি</a>
-                <a href="orders.html" class="nav-link">অর্ডার</a>
-                <div class="nav-dropdown">
-                    <a href="#" class="nav-link">সহায়তা <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="customer-care.html" class="dropdown-link">কাস্টমার কেয়ার</a>
-                        <a href="help-center.html" class="dropdown-link">হেল্প সেন্টার</a>
-                        <a href="shipping-info.html" class="dropdown-link">শিপিং তথ্য</a>
-                        <a href="return-policy.html" class="dropdown-link">রিটার্ন পলিসি</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="bn">বাংলা</button>
+        <button class="lang-btn" data-lang="en">English</button>
+    </div>
 
-            <div class="nav-actions">
-                <div class="search-box">
-                    <input type="text" placeholder="প্রোডাক্ট খুঁজুন..." id="searchInput">
-                    <button class="search-btn"><i class="fas fa-search"></i></button>
+    <!-- হেডার সেকশন -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1 data-i18n="site_name">নুর</h1>
+                    <span data-i18n="site_tagline">যেখানে শপিং হয় জমজমাট!</span>
                 </div>
                 
-                <div class="action-buttons">
-                    <a href="wishlist.html" class="action-btn wishlist-btn">
-                        <i class="fas fa-heart"></i>
-                        <span class="action-count wishlist-count">0</span>
-                    </a>
-                    <a href="cart.html" class="action-btn cart-btn">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span class="action-count cart-count">0</span>
-                    </a>
-                    <div class="auth-buttons">
-                        <a href="auth.html" class="btn btn-outline">সাইন ইন</a>
-                        <a href="auth-signup.html" class="btn btn-primary">সাইন আপ</a>
+                <div class="search-bar">
+                    <input type="text" data-i18n-placeholder="search_placeholder" placeholder="আপনি কি খুঁজছেন?">
+                    <button class="search-btn" data-i18n="search_btn">খুঁজুন</button>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="user-actions">
+                        <a href="auth.html" class="auth-btn" data-i18n="login_btn">লগইন</a>
+                        <a href="auth.html" class="auth-btn" data-i18n="signup_btn">সাইন আপ</a>
+                    </div>
+                    <div class="cart-wishlist">
+                        <a href="wishlist.html" class="icon-btn">
+                            <span data-i18n="wishlist">উইশলিস্ট</span>
+                        </a>
+                        <a href="cart.html" class="icon-btn cart-btn">
+                            <span data-i18n="cart">কার্ট</span>
+                            <span class="cart-count">0</span>
+                        </a>
                     </div>
                 </div>
             </div>
-
-            <div class="mobile-toggle" id="mobileToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            
+            <!-- নেভিগেশন মেনু -->
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="index.html" data-i18n="home">হোম</a></li>
+                    <li><a href="shop.html" data-i18n="mens_fashion">পুরুষদের ফ্যাশন</a></li>
+                    <li><a href="shop.html" data-i18n="watches">ঘড়ি</a></li>
+                    <li><a href="shop.html" data-i18n="electronics">ইলেকট্রনিক্স</a></li>
+                    <li><a href="shop.html" data-i18n="home_appliances">ঘরোয়া যন্ত্রপাতি</a></li>
+                    <li><a href="about.html" data-i18n="about">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html" data-i18n="contact">যোগাযোগ</a></li>
+                </ul>
+                
+                <div class="nav-offers">
+                    <span class="offer-tag" data-i18n="flash_offer">ঝলক অফার!</span>
+                    <span class="offer-text" data-i18n="todays_deal">আজকের ডিল উপভোগ করুন</span>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Premium Hero Banner -->
-    <section class="hero-section">
-        <div class="hero-slider">
-            <div class="hero-slide active">
-                <div class="hero-content">
-                    <div class="hero-badge">Limited Time</div>
-                    <h1 class="hero-title">Premium Collection 2024</h1>
-                    <p class="hero-subtitle">Experience the finest quality products with exclusive discounts</p>
-                    <div class="hero-actions">
-                        <a href="shop.html" class="btn btn-primary btn-large">শপ এখন</a>
-                        <a href="categories.html" class="btn btn-outline btn-large">ব্রাউজ ক্যাটেগরি</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <strong>50K+</strong>
-                            <span>সন্তুষ্ট কাস্টমার</span>
-                        </div>
-                        <div class="stat">
-                            <strong>10K+</strong>
-                            <span>প্রোডাক্ট</span>
-                        </div>
-                        <div class="stat">
-                            <strong>64</strong>
-                            <span>জেলা কভারেজ</span>
-                        </div>
+    <!-- হিরো সেকশন -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 data-i18n="welcome_title">স্বাগতম নুর ই-কমার্সে</h2>
+                    <p data-i18n="welcome_subtitle">আপনার পছন্দের পণ্য, আমাদের আস্থার সার্ভিস</p>
+                    <div class="hero-buttons">
+                        <a href="shop.html" class="btn primary-btn" data-i18n="start_shopping">শপিং শুরু করুন</a>
+                        <a href="#features" class="btn secondary-btn" data-i18n="our_features">আমাদের সুবিধা</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-star"></i>
-                        <p>Premium Banner Image</p>
+                    <div class="hero-card">
+                        <h3 data-i18n="special_discount">চমক ডিসকাউন্ট</h3>
+                        <p data-i18n="discount_text">আপাত ৫০% পর্যন্ত ছাড়!</p>
+                        <span data-i18n="today_only">শুধুমাত্র আজ</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
+    <!-- ক্যাটেগরি সেকশন -->
+    <section class="categories">
         <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3>দ্রুত ডেলিভারি</h3>
-                    <p>২-৩ কার্যদিবসে ডেলিভারি</p>
+            <h2 class="section-title" data-i18n="our_categories">আমাদের ক্যাটেগরি</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">👕</div>
+                    <h3 data-i18n="mens_fashion">পুরুষদের ফ্যাশন</h3>
+                    <p data-i18n="mens_fashion_desc">ট্রেন্ডি ও স্টাইলিশ পোশাক</p>
+                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>সুরক্ষিত শপিং</h3>
-                    <p>১০০% সুরক্ষিত লেনদেন</p>
+                
+                <div class="category-card">
+                    <div class="category-icon">⌚</div>
+                    <h3 data-i18n="watches">ঘড়ি</h3>
+                    <p data-i18n="watches_desc">ইলিগ্যান্ট ও ফাংশনাল</p>
+                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-undo"></i>
-                    </div>
-                    <h3>সহজ রিটার্ন</h3>
-                    <p>৭ দিনের রিটার্ন পলিসি</p>
+                
+                <div class="category-card">
+                    <div class="category-icon">📱</div>
+                    <h3 data-i18n="electronics">ইলেকট্রনিক্স</h3>
+                    <p data-i18n="electronics_desc">স্মার্ট ডিভাইস ও গ্যাজেট</p>
+                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>২৪/৭ সাপোর্ট</h3>
-                    <p>সার্বক্ষণিক কাস্টমার কেয়ার</p>
+                
+                <div class="category-card">
+                    <div class="category-icon">🏠</div>
+                    <h3 data-i18n="home_appliances">ঘরোয়া যন্ত্রপাতি</h3>
+                    <p data-i18n="home_appliances_desc">আধুনিক জীবনযাপন</p>
+                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>পপুলার ক্যাটেগরি</h2>
-                <a href="categories.html" class="view-all">সব দেখুন</a>
-            </div>
-            <div class="categories-grid">
-                <a href="shop.html?category=fashion" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h3>ফ্যাশন</h3>
-                    <p>৫০০+ প্রোডাক্ট</p>
-                </a>
-                <a href="shop.html?category=electronics" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>ইলেকট্রনিক্স</h3>
-                    <p>৩০০+ প্রোডাক্ট</p>
-                </a>
-                <a href="shop.html?category=home" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>হোম অ্যাপ্লায়েন্স</h3>
-                    <p>২০০+ প্রোডাক্ট</p>
-                </a>
-                <a href="shop.html?category=kitchen" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>কিচেন</h3>
-                    <p>১৫০+ প্রোডাক্ট</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="products-section">
+    <!-- ফিচার্ড প্রোডাক্টস -->
+    <section class="featured-products">
         <div class="container">
             <div class="section-header">
-                <h2>ফিচার্ড প্রোডাক্ট</h2>
-                <a href="shop.html" class="view-all">সব প্রোডাক্ট</a>
+                <h2 class="section-title" data-i18n="power_deals">পাওয়ার ডিল</h2>
+                <a href="shop.html" class="view-all" data-i18n="view_all">সব দেখুন</a>
             </div>
-            <div class="products-grid" id="featuredProducts">
-                <!-- Products will be loaded by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Special Offer Banner -->
-    <section class="offer-banner">
-        <div class="container">
-            <div class="offer-content">
-                <div class="offer-text">
-                    <h2>বিশেষ অফার!</h2>
-                    <p>৫০০০ টাকার উপর অর্ডারে ফ্রি ডেলিভারি</p>
-                    <a href="shop.html" class="btn btn-primary">এভান্টেজ নিন</a>
+            
+            <div class="products-grid">
+                <!-- প্রোডাক্ট কার্ড ১ -->
+                <div class="product-card">
+                    <div class="product-badge" data-i18n="hot">হট</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200/2563eb/ffffff?text=Product+1" alt="প্রোডাক্ট ১">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">প্রিমিয়াম কটন শার্ট</h3>
+                        <p class="product-category" data-i18n="mens_fashion">পুরুষদের ফ্যাশন</p>
+                        <div class="product-price">
+                            <span class="current-price">৳ ১,২৯৯</span>
+                            <span class="original-price">৳ ১,৯৯৯</span>
+                        </div>
+                        <div class="product-rating">
+                            ⭐⭐⭐⭐⭐ (১২৩)
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
+                        <button class="btn wishlist-btn">❤️</button>
+                    </div>
                 </div>
-                <div class="offer-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-gift"></i>
+                
+                <!-- প্রোডাক্ট কার্ড ২ -->
+                <div class="product-card">
+                    <div class="product-badge" data-i18n="new">নতুন</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200/64748b/ffffff?text=Product+2" alt="প্রোডাক্ট ২">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">স্মার্ট ওয়াচ</h3>
+                        <p class="product-category" data-i18n="watches">ঘড়ি</p>
+                        <div class="product-price">
+                            <span class="current-price">৳ ৪,৫৯৯</span>
+                            <span class="original-price">৳ ৬,৯৯৯</span>
+                        </div>
+                        <div class="product-rating">
+                            ⭐⭐⭐⭐ (৮৯)
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
+                        <button class="btn wishlist-btn">❤️</button>
+                    </div>
+                </div>
+                
+                <!-- প্রোডাক্ট কার্ড ৩ -->
+                <div class="product-card">
+                    <div class="product-badge" data-i18n="sale">সেল</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200/f59e0b/ffffff?text=Product+3" alt="প্রোডাক্ট ৩">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ব্লুটুথ হেডফোন</h3>
+                        <p class="product-category" data-i18n="electronics">ইলেকট্রনিক্স</p>
+                        <div class="product-price">
+                            <span class="current-price">৳ ২,৯৯৯</span>
+                            <span class="original-price">৳ ৪,৫৯৯</span>
+                        </div>
+                        <div class="product-rating">
+                            ⭐⭐⭐⭐⭐ (২০১)
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
+                        <button class="btn wishlist-btn">❤️</button>
+                    </div>
+                </div>
+                
+                <!-- প্রোডাক্ট কার্ড ৪ -->
+                <div class="product-card">
+                    <div class="product-badge" data-i18n="hot">হট</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200/10b981/ffffff?text=Product+4" alt="প্রোডাক্ট ৪">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ব্লেন্ডার মিক্সার</h3>
+                        <p class="product-category" data-i18n="home_appliances">ঘরোয়া যন্ত্রপাতি</p>
+                        <div class="product-price">
+                            <span class="current-price">৳ ৩,৪৯৯</span>
+                            <span class="original-price">৳ ৫,২৯৯</span>
+                        </div>
+                        <div class="product-rating">
+                            ⭐⭐⭐⭐ (১৫৬)
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
+                        <button class="btn wishlist-btn">❤️</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Professional Footer -->
+    <!-- বিশেষ অফার -->
+    <section class="special-offer">
+        <div class="container">
+            <div class="offer-banner">
+                <div class="offer-content">
+                    <h2 data-i18n="flash_offer">ঝলক অফার!</h2>
+                    <p data-i18n="special_discount_today">শুধুমাত্র আজকের জন্য বিশেষ ডিসকাউন্ট</p>
+                    <a href="shop.html" class="btn primary-btn" data-i18n="buy_now">এখনই কিনুন</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">Nur</div>
-                    <p class="footer-description">বাংলাদেশের প্রিমিয়াম অনলাইন শপিং experience</p>
+                    <h3 data-i18n="site_name">নুর ই-কমার্স</h3>
+                    <p data-i18n="footer_description">আপনার বিশ্বস্ত শপিং পার্টনার। আমরা সর্বোচ্চ মানের প্রোডাক্ট এবং সার্ভিস নিশ্চিত করি।</p>
                     <div class="social-links">
-                        <a href="#" class="social-link coming-soon" title="Coming Soon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link coming-soon" title="Coming Soon">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link coming-soon" title="Coming Soon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link coming-soon" title="Coming Soon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                        <a href="#" data-i18n="facebook">ফেসবুক</a>
+                        <a href="#" data-i18n="instagram">ইনস্টাগ্রাম</a>
                     </div>
                 </div>
-
+                
                 <div class="footer-section">
-                    <h3>শপ</h3>
-                    <a href="shop.html" class="footer-link">সব প্রোডাক্ট</a>
-                    <a href="categories.html" class="footer-link">ক্যাটেগরি</a>
-                    <a href="shop.html?featured=true" class="footer-link">ফিচার্ড</a>
-                    <a href="shop.html?discount=true" class="footer-link">ডিসকাউন্ট</a>
+                    <h4 data-i18n="quick_links">দ্রুত লিংক</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="home">হোম</a></li>
+                        <li><a href="shop.html" data-i18n="shop">শপ</a></li>
+                        <li><a href="about.html" data-i18n="about">আমাদের সম্পর্কে</a></li>
+                        <li><a href="contact.html" data-i18n="contact">যোগাযোগ</a></li>
+                    </ul>
                 </div>
-
+                
                 <div class="footer-section">
-                    <h3>সহায়তা</h3>
-                    <a href="customer-care.html" class="footer-link">কাস্টমার কেয়ার</a>
-                    <a href="help-center.html" class="footer-link">হেল্প সেন্টার</a>
-                    <a href="shipping-info.html" class="footer-link">শিপিং তথ্য</a>
-                    <a href="return-policy.html" class="footer-link">রিটার্ন পলিসি</a>
+                    <h4 data-i18n="customer_service">গ্রাহক সেবা</h4>
+                    <ul>
+                        <li><a href="privacy.html" data-i18n="privacy_policy">প্রাইভেসি পলিসি</a></li>
+                        <li><a href="#" data-i18n="return_policy">রিটার্ন পলিসি</a></li>
+                        <li><a href="#" data-i18n="shipping_info">শিপিং তথ্য</a></li>
+                    </ul>
                 </div>
-
+                
                 <div class="footer-section">
-                    <h3>কোম্পানি</h3>
-                    <a href="about.html" class="footer-link">আমাদের সম্পর্কে</a>
-                    <a href="contact.html" class="footer-link">যোগাযোগ</a>
-                    <a href="privacy.html" class="footer-link">প্রাইভেসি পলিসি</a>
-                    <a href="terms.html" class="footer-link">টার্মস অফ সার্ভিস</a>
-                </div>
-
-                <div class="footer-section">
-                    <h3>যোগাযোগ</h3>
+                    <h4 data-i18n="contact_info">যোগাযোগ তথ্য</h4>
                     <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <a href="tel:+8801634567890" class="phone-link">+৮৮০ ১৬৩৪-৫৬৭৮৯০</a>
-                                <a href="tel:+8801987654321" class="phone-link">+৮৮০ ১৯৮৭-৬৫৪৩২১</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <a href="mailto:support@nur.com" class="email-link">support@nur.com</a>
-                                <a href="mailto:info@nur.com" class="email-link">info@nur.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>নুর টাওয়ার, ১২/ক, ধানমন্ডি, ঢাকা-১২০৯</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>শনি-বৃহস্পতি: সকাল ৯টা - রাত ১১টা<br>শুক্রবার: বন্ধ</span>
-                        </div>
+                        <p data-i18n="address">হকার্স মার্কেট, বন্দর বাজার, সিলেট</p>
+                        <p>+৮৮০ ১৮১০৮৭৯০৫০</p>
+                        <p>+৮৮০ ১৭৩৬১১৮০৮৩</p>
+                        <p data-i18n="working_hours">শনি-বৃহস্পতি: সকাল ৯টা - রাত ১১টা</p>
                     </div>
                 </div>
             </div>
-
+            
             <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; ২০২৪ Nur. All rights reserved.</p>
-                    <div class="footer-links">
-                        <a href="privacy.html">প্রাইভেসি</a>
-                        <a href="terms.html">টার্মস</a>
-                        <a href="sitemap.html">সাইটম্যাপ</a>
-                    </div>
-                </div>
+                <p>&copy; ২০২৪ নুর ই-কমার্স। <span data-i18n="all_rights_reserved">সমস্ত অধিকার সংরক্ষিত।</span></p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <script src="assets/js/language.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/home.js"></script>
 </body>
 </html>

@@ -24,9 +24,20 @@
                     <span data-i18n="site_tagline">যেখানে শপিং হয় জমজমাট!</span>
                 </div>
                 
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
                 <div class="search-bar">
                     <input type="text" data-i18n-placeholder="search_placeholder" placeholder="আপনি কি খুঁজছেন?">
-                    <button class="search-btn" data-i18n="search_btn">খুঁজুন</button>
+                    <button class="search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
                 </div>
                 
                 <div class="header-actions">
@@ -35,11 +46,17 @@
                         <a href="auth.html" class="auth-btn" data-i18n="signup_btn">সাইন আপ</a>
                     </div>
                     <div class="cart-wishlist">
-                        <a href="wishlist.html" class="icon-btn">
-                            <span data-i18n="wishlist">উইশলিস্ট</span>
+                        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="action-text" data-i18n="wishlist">উইশলিস্ট</span>
                         </a>
-                        <a href="cart.html" class="icon-btn cart-btn">
-                            <span data-i18n="cart">কার্ট</span>
+                        <a href="cart.html" class="icon-btn cart-btn" aria-label="Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-8 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="action-text" data-i18n="cart">কার্ট</span>
                             <span class="cart-count">0</span>
                         </a>
                     </div>
@@ -80,6 +97,9 @@
                 </div>
                 <div class="hero-image">
                     <div class="hero-card">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" class="hero-icon">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                         <h3 data-i18n="special_discount">চমক ডিসকাউন্ট</h3>
                         <p data-i18n="discount_text">আপাত ৫০% পর্যন্ত ছাড়!</p>
                         <span data-i18n="today_only">শুধুমাত্র আজ</span>
@@ -95,31 +115,69 @@
             <h2 class="section-title" data-i18n="our_categories">আমাদের ক্যাটেগরি</h2>
             <div class="category-grid">
                 <div class="category-card">
-                    <div class="category-icon">👕</div>
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 6h-4V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2zM10 4h4v2h-4V4z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <h3 data-i18n="mens_fashion">পুরুষদের ফ্যাশন</h3>
                     <p data-i18n="mens_fashion_desc">ট্রেন্ডি ও স্টাইলিশ পোশাক</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
+                    <a href="shop.html" class="category-link" data-i18n="browse">
+                        ব্রাউজ করুন
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
                 </div>
                 
                 <div class="category-card">
-                    <div class="category-icon">⌚</div>
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3 data-i18n="watches">ঘড়ি</h3>
                     <p data-i18n="watches_desc">ইলিগ্যান্ট ও ফাংশনাল</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
+                    <a href="shop.html" class="category-link" data-i18n="browse">
+                        ব্রাউজ করুন
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
                 </div>
                 
                 <div class="category-card">
-                    <div class="category-icon">📱</div>
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 16l-2-2 2-2m8 4l2-2-2-2M12 6l-2 2 2 2 2-2-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <h3 data-i18n="electronics">ইলেকট্রনিক্স</h3>
                     <p data-i18n="electronics_desc">স্মার্ট ডিভাইস ও গ্যাজেট</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
+                    <a href="shop.html" class="category-link" data-i18n="browse">
+                        ব্রাউজ করুন
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
                 </div>
                 
                 <div class="category-card">
-                    <div class="category-icon">🏠</div>
+                    <div class="category-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <h3 data-i18n="home_appliances">ঘরোয়া যন্ত্রপাতি</h3>
                     <p data-i18n="home_appliances_desc">আধুনিক জীবনযাপন</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">ব্রাউজ করুন</a>
+                    <a href="shop.html" class="category-link" data-i18n="browse">
+                        ব্রাউজ করুন
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -130,7 +188,12 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title" data-i18n="power_deals">পাওয়ার ডিল</h2>
-                <a href="shop.html" class="view-all" data-i18n="view_all">সব দেখুন</a>
+                <a href="shop.html" class="view-all" data-i18n="view_all">
+                    সব দেখুন
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
             </div>
             
             <div class="products-grid">
@@ -138,7 +201,7 @@
                 <div class="product-card">
                     <div class="product-badge" data-i18n="hot">হট</div>
                     <div class="product-image">
-                        <img src="https://via.placeholder.com/250x200/2563eb/ffffff?text=Product+1" alt="প্রোডাক্ট ১">
+                        <img src="https://via.placeholder.com/300x240/2563eb/ffffff?text=Premium+Shirt" alt="প্রিমিয়াম কটন শার্ট" loading="lazy">
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">প্রিমিয়াম কটন শার্ট</h3>
@@ -148,12 +211,33 @@
                             <span class="original-price">৳ ১,৯৯৯</span>
                         </div>
                         <div class="product-rating">
-                            ⭐⭐⭐⭐⭐ (১২৩)
+                            <div class="stars">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <span>(১২৩)</span>
                         </div>
                     </div>
                     <div class="product-actions">
                         <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
-                        <button class="btn wishlist-btn">❤️</button>
+                        <button class="btn wishlist-btn" aria-label="Add to wishlist">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 
@@ -161,7 +245,7 @@
                 <div class="product-card">
                     <div class="product-badge" data-i18n="new">নতুন</div>
                     <div class="product-image">
-                        <img src="https://via.placeholder.com/250x200/64748b/ffffff?text=Product+2" alt="প্রোডাক্ট ২">
+                        <img src="https://via.placeholder.com/300x240/64748b/ffffff?text=Smart+Watch" alt="স্মার্ট ওয়াচ" loading="lazy">
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">স্মার্ট ওয়াচ</h3>
@@ -171,60 +255,37 @@
                             <span class="original-price">৳ ৬,৯৯৯</span>
                         </div>
                         <div class="product-rating">
-                            ⭐⭐⭐⭐ (৮৯)
+                            <div class="stars">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <span>(৮৯)</span>
                         </div>
                     </div>
                     <div class="product-actions">
                         <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
-                        <button class="btn wishlist-btn">❤️</button>
+                        <button class="btn wishlist-btn" aria-label="Add to wishlist">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 
-                <!-- প্রোডাক্ট কার্ড ৩ -->
-                <div class="product-card">
-                    <div class="product-badge" data-i18n="sale">সেল</div>
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/250x200/f59e0b/ffffff?text=Product+3" alt="প্রোডাক্ট ৩">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">ব্লুটুথ হেডফোন</h3>
-                        <p class="product-category" data-i18n="electronics">ইলেকট্রনিক্স</p>
-                        <div class="product-price">
-                            <span class="current-price">৳ ২,৯৯৯</span>
-                            <span class="original-price">৳ ৪,৫৯৯</span>
-                        </div>
-                        <div class="product-rating">
-                            ⭐⭐⭐⭐⭐ (২০১)
-                        </div>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
-                        <button class="btn wishlist-btn">❤️</button>
-                    </div>
-                </div>
-                
-                <!-- প্রোডাক্ট কার্ড ৪ -->
-                <div class="product-card">
-                    <div class="product-badge" data-i18n="hot">হট</div>
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/250x200/10b981/ffffff?text=Product+4" alt="প্রোডাক্ট ৪">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">ব্লেন্ডার মিক্সার</h3>
-                        <p class="product-category" data-i18n="home_appliances">ঘরোয়া যন্ত্রপাতি</p>
-                        <div class="product-price">
-                            <span class="current-price">৳ ৩,৪৯৯</span>
-                            <span class="original-price">৳ ৫,২৯৯</span>
-                        </div>
-                        <div class="product-rating">
-                            ⭐⭐⭐⭐ (১৫৬)
-                        </div>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
-                        <button class="btn wishlist-btn">❤️</button>
-                    </div>
-                </div>
+                <!-- আরো প্রোডাক্ট কার্ড... -->
             </div>
         </div>
     </section>
@@ -234,6 +295,9 @@
         <div class="container">
             <div class="offer-banner">
                 <div class="offer-content">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" class="offer-icon">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
                     <h2 data-i18n="flash_offer">ঝলক অফার!</h2>
                     <p data-i18n="special_discount_today">শুধুমাত্র আজকের জন্য বিশেষ ডিসকাউন্ট</p>
                     <a href="shop.html" class="btn primary-btn" data-i18n="buy_now">এখনই কিনুন</a>
@@ -250,8 +314,16 @@
                     <h3 data-i18n="site_name">নুর ই-কমার্স</h3>
                     <p data-i18n="footer_description">আপনার বিশ্বস্ত শপিং পার্টনার। আমরা সর্বোচ্চ মানের প্রোডাক্ট এবং সার্ভিস নিশ্চিত করি।</p>
                     <div class="social-links">
-                        <a href="#" data-i18n="facebook">ফেসবুক</a>
-                        <a href="#" data-i18n="instagram">ইনস্টাগ্রাম</a>
+                        <a href="#" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
                 

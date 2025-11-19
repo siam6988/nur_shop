@@ -3,367 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নুর - প্রিমিয়াম ই-কমার্স</title>
+    <title>NUR - Premium Shopping</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <button class="lang-btn active" data-lang="bn">বাংলা</button>
-        <button class="lang-btn" data-lang="en">English</button>
-    </div>
-
-    <!-- হেডার সেকশন -->
+    <!-- Header Section -->
     <header class="header">
         <div class="container">
-            <div class="header-content">
+            <div class="header-top">
                 <div class="logo">
-                    <h1 data-i18n="site_name">নুর</h1>
-                    <span data-i18n="site_tagline">যেখানে শপিং হয় জমজমাট!</span>
+                    <h1>NUR</h1>
+                    <span>Premium Shopping</span>
                 </div>
-                
-                <!-- Mobile Menu Toggle -->
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </button>
-                
                 <div class="search-bar">
-                    <input type="text" data-i18n-placeholder="search_placeholder" placeholder="আপনি কি খুঁজছেন?">
-                    <button class="search-btn" aria-label="Search">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
+                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <button><i class="fas fa-search"></i></button>
                 </div>
-                
                 <div class="header-actions">
-                    <div class="user-actions">
-                        <a href="auth.html" class="auth-btn" data-i18n="login_btn">লগইন</a>
-                        <a href="auth.html" class="auth-btn" data-i18n="signup_btn">সাইন আপ</a>
+                    <div class="action-item">
+                        <i class="fas fa-user"></i>
+                        <span>অ্যাকাউন্ট</span>
                     </div>
-                    <div class="cart-wishlist">
-                        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                            <span class="action-text" data-i18n="wishlist">উইশলিস্ট</span>
-                        </a>
-                        <a href="cart.html" class="icon-btn cart-btn" aria-label="Cart">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-8 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <span class="action-text" data-i18n="cart">কার্ট</span>
-                            <span class="cart-count">0</span>
-                        </a>
+                    <div class="action-item">
+                        <i class="fas fa-heart"></i>
+                        <span>উইশলিস্ট</span>
+                    </div>
+                    <div class="action-item cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>কার্ট</span>
+                        <span class="cart-count">0</span>
                     </div>
                 </div>
             </div>
-            
-            <!-- নেভিগেশন মেনু -->
             <nav class="navbar">
-                <ul class="nav-menu">
-                    <li><a href="index.html" data-i18n="home">হোম</a></li>
-                    <li><a href="shop.html" data-i18n="mens_fashion">পুরুষদের ফ্যাশন</a></li>
-                    <li><a href="shop.html" data-i18n="watches">ঘড়ি</a></li>
-                    <li><a href="shop.html" data-i18n="electronics">ইলেকট্রনিক্স</a></li>
-                    <li><a href="shop.html" data-i18n="home_appliances">ঘরোয়া যন্ত্রপাতি</a></li>
-                    <li><a href="about.html" data-i18n="about">আমাদের সম্পর্কে</a></li>
-                    <li><a href="contact.html" data-i18n="contact">যোগাযোগ</a></li>
+                <ul>
+                    <li><a href="index.html">হোম</a></li>
+                    <li><a href="shop.html">শপ</a></li>
+                    <li><a href="categories.html">ক্যাটাগরি</a></li>
+                    <li><a href="deals.html">ডিলস</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html">যোগাযোগ</a></li>
                 </ul>
-                
-                <div class="nav-offers">
-                    <span class="offer-tag" data-i18n="flash_offer">ঝলক অফার!</span>
-                    <span class="offer-text" data-i18n="todays_deal">আজকের ডিল উপভোগ করুন</span>
-                </div>
             </nav>
         </div>
     </header>
 
-    <!-- হিরো সেকশন -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h2 data-i18n="welcome_title">স্বাগতম নুর </h2>
-                    <p data-i18n="welcome_subtitle">আপনার পছন্দের পণ্য, আমাদের আস্থার সার্ভিস</p>
-                    <div class="hero-buttons">
-                        <a href="shop.html" class="btn primary-btn" data-i18n="start_shopping">শপিং শুরু করুন</a>
-                        <a href="#features" class="btn secondary-btn" data-i18n="our_features">আমাদের সুবিধা</a>
-                    </div>
+    <!-- Main Banner Slider -->
+    <section class="banner-slider">
+        <div class="slider-container">
+            <div class="slide active">
+                <div class="slide-content">
+                    <h2>নুর - যেখানে শপিং = মজা</h2>
+                    <p>সেরা ব্র্যান্ডের পণ্য একই জায়গায়</p>
+                    <a href="shop.html" class="btn-primary">এখনই কিনুন</a>
                 </div>
-                <div class="hero-image">
-                    <div class="hero-card">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" class="hero-icon">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <h3 data-i18n="special_discount">চমক ডিসকাউন্ট</h3>
-                        <p data-i18n="discount_text">আপাত ৫০% পর্যন্ত ছাড়!</p>
-                        <span data-i18n="today_only">শুধুমাত্র আজ</span>
-                    </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>বড় ডিসকাউন্টে পণ্য কিনুন</h2>
+                    <p>৫০% পর্যন্ত ছাড়</p>
+                    <a href="deals.html" class="btn-primary">ডিলস দেখুন</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>ফ্রি শিপিং</h2>
+                    <p>১০০০ টাকার উপর অর্ডারে ফ্রি ডেলিভারি</p>
+                    <a href="shop.html" class="btn-primary">শপিং করুন</a>
                 </div>
             </div>
         </div>
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
     </section>
 
-    <!-- ক্যাটেগরি সেকশন -->
+    <!-- Categories Section -->
     <section class="categories">
         <div class="container">
-            <h2 class="section-title" data-i18n="our_categories">আমাদের ক্যাটেগরি</h2>
-            <div class="category-grid">
+            <h2 class="section-title">ক্যাটাগরি ব্রাউজ করুন</h2>
+            <div class="categories-grid">
                 <div class="category-card">
                     <div class="category-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M20 6h-4V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2zM10 4h4v2h-4V4z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                        <i class="fas fa-tshirt"></i>
                     </div>
-                    <h3 data-i18n="mens_fashion">পুরুষদের ফ্যাশন</h3>
-                    <p data-i18n="mens_fashion_desc">ট্রেন্ডি ও স্টাইলিশ পোশাক</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">
-                        ব্রাউজ করুন
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
+                    <h3>ফ্যাশন</h3>
                 </div>
-                
                 <div class="category-card">
                     <div class="category-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3 data-i18n="watches">ঘড়ি</h3>
-                    <p data-i18n="watches_desc">ইলিগ্যান্ট ও ফাংশনাল</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">
-                        ব্রাউজ করুন
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
+                    <h3>ইলেকট্রনিক্স</h3>
                 </div>
-                
                 <div class="category-card">
                     <div class="category-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M8 16l-2-2 2-2m8 4l2-2-2-2M12 6l-2 2 2 2 2-2-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                        <i class="fas fa-home"></i>
                     </div>
-                    <h3 data-i18n="electronics">ইলেকট্রনিক্স</h3>
-                    <p data-i18n="electronics_desc">স্মার্ট ডিভাইস ও গ্যাজেট</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">
-                        ব্রাউজ করুন
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
+                    <h3>হোম অ্যাপ্লায়েন্স</h3>
                 </div>
-                
                 <div class="category-card">
                     <div class="category-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                        <i class="fas fa-utensils"></i>
                     </div>
-                    <h3 data-i18n="home_appliances">ঘরোয়া যন্ত্রপাতি</h3>
-                    <p data-i18n="home_appliances_desc">আধুনিক জীবনযাপন</p>
-                    <a href="shop.html" class="category-link" data-i18n="browse">
-                        ব্রাউজ করুন
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
+                    <h3>রান্নাঘর</h3>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>স্বাস্থ্য</h3>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>খেলাধুলা</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ফিচার্ড প্রোডাক্টস -->
+    <!-- Featured Products -->
     <section class="featured-products">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-i18n="power_deals">পাওয়ার ডিল</h2>
-                <a href="shop.html" class="view-all" data-i18n="view_all">
-                    সব দেখুন
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </a>
-            </div>
-            
+            <h2 class="section-title">ফিচার্ড পণ্য</h2>
             <div class="products-grid">
-                <!-- প্রোডাক্ট কার্ড ১ -->
-                <div class="product-card">
-                    <div class="product-badge" data-i18n="hot">হট</div>
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/300x240/2563eb/ffffff?text=Premium+Shirt" alt="প্রিমিয়াম কটন শার্ট" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">প্রিমিয়াম কটন শার্ট</h3>
-                        <p class="product-category" data-i18n="mens_fashion">পুরুষদের ফ্যাশন</p>
-                        <div class="product-price">
-                            <span class="current-price">৳ ১,২৯৯</span>
-                            <span class="original-price">৳ ১,৯৯৯</span>
-                        </div>
-                        <div class="product-rating">
-                            <div class="stars">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                            </div>
-                            <span>(১২৩)</span>
-                        </div>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
-                        <button class="btn wishlist-btn" aria-label="Add to wishlist">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- প্রোডাক্ট কার্ড ২ -->
-                <div class="product-card">
-                    <div class="product-badge" data-i18n="new">নতুন</div>
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/300x240/64748b/ffffff?text=Smart+Watch" alt="স্মার্ট ওয়াচ" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">স্মার্ট ওয়াচ</h3>
-                        <p class="product-category" data-i18n="watches">ঘড়ি</p>
-                        <div class="product-price">
-                            <span class="current-price">৳ ৪,৫৯৯</span>
-                            <span class="original-price">৳ ৬,৯৯৯</span>
-                        </div>
-                        <div class="product-rating">
-                            <div class="stars">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                            </div>
-                            <span>(৮৯)</span>
-                        </div>
-                    </div>
-                    <div class="product-actions">
-                        <button class="btn cart-add-btn" data-i18n="add_to_cart">কার্টে যোগ</button>
-                        <button class="btn wishlist-btn" aria-label="Add to wishlist">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- আরো প্রোডাক্ট কার্ড... -->
+                <!-- Product cards will be loaded dynamically -->
+            </div>
+            <div class="text-center">
+                <a href="shop.html" class="btn-secondary">সব পণ্য দেখুন</a>
             </div>
         </div>
     </section>
 
-    <!-- বিশেষ অফার -->
-    <section class="special-offer">
+    <!-- Special Offers -->
+    <section class="special-offers">
         <div class="container">
-            <div class="offer-banner">
-                <div class="offer-content">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" class="offer-icon">
-                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    <h2 data-i18n="flash_offer">ঝলক অফার!</h2>
-                    <p data-i18n="special_discount_today">শুধুমাত্র আজকের জন্য বিশেষ ডিসকাউন্ট</p>
-                    <a href="shop.html" class="btn primary-btn" data-i18n="buy_now">এখনই কিনুন</a>
+            <h2 class="section-title">বিশেষ অফার</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-content">
+                        <h3>Point জমাও, Discount নাও, Hero হও</h3>
+                        <p>প্রতি ১০০ টাকা শপিংয়ে ১ পয়েন্ট পান</p>
+                        <a href="profile.html" class="btn-outline">বিস্তারিত জানুন</a>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-content">
+                        <h3>ফ্রি ডেলিভারি</h3>
+                        <p>১০০০ টাকার উপর অর্ডারে ফ্রি শিপিং</p>
+                        <a href="shop.html" class="btn-outline">শপিং করুন</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ফুটার -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 data-i18n="site_name">নুর ই-কমার্স</h3>
-                    <p data-i18n="footer_description">আপনার বিশ্বস্ত শপিং পার্টনার। আমরা সর্বোচ্চ মানের প্রোডাক্ট এবং সার্ভিস নিশ্চিত করি।</p>
+                    <h3>NUR - Premium Shopping</h3>
+                    <p>যেখানে শপিং = মজা</p>
+                    <p>অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি... কখনো কখনো</p>
+                </div>
+                <div class="footer-section">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                        <li><a href="contact.html">যোগাযোগ</a></li>
+                        <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
+                        <li><a href="terms.html">শর্তাবলী</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>কাস্টমার কেয়ার</h4>
+                    <ul>
+                        <li><a href="help.html">সাহায্য কেন্দ্র</a></li>
+                        <li><a href="returns.html">রিটার্ন পলিসি</a></li>
+                        <li><a href="shipping.html">শিপিং তথ্য</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>আমাদের অনুসরণ করুন</h4>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-                            </svg>
-                        </a>
-                        <a href="#" aria-label="Instagram">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 data-i18n="quick_links">দ্রুত লিংক</h4>
-                    <ul>
-                        <li><a href="index.html" data-i18n="home">হোম</a></li>
-                        <li><a href="shop.html" data-i18n="shop">শপ</a></li>
-                        <li><a href="about.html" data-i18n="about">আমাদের সম্পর্কে</a></li>
-                        <li><a href="contact.html" data-i18n="contact">যোগাযোগ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 data-i18n="customer_service">গ্রাহক সেবা</h4>
-                    <ul>
-                        <li><a href="privacy.html" data-i18n="privacy_policy">প্রাইভেসি পলিসি</a></li>
-                        <li><a href="#" data-i18n="return_policy">রিটার্ন পলিসি</a></li>
-                        <li><a href="#" data-i18n="shipping_info">শিপিং তথ্য</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 data-i18n="contact_info">যোগাযোগ তথ্য</h4>
-                    <div class="contact-info">
-                        <p data-i18n="address">হকার্স মার্কেট, বন্দর বাজার, সিলেট</p>
-                        <p>+৮৮০ ১৮১০৮৭৯০৫০</p>
-                        <p>+৮৮০ ১৭৩৬১১৮০৮৩</p>
-                        <p data-i18n="working_hours">শনি-বৃহস্পতি: সকাল ৯টা - রাত ১১টা</p>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>&copy; ২০২৪ নুর ই-কমার্স। <span data-i18n="all_rights_reserved">সমস্ত অধিকার সংরক্ষিত।</span></p>
+                <p>&copy; 2023 NUR - Premium Shopping. সকল অধিকার সংরক্ষিত।</p>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/language.js"></script>
+    <!-- Floating Cart Icon (Mobile) -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
     <script src="assets/js/app.js"></script>
 </body>
 </html>

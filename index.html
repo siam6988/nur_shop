@@ -16,34 +16,40 @@
                     <h1>NUR</h1>
                     <span>Premium Shopping</span>
                 </div>
+                <div class="language-switcher">
+                    <select id="languageSelect">
+                        <option value="bn">বাংলা</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
                 <div class="search-bar">
-                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <input type="text" placeholder="পণ্য খুঁজুন... | Search products...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="header-actions">
                     <div class="action-item">
                         <i class="fas fa-user"></i>
-                        <span>অ্যাকাউন্ট</span>
+                        <span>অ্যাকাউন্ট | Account</span>
                     </div>
                     <div class="action-item">
                         <i class="fas fa-heart"></i>
-                        <span>উইশলিস্ট</span>
+                        <span>উইশলিস্ট | Wishlist</span>
                     </div>
                     <div class="action-item cart-icon">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>কার্ট</span>
+                        <span>কার্ট | Cart</span>
                         <span class="cart-count">0</span>
                     </div>
                 </div>
             </div>
             <nav class="navbar">
                 <ul>
-                    <li><a href="index.html">হোম</a></li>
-                    <li><a href="shop.html">শপ</a></li>
-                    <li><a href="categories.html">ক্যাটাগরি</a></li>
-                    <li><a href="deals.html">ডিলস</a></li>
-                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                    <li><a href="contact.html">যোগাযোগ</a></li>
+                    <li><a href="index.html" data-bn="হোম" data-en="Home">হোম</a></li>
+                    <li><a href="shop.html" data-bn="শপ" data-en="Shop">শপ</a></li>
+                    <li><a href="categories.html" data-bn="ক্যাটাগরি" data-en="Categories">ক্যাটাগরি</a></li>
+                    <li><a href="deals.html" data-bn="ডিলস" data-en="Deals">ডিলস</a></li>
+                    <li><a href="about.html" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html" data-bn="যোগাযোগ" data-en="Contact">যোগাযোগ</a></li>
                 </ul>
             </nav>
         </div>
@@ -54,23 +60,23 @@
         <div class="slider-container">
             <div class="slide active">
                 <div class="slide-content">
-                    <h2>নুর - যেখানে শপিং = মজা</h2>
-                    <p>সেরা ব্র্যান্ডের পণ্য একই জায়গায়</p>
-                    <a href="shop.html" class="btn-primary">এখনই কিনুন</a>
+                    <h2 data-bn="নুর - যেখানে শপিং = মজা" data-en="NUR - Where Shopping = Fun">নুর - যেখানে শপিং = মজা</h2>
+                    <p data-bn="সেরা ব্র্যান্ডের পণ্য একই জায়গায়" data-en="Best brand products in one place">সেরা ব্র্যান্ডের পণ্য একই জায়গায়</p>
+                    <a href="shop.html" class="btn-primary" data-bn="এখনই কিনুন" data-en="Shop Now">এখনই কিনুন</a>
                 </div>
             </div>
             <div class="slide">
                 <div class="slide-content">
-                    <h2>বড় ডিসকাউন্টে পণ্য কিনুন</h2>
-                    <p>৫০% পর্যন্ত ছাড়</p>
-                    <a href="deals.html" class="btn-primary">ডিলস দেখুন</a>
+                    <h2 data-bn="বড় ডিসকাউন্টে পণ্য কিনুন" data-en="Shop with Big Discounts">বড় ডিসকাউন্টে পণ্য কিনুন</h2>
+                    <p data-bn="৫০% পর্যন্ত ছাড়" data-en="Up to 50% off">৫০% পর্যন্ত ছাড়</p>
+                    <a href="deals.html" class="btn-primary" data-bn="ডিলস দেখুন" data-en="View Deals">ডিলস দেখুন</a>
                 </div>
             </div>
             <div class="slide">
                 <div class="slide-content">
-                    <h2>ফ্রি শিপিং</h2>
-                    <p>১০০০ টাকার উপর অর্ডারে ফ্রি ডেলিভারি</p>
-                    <a href="shop.html" class="btn-primary">শপিং করুন</a>
+                    <h2 data-bn="পুরো বাংলাদেশে হোম ডেলিভারি" data-en="Home Delivery Across Bangladesh">পুরো বাংলাদেশে হোম ডেলিভারি</h2>
+                    <p data-bn="সারা দেশে দ্রুত ডেলিভারি সার্ভিস" data-en="Fast delivery service across the country">সারা দেশে দ্রুত ডেলিভারি সার্ভিস</p>
+                    <a href="shop.html" class="btn-primary" data-bn="শপিং করুন" data-en="Start Shopping">শপিং করুন</a>
                 </div>
             </div>
         </div>
@@ -84,43 +90,43 @@
     <!-- Categories Section -->
     <section class="categories">
         <div class="container">
-            <h2 class="section-title">ক্যাটাগরি ব্রাউজ করুন</h2>
+            <h2 class="section-title" data-bn="ক্যাটাগরি ব্রাউজ করুন" data-en="Browse Categories">ক্যাটাগরি ব্রাউজ করুন</h2>
             <div class="categories-grid">
                 <div class="category-card">
                     <div class="category-icon">
                         <i class="fas fa-tshirt"></i>
                     </div>
-                    <h3>ফ্যাশন</h3>
+                    <h3 data-bn="ফ্যাশন" data-en="Fashion">ফ্যাশন</h3>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3>ইলেকট্রনিক্স</h3>
+                    <h3 data-bn="ইলেকট্রনিক্স" data-en="Electronics">ইলেকট্রনিক্স</h3>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">
                         <i class="fas fa-home"></i>
                     </div>
-                    <h3>হোম অ্যাপ্লায়েন্স</h3>
+                    <h3 data-bn="হোম অ্যাপ্লায়েন্স" data-en="Home Appliances">হোম অ্যাপ্লায়েন্স</h3>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
-                    <h3>রান্নাঘর</h3>
+                    <h3 data-bn="রান্নাঘর" data-en="Kitchen">রান্নাঘর</h3>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">
                         <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h3>স্বাস্থ্য</h3>
+                    <h3 data-bn="স্বাস্থ্য" data-en="Health">স্বাস্থ্য</h3>
                 </div>
                 <div class="category-card">
                     <div class="category-icon">
                         <i class="fas fa-futbol"></i>
                     </div>
-                    <h3>খেলাধুলা</h3>
+                    <h3 data-bn="খেলাধুলা" data-en="Sports">খেলাধুলা</h3>
                 </div>
             </div>
         </div>
@@ -129,12 +135,12 @@
     <!-- Featured Products -->
     <section class="featured-products">
         <div class="container">
-            <h2 class="section-title">ফিচার্ড পণ্য</h2>
+            <h2 class="section-title" data-bn="ফিচার্ড পণ্য" data-en="Featured Products">ফিচার্ড পণ্য</h2>
             <div class="products-grid">
                 <!-- Product cards will be loaded dynamically -->
             </div>
             <div class="text-center">
-                <a href="shop.html" class="btn-secondary">সব পণ্য দেখুন</a>
+                <a href="shop.html" class="btn-secondary" data-bn="সব পণ্য দেখুন" data-en="View All Products">সব পণ্য দেখুন</a>
             </div>
         </div>
     </section>
@@ -142,20 +148,20 @@
     <!-- Special Offers -->
     <section class="special-offers">
         <div class="container">
-            <h2 class="section-title">বিশেষ অফার</h2>
+            <h2 class="section-title" data-bn="বিশেষ অফার" data-en="Special Offers">বিশেষ অফার</h2>
             <div class="offers-grid">
                 <div class="offer-card">
                     <div class="offer-content">
-                        <h3>Point জমাও, Discount নাও, Hero হও</h3>
-                        <p>প্রতি ১০০ টাকা শপিংয়ে ১ পয়েন্ট পান</p>
-                        <a href="profile.html" class="btn-outline">বিস্তারিত জানুন</a>
+                        <h3 data-bn="Point জমাও, Discount নাও, Hero হও" data-en="Earn Points, Get Discounts, Be a Hero">Point জমাও, Discount নাও, Hero হও</h3>
+                        <p data-bn="প্রতি ১০০ টাকা শপিংয়ে ১ পয়েন্ট পান" data-en="Get 1 point for every 100৳ shopping">প্রতি ১০০ টাকা শপিংয়ে ১ পয়েন্ট পান</p>
+                        <a href="profile.html" class="btn-outline" data-bn="বিস্তারিত জানুন" data-en="Learn More">বিস্তারিত জানুন</a>
                     </div>
                 </div>
                 <div class="offer-card">
                     <div class="offer-content">
-                        <h3>ফ্রি ডেলিভারি</h3>
-                        <p>১০০০ টাকার উপর অর্ডারে ফ্রি শিপিং</p>
-                        <a href="shop.html" class="btn-outline">শপিং করুন</a>
+                        <h3 data-bn="পুরো বাংলাদেশে হোম ডেলিভারি" data-en="Home Delivery Across Bangladesh">পুরো বাংলাদেশে হোম ডেলিভারি</h3>
+                        <p data-bn="সারা দেশে দ্রুত ও নির্ভরযোগ্য ডেলিভারি" data-en="Fast and reliable delivery across the country">সারা দেশে দ্রুত ও নির্ভরযোগ্য ডেলিভারি</p>
+                        <a href="shop.html" class="btn-outline" data-bn="শপিং করুন" data-en="Shop Now">শপিং করুন</a>
                     </div>
                 </div>
             </div>
@@ -168,37 +174,46 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>NUR - Premium Shopping</h3>
-                    <p>যেখানে শপিং = মজা</p>
-                    <p>অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি... কখনো কখনো</p>
+                    <p data-bn="যেখানে শপিং = মজা" data-en="Where Shopping = Fun">যেখানে শপিং = মজা</p>
+                    <p data-bn="পুরো বাংলাদেশে হোম ডেলিভারি" data-en="Home Delivery Across Bangladesh">পুরো বাংলাদেশে হোম ডেলিভারি</p>
                 </div>
                 <div class="footer-section">
-                    <h4>দ্রুত লিংক</h4>
+                    <h4 data-bn="দ্রুত লিংক" data-en="Quick Links">দ্রুত লিংক</h4>
                     <ul>
-                        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                        <li><a href="contact.html">যোগাযোগ</a></li>
-                        <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
-                        <li><a href="terms.html">শর্তাবলী</a></li>
+                        <li><a href="about.html" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a></li>
+                        <li><a href="contact.html" data-bn="যোগাযোগ" data-en="Contact">যোগাযোগ</a></li>
+                        <li><a href="privacy.html" data-bn="গোপনীয়তা নীতি" data-en="Privacy Policy">গোপনীয়তা নীতি</a></li>
+                        <li><a href="terms.html" data-bn="শর্তাবলী" data-en="Terms & Conditions">শর্তাবলী</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>কাস্টমার কেয়ার</h4>
+                    <h4 data-bn="কাস্টমার কেয়ার" data-en="Customer Care">কাস্টমার কেয়ার</h4>
                     <ul>
-                        <li><a href="help.html">সাহায্য কেন্দ্র</a></li>
-                        <li><a href="returns.html">রিটার্ন পলিসি</a></li>
-                        <li><a href="shipping.html">শিপিং তথ্য</a></li>
+                        <li><a href="help.html" data-bn="সাহায্য কেন্দ্র" data-en="Help Center">সাহায্য কেন্দ্র</a></li>
+                        <li><a href="returns.html" data-bn="রিটার্ন পলিসি" data-en="Return Policy">রিটার্ন পলিসি</a></li>
+                        <li><a href="shipping.html" data-bn="শিপিং তথ্য" data-en="Shipping Info">শিপিং তথ্য</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>আমাদের অনুসরণ করুন</h4>
+                    <h4 data-bn="আমাদের অনুসরণ করুন" data-en="Follow Us">আমাদের অনুসরণ করুন</h4>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
+                    <div class="payment-methods">
+                        <h5 data-bn="পেমেন্ট Methods" data-en="Payment Methods">পেমেন্ট Methods</h5>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 NUR - Premium Shopping. সকল অধিকার সংরক্ষিত।</p>
+                <p>&copy; 2023 NUR - Premium Shopping. <span data-bn="সকল অধিকার সংরক্ষিত।" data-en="All rights reserved.">সকল অধিকার সংরক্ষিত।</span></p>
             </div>
         </div>
     </footer>

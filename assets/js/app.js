@@ -1,6 +1,6 @@
 // Firebase Configuration
 const firebaseConfig = {
-      apiKey: "AIzaSyDSYALT_jaIQrTq-oZP9sMyUJWXaLSjTY4",
+    apiKey: "AIzaSyDSYALT_jaIQrTq-oZP9sMyUJWXaLSjTY4",
   authDomain: "nur-shop-siam.firebaseapp.com",
   projectId: "nur-shop-siam",
   storageBucket: "nur-shop-siam.firebasestorage.app",
@@ -175,4 +175,214 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 
 function showSlide(index) {
-    slides.forEach(s
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentSlide = index;
+}
+
+function nextSlide() {
+    let next = currentSlide + 1;
+    if (next >= slides.length) next = 0;
+    showSlide(next);
+}
+
+// Auto slide every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Dot click events
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showSlide(index);
+    });
+});
+
+// Load Featured Products
+function loadFeaturedProducts() {
+    productsGrid.innerHTML = '';
+    
+    sampleProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image}" alt="${getProductName(product, currentLanguage)}">
+                ${product.discount ? `<div class="discount-badge">${product.discount}% OFF</div>` : ''}
+                ${product.freeShipping ? `<div class="free-shipping-badge">${currentLanguage === 'bn' ? 'ফ্রি শিপিং' : 'Free Shipping'}</div>` : ''}
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${getProductName(product, currentLanguage)}</h3>
+                <div class="product-price">
+                    <span class="current-price">৳${product.price.toLocaleString()}</span>
+                    ${product.originalPrice ? `<span class="original-price">৳${product.originalPrice.toLocaleString()}</span>` : ''}
+                </div>
+                <div class="product-rating">
+                    <div class="stars">
+                        ${generateStars(product.rating)}
+                    </div>
+                    <span class="rating-count">(${product.reviews})</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-cart" onclick="addToCart(${product.id})">
+                        ${currentLanguage === 'bn' ? 'কার্টে যোগ করুন' : 'Add to Cart'}
+                    </button>
+                    <button class="btn-wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        productsGrid.appendChild(productCard);
+    });
+}
+
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+    
+    let starsHTML = '';
+    
+    // Full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fas fa-star"></i>';
+    }
+    
+    // Half star
+    if (halfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+    }
+    
+    // Empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star"></i>';
+    }
+    
+    return starsHTML;
+}
+
+// Initialize App
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial language
+    setLanguage(currentLanguage);
+    updateCartCount();
+    loadFeaturedProducts();
+    showSlide(0);
+    
+    // Language switcher event
+    if (languageSelect) {
+        languageSelect.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+    }
+    
+    // Floating cart click event
+    if (floatingCart) {
+        floatingCart.addEventListener('click', () => {
+            window.location.href = 'cart.html';
+        });
+    }
+    
+    // Search functionality
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+    
+    if (searchInput && searchButton) {
+        const performSearch = () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+            }
+        };
+        
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+});
+
+// Firebase Authentication Functions
+function signUp(email, password) {
+    return auth.createUserWithEmailAndPassword(email, password);
+}
+
+function signIn(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+}
+
+function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return auth.signInWithPopup(provider);
+}
+
+function signInWithFacebook() {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    return auth.signInWithPopup(provider);
+}
+
+function signOut() {
+    return auth.signOut();
+}
+
+// Firestore Functions
+function addProduct(productData) {
+    return db.collection('products').add(productData);
+}
+
+function getProducts() {
+    return db.collection('products').get();
+}
+
+function updateProduct(productId, productData) {
+    return db.collection('products').doc(productId).update(productData);
+}
+
+function deleteProduct(productId) {
+    return db.collection('products').doc(productId).delete();
+}
+
+function addOrder(orderData) {
+    return db.collection('orders').add({
+        ...orderData,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        status: 'pending'
+    });
+}
+
+function getOrders() {
+    return db.collection('orders').orderBy('createdAt', 'desc').get();
+}
+
+function updateOrderStatus(orderId, status) {
+    return db.collection('orders').doc(orderId).update({ status });
+}
+
+// Loyalty Points System
+function calculatePoints(orderTotal) {
+    return Math.floor(orderTotal / 100);
+}
+
+function addUserPoints(userId, points) {
+    return db.collection('users').doc(userId).update({
+        points: firebase.firestore.FieldValue.increment(points)
+    });
+}
+
+// Admin Functions
+function uploadBanner(imageFile) {
+    const storageRef = firebase.storage().ref();
+    const bannerRef = storageRef.child(`banners/${Date.now()}_${imageFile.name}`);
+    
+    return bannerRef.put(imageFile).then(snapshot => {
+        return snapshot.ref.getDownloadURL();
+    });
+}
+
+function getBanners() {
+    return db.collection('banners').orderBy('order').get();
+}

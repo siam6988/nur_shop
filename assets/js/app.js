@@ -1,6 +1,6 @@
 // Firebase Configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDSYALT_jaIQrTq-oZP9sMyUJWXaLSjTY4",
+  apiKey: "AIzaSyDSYALT_jaIQrTq-oZP9sMyUJWXaLSjTY4",
   authDomain: "nur-shop-siam.firebaseapp.com",
   projectId: "nur-shop-siam",
   storageBucket: "nur-shop-siam.firebasestorage.app",
@@ -13,9 +13,6 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-// Language Management
-let currentLanguage = localStorage.getItem('nurLanguage') || 'bn';
-
 // DOM Elements
 const cartCountElements = document.querySelectorAll('.cart-count');
 const floatingCart = document.querySelector('.floating-cart');
@@ -24,11 +21,133 @@ const sliderContainer = document.querySelector('.slider-container');
 const dots = document.querySelectorAll('.dot');
 const languageSelect = document.getElementById('languageSelect');
 
+// Language Translations
+const translations = {
+    bn: {
+        // Header
+        searchPlaceholder: "পণ্য খুঁজুন...",
+        account: "অ্যাকাউন্ট",
+        wishlist: "উইশলিস্ট",
+        cart: "কার্ট",
+        
+        // Navigation
+        home: "হোম",
+        shop: "শপ",
+        categories: "ক্যাটাগরি",
+        deals: "ডিলস",
+        about: "আমাদের সম্পর্কে",
+        contact: "যোগাযোগ",
+        
+        // Banner
+        banner1Title: "নুর - যেখানে শপিং = মজা",
+        banner1Desc: "সেরা ব্র্যান্ডের পণ্য একই জায়গায়",
+        banner1Btn: "এখনই কিনুন",
+        
+        banner2Title: "বড় ডিসকাউন্টে পণ্য কিনুন",
+        banner2Desc: "৫০% পর্যন্ত ছাড়",
+        banner2Btn: "ডিলস দেখুন",
+        
+        banner3Title: "ফ্রি শিপিং",
+        banner3Desc: "১০০০ টাকার উপর অর্ডারে ফ্রি ডেলিভারি",
+        banner3Btn: "শপিং করুন",
+        
+        // Sections
+        browseCategories: "ক্যাটাগরি ব্রাউজ করুন",
+        featuredProducts: "ফিচার্ড পণ্য",
+        viewAllProducts: "সব পণ্য দেখুন",
+        specialOffers: "বিশেষ অফার",
+        
+        // Categories
+        fashion: "ফ্যাশন",
+        electronics: "ইলেকট্রনিক্স",
+        homeAppliances: "হোম অ্যাপ্লায়েন্স",
+        kitchen: "রান্নাঘর",
+        health: "স্বাস্থ্য",
+        sports: "খেলাধুলা",
+        
+        // Offers
+        offer1Title: "Point জমাও, Discount নাও, Hero হও",
+        offer1Desc: "প্রতি ১০০ টাকা শপিংয়ে ১ পয়েন্ট পান",
+        offer1Btn: "বিস্তারিত জানুন",
+        
+        offer2Title: "ফ্রি ডেলিভারি",
+        offer2Desc: "১০০০ টাকার উপর অর্ডারে ফ্রি শিপিং",
+        offer2Btn: "শপিং করুন",
+        
+        // Product Actions
+        addToCart: "কার্টে যোগ করুন",
+        
+        // Toast Messages
+        addedToCart: "পণ্য কার্টে যোগ করা হয়েছে"
+    },
+    en: {
+        // Header
+        searchPlaceholder: "Search products...",
+        account: "Account",
+        wishlist: "Wishlist",
+        cart: "Cart",
+        
+        // Navigation
+        home: "Home",
+        shop: "Shop",
+        categories: "Categories",
+        deals: "Deals",
+        about: "About Us",
+        contact: "Contact",
+        
+        // Banner
+        banner1Title: "NUR - Where Shopping = Fun",
+        banner1Desc: "Best brand products in one place",
+        banner1Btn: "Buy Now",
+        
+        banner2Title: "Buy Products at Big Discount",
+        banner2Desc: "Up to 50% off",
+        banner2Btn: "View Deals",
+        
+        banner3Title: "Free Shipping",
+        banner3Desc: "Free delivery on orders above 1000৳",
+        banner3Btn: "Start Shopping",
+        
+        // Sections
+        browseCategories: "Browse Categories",
+        featuredProducts: "Featured Products",
+        viewAllProducts: "View All Products",
+        specialOffers: "Special Offers",
+        
+        // Categories
+        fashion: "Fashion",
+        electronics: "Electronics",
+        homeAppliances: "Home Appliances",
+        kitchen: "Kitchen",
+        health: "Health",
+        sports: "Sports",
+        
+        // Offers
+        offer1Title: "Earn Points, Get Discounts, Be Hero",
+        offer1Desc: "Get 1 point for every 100৳ shopping",
+        offer1Btn: "Learn More",
+        
+        offer2Title: "Free Delivery",
+        offer2Desc: "Free shipping on orders above 1000৳",
+        offer2Btn: "Shop Now",
+        
+        // Product Actions
+        addToCart: "Add to Cart",
+        
+        // Toast Messages
+        addedToCart: "Product added to cart"
+    }
+};
+
+// Current Language
+let currentLanguage = 'bn';
+
 // Sample Products Data
 const sampleProducts = [
     {
         id: 1,
-        name: "মেনস কটন শার্ট | Men's Cotton Shirt",
+        name: "মেনস কটন শার্ট",
+        name_en: "Men's Cotton Shirt",
         price: 899,
         originalPrice: 1299,
         discount: 30,
@@ -39,7 +158,8 @@ const sampleProducts = [
     },
     {
         id: 2,
-        name: "স্মার্টফোন এক্স১০ | Smartphone X10",
+        name: "স্মার্টফোন এক্স১০",
+        name_en: "Smartphone X10",
         price: 18999,
         originalPrice: 21999,
         discount: 15,
@@ -50,7 +170,8 @@ const sampleProducts = [
     },
     {
         id: 3,
-        name: "ব্লুটুথ হেডফোন | Bluetooth Headphone",
+        name: "ব্লুটুথ হেডফোন",
+        name_en: "Bluetooth Headphone",
         price: 1599,
         originalPrice: 2499,
         discount: 35,
@@ -61,7 +182,8 @@ const sampleProducts = [
     },
     {
         id: 4,
-        name: "স্পোর্টস শু | Sports Shoes",
+        name: "স্পোর্টস শু",
+        name_en: "Sports Shoes",
         price: 2499,
         originalPrice: 3499,
         discount: 28,
@@ -71,41 +193,6 @@ const sampleProducts = [
         freeShipping: true
     }
 ];
-
-// Language Functions
-function setLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('nurLanguage', lang);
-    
-    // Update all elements with data attributes
-    const elements = document.querySelectorAll('[data-bn], [data-en]');
-    elements.forEach(element => {
-        if (element.hasAttribute(`data-${lang}`)) {
-            const text = element.getAttribute(`data-${lang}`);
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = text;
-            } else {
-                element.textContent = text;
-            }
-        }
-    });
-    
-    // Update select element
-    if (languageSelect) {
-        languageSelect.value = lang;
-    }
-    
-    // Reload product names based on language
-    loadFeaturedProducts();
-}
-
-function getProductName(product, lang) {
-    if (product.name.includes('|')) {
-        const parts = product.name.split('|');
-        return lang === 'bn' ? parts[0].trim() : parts[1].trim();
-    }
-    return product.name;
-}
 
 // Cart Management
 let cart = JSON.parse(localStorage.getItem('nurCart')) || [];
@@ -137,7 +224,7 @@ function addToCart(productId) {
     
     localStorage.setItem('nurCart', JSON.stringify(cart));
     updateCartCount();
-    showToast(currentLanguage === 'bn' ? 'পণ্য কার্টে যোগ করা হয়েছে' : 'Product added to cart');
+    showToast(translations[currentLanguage].addedToCart);
 }
 
 function showToast(message) {
@@ -145,19 +232,6 @@ function showToast(message) {
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.textContent = message;
-    toast.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--primary);
-        color: white;
-        padding: 12px 20px;
-        border-radius: 4px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
-        animation: slideUp 0.3s ease;
-    `;
     
     document.body.appendChild(toast);
     
@@ -170,219 +244,45 @@ function showToast(message) {
     }, 3000);
 }
 
-// Banner Slider
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-
-function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+// Language Switch Functionality
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('nurLanguage', lang);
     
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-    currentSlide = index;
+    // Update all text content
+    updatePageContent();
 }
 
-function nextSlide() {
-    let next = currentSlide + 1;
-    if (next >= slides.length) next = 0;
-    showSlide(next);
-}
-
-// Auto slide every 5 seconds
-setInterval(nextSlide, 5000);
-
-// Dot click events
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        showSlide(index);
-    });
-});
-
-// Load Featured Products
-function loadFeaturedProducts() {
-    productsGrid.innerHTML = '';
+function updatePageContent() {
+    const t = translations[currentLanguage];
     
-    sampleProducts.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-            <div class="product-image">
-                <img src="${product.image}" alt="${getProductName(product, currentLanguage)}">
-                ${product.discount ? `<div class="discount-badge">${product.discount}% OFF</div>` : ''}
-                ${product.freeShipping ? `<div class="free-shipping-badge">${currentLanguage === 'bn' ? 'ফ্রি শিপিং' : 'Free Shipping'}</div>` : ''}
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">${getProductName(product, currentLanguage)}</h3>
-                <div class="product-price">
-                    <span class="current-price">৳${product.price.toLocaleString()}</span>
-                    ${product.originalPrice ? `<span class="original-price">৳${product.originalPrice.toLocaleString()}</span>` : ''}
-                </div>
-                <div class="product-rating">
-                    <div class="stars">
-                        ${generateStars(product.rating)}
-                    </div>
-                    <span class="rating-count">(${product.reviews})</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn-cart" onclick="addToCart(${product.id})">
-                        ${currentLanguage === 'bn' ? 'কার্টে যোগ করুন' : 'Add to Cart'}
-                    </button>
-                    <button class="btn-wishlist">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-        productsGrid.appendChild(productCard);
-    });
-}
-
-function generateStars(rating) {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-    
-    let starsHTML = '';
-    
-    // Full stars
-    for (let i = 0; i < fullStars; i++) {
-        starsHTML += '<i class="fas fa-star"></i>';
-    }
-    
-    // Half star
-    if (halfStar) {
-        starsHTML += '<i class="fas fa-star-half-alt"></i>';
-    }
-    
-    // Empty stars
-    for (let i = 0; i < emptyStars; i++) {
-        starsHTML += '<i class="far fa-star"></i>';
-    }
-    
-    return starsHTML;
-}
-
-// Initialize App
-document.addEventListener('DOMContentLoaded', function() {
-    // Set initial language
-    setLanguage(currentLanguage);
-    updateCartCount();
-    loadFeaturedProducts();
-    showSlide(0);
-    
-    // Language switcher event
-    if (languageSelect) {
-        languageSelect.addEventListener('change', (e) => {
-            setLanguage(e.target.value);
-        });
-    }
-    
-    // Floating cart click event
-    if (floatingCart) {
-        floatingCart.addEventListener('click', () => {
-            window.location.href = 'cart.html';
-        });
-    }
-    
-    // Search functionality
+    // Update header
     const searchInput = document.querySelector('.search-bar input');
-    const searchButton = document.querySelector('.search-bar button');
+    if (searchInput) searchInput.placeholder = t.searchPlaceholder;
     
-    if (searchInput && searchButton) {
-        const performSearch = () => {
-            const query = searchInput.value.trim();
-            if (query) {
-                window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
-            }
-        };
-        
-        searchButton.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
+    const accountText = document.querySelector('.action-item:nth-child(2) span');
+    if (accountText) accountText.textContent = t.account;
+    
+    const wishlistText = document.querySelector('.action-item:nth-child(3) span');
+    if (wishlistText) wishlistText.textContent = t.wishlist;
+    
+    const cartText = document.querySelector('.cart-icon span');
+    if (cartText) cartText.textContent = t.cart;
+    
+    // Update navigation
+    const navLinks = document.querySelectorAll('.navbar a');
+    if (navLinks.length >= 6) {
+        navLinks[0].textContent = t.home;
+        navLinks[1].textContent = t.shop;
+        navLinks[2].textContent = t.categories;
+        navLinks[3].textContent = t.deals;
+        navLinks[4].textContent = t.about;
+        navLinks[5].textContent = t.contact;
     }
-});
-
-// Firebase Authentication Functions
-function signUp(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
-}
-
-function signIn(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
-}
-
-function signInWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    return auth.signInWithPopup(provider);
-}
-
-function signInWithFacebook() {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    return auth.signInWithPopup(provider);
-}
-
-function signOut() {
-    return auth.signOut();
-}
-
-// Firestore Functions
-function addProduct(productData) {
-    return db.collection('products').add(productData);
-}
-
-function getProducts() {
-    return db.collection('products').get();
-}
-
-function updateProduct(productId, productData) {
-    return db.collection('products').doc(productId).update(productData);
-}
-
-function deleteProduct(productId) {
-    return db.collection('products').doc(productId).delete();
-}
-
-function addOrder(orderData) {
-    return db.collection('orders').add({
-        ...orderData,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        status: 'pending'
-    });
-}
-
-function getOrders() {
-    return db.collection('orders').orderBy('createdAt', 'desc').get();
-}
-
-function updateOrderStatus(orderId, status) {
-    return db.collection('orders').doc(orderId).update({ status });
-}
-
-// Loyalty Points System
-function calculatePoints(orderTotal) {
-    return Math.floor(orderTotal / 100);
-}
-
-function addUserPoints(userId, points) {
-    return db.collection('users').doc(userId).update({
-        points: firebase.firestore.FieldValue.increment(points)
-    });
-}
-
-// Admin Functions
-function uploadBanner(imageFile) {
-    const storageRef = firebase.storage().ref();
-    const bannerRef = storageRef.child(`banners/${Date.now()}_${imageFile.name}`);
     
-    return bannerRef.put(imageFile).then(snapshot => {
-        return snapshot.ref.getDownloadURL();
-    });
-}
-
-function getBanners() {
-    return db.collection('banners').orderBy('order').get();
-}
+    // Update banner slides
+    const slides = document.querySelectorAll('.slide-content');
+    if (slides.length >= 3) {
+        slides[0].querySelector('h2').textContent = t.banner1Title;
+        slides[0].querySelector('p').textContent = t.banner1Desc;
+       

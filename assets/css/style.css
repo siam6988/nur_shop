@@ -65,20 +65,6 @@ body {
     font-size: 14px;
 }
 
-/* Language Switcher */
-.language-switcher {
-    margin-right: 20px;
-}
-
-.language-switcher select {
-    padding: 8px 12px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: white;
-    font-size: 14px;
-    cursor: pointer;
-}
-
 .search-bar {
     display: flex;
     flex: 0 0 40%;
@@ -104,6 +90,28 @@ body {
 .header-actions {
     display: flex;
     gap: 20px;
+    align-items: center;
+}
+
+/* Language Switch Styles */
+.language-switch {
+    margin-right: 10px;
+}
+
+.language-switch select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.language-switch select:focus {
+    outline: none;
+    border-color: var(--primary);
 }
 
 .action-item {
@@ -112,7 +120,6 @@ body {
     align-items: center;
     cursor: pointer;
     position: relative;
-    text-align: center;
 }
 
 .action-item i {
@@ -124,7 +131,6 @@ body {
 .action-item span {
     font-size: 12px;
     color: var(--text-light);
-    line-height: 1.2;
 }
 
 .cart-count {
@@ -548,7 +554,6 @@ body {
 .social-links {
     display: flex;
     gap: 15px;
-    margin-bottom: 20px;
 }
 
 .social-links a {
@@ -564,21 +569,6 @@ body {
 
 .social-links a:hover {
     background: var(--primary);
-}
-
-.payment-methods h5 {
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-.payment-icons {
-    display: flex;
-    gap: 10px;
-}
-
-.payment-icons i {
-    font-size: 24px;
-    color: #cbd5e1;
 }
 
 .footer-bottom {
@@ -634,22 +624,22 @@ body {
 
 @keyframes slideUp {
     from {
-        transform: translateX(-50%) translateY(100px);
+        transform: translate(-50%, 100%);
         opacity: 0;
     }
     to {
-        transform: translateX(-50%) translateY(0);
+        transform: translate(-50%, 0);
         opacity: 1;
     }
 }
 
 @keyframes slideDown {
     from {
-        transform: translateX(-50%) translateY(0);
+        transform: translate(-50%, 0);
         opacity: 1;
     }
     to {
-        transform: translateX(-50%) translateY(100px);
+        transform: translate(-50%, 100%);
         opacity: 0;
     }
 }
@@ -672,15 +662,14 @@ body {
         flex-wrap: wrap;
     }
     
-    .language-switcher {
-        order: 2;
-        margin-right: 0;
-    }
-    
     .search-bar {
         order: 3;
         flex: 0 0 100%;
         margin-top: 15px;
+    }
+    
+    .header-actions {
+        order: 2;
     }
 }
 
@@ -701,8 +690,8 @@ body {
         display: flex;
     }
     
-    .action-item span {
-        font-size: 10px;
+    .language-switch {
+        margin-right: 0;
     }
 }
 

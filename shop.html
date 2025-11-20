@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শপ - NUR Premium Shopping</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header (Same as index.html) -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <h1>NUR</h1>
+                    <span>Premium Shopping</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <div class="language-switch">
+                        <select id="languageSelect">
+                            <option value="bn" selected>বাংলা</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <div class="action-item" onclick="toggleAuthModal()">
+                        <i class="fas fa-user"></i>
+                        <span>অ্যাকাউন্ট</span>
+                    </div>
+                    <div class="action-item" onclick="window.location.href='wishlist.html'">
+                        <i class="fas fa-heart"></i>
+                        <span>উইশলিস্ট</span>
+                    </div>
+                    <div class="action-item cart-icon" onclick="window.location.href='cart.html'">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>কার্ট</span>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">হোম</a></li>
+                    <li><a href="shop.html" class="active">শপ</a></li>
+                    <li><a href="categories.html">ক্যাটাগরি</a></li>
+                    <li><a href="deals.html">ডিলস</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Shop Content -->
+    <section class="shop-section">
+        <div class="container">
+            <div class="shop-header">
+                <h1>সব পণ্য</h1>
+                <div class="shop-controls">
+                    <div class="filter-toggle">
+                        <button id="filterToggle"><i class="fas fa-filter"></i> ফিল্টার</button>
+                    </div>
+                    <div class="sort-options">
+                        <select id="sortSelect">
+                            <option value="default">ডিফল্ট সাজান</option>
+                            <option value="price-low">দাম: কম থেকে বেশি</option>
+                            <option value="price-high">দাম: বেশি থেকে কম</option>
+                            <option value="name">নাম অনুসারে</option>
+                            <option value="rating">রেটিং অনুসারে</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-content">
+                <!-- Filters Sidebar -->
+                <div class="filters-sidebar" id="filtersSidebar">
+                    <div class="filter-group">
+                        <h3>ক্যাটাগরি</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" value="fashion"> ফ্যাশন</label>
+                            <label><input type="checkbox" value="electronics"> ইলেকট্রনিক্স</label>
+                            <label><input type="checkbox" value="home"> হোম অ্যাপ্লায়েন্স</label>
+                            <label><input type="checkbox" value="kitchen"> রান্নাঘর</label>
+                            <label><input type="checkbox" value="health"> স্বাস্থ্য</label>
+                            <label><input type="checkbox" value="sports"> খেলাধুলা</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>দাম রেঞ্জ</h3>
+                        <div class="price-range">
+                            <input type="range" min="0" max="50000" value="50000" class="price-slider" id="priceRange">
+                            <div class="price-values">
+                                <span>0৳</span>
+                                <span id="maxPrice">50000৳</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>ব্র্যান্ড</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" value="samsung"> স্যামসাং</label>
+                            <label><input type="checkbox" value="apple"> অ্যাপল</label>
+                            <label><input type="checkbox" value="xiaomi"> শাওমি</label>
+                            <label><input type="checkbox" value="nike"> নাইকি</label>
+                            <label><input type="checkbox" value="adidas"> অ্যাডিডাস</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>অফার</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" value="discount"> ডিসকাউন্ট</label>
+                            <label><input type="checkbox" value="free-shipping"> ফ্রি শিপিং</label>
+                            <label><input type="checkbox" value="new"> নতুন পণ্য</label>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="applyFilters()">ফিল্টার প্রয়োগ করুন</button>
+                    <button class="btn-secondary" onclick="clearFilters()">ফিল্টার ক্লিয়ার করুন</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-container">
+                    <div class="products-header">
+                        <p id="productsCount">মোট ৮টি পণ্য পাওয়া গেছে</p>
+                    </div>
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be loaded here -->
+                    </div>
+                    <div class="pagination">
+                        <button class="page-btn" disabled>পূর্ববর্তী</button>
+                        <span class="page-info">পৃষ্ঠা 1 of 2</span>
+                        <button class="page-btn">পরবর্তী</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NUR - Premium Shopping</h3>
+                    <p>যেখানে শপিং = মজা</p>
+                    <p>অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি... কখনো কখনো</p>
+                </div>
+                <div class="footer-section">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                        <li><a href="contact.html">যোগাযোগ</a></li>
+                        <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
+                        <li><a href="terms.html">শর্তাবলী</a></li>
+                        <li><a href="#" target="_blank">Wholesale Site</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>কাস্টমার কেয়ার</h4>
+                    <ul>
+                        <li><a href="help.html">সাহায্য কেন্দ্র</a></li>
+                        <li><a href="returns.html">রিটার্ন পলিসি</a></li>
+                        <li><a href="shipping.html">শিপিং তথ্য</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>আমাদের অনুসরণ করুন</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a

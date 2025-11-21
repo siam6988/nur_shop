@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কার্ট - NUR Premium Shopping</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cart-section {
+            padding: 40px 0;
+            min-height: 60vh;
+        }
+
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .cart-header {
+            margin-bottom: 30px;
+        }
+
+        .cart-header h1 {
+            font-size: 32px;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .empty-cart i {
+            font-size: 80px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .empty-cart h2 {
+            font-size: 24px;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .empty-cart p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        /* Cart Items */
+        .cart-items {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto auto;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-image i {
+            font-size: 24px;
+            color: var(--text-light);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .cart-item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-remove, .btn-wishlist {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .btn-remove:hover {
+            color: var(--danger);
+        }
+
+        .btn-wishlist:hover {
+            color: var(--primary);
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .quantity {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .cart-item-total {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            min-width: 100px;
+            text-align: right;
+        }
+
+        /* Cart Summary */
+        .cart-summary {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .cart-summary h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .summary-actions {
+            margin-top: 25px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-checkout:hover {
+            background: #e69008;
+        }
+
+        .btn-continue {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-continue:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                gap: 15px;
+            }
+
+            .cart-item-quantity, .cart-item-total {
+                grid-column: 1 / -1;
+                justify-self: start;
+                margin-top: 10px;
+            }
+
+            .cart-item-total {
+                justify-self: end;
+                margin-top: 0;
+            }
+
+            .cart-item-image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <h1>NUR</h1>
+                    <span>Premium Shopping</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="পণ্য খুঁজুন..." id="searchInput">
+                    <button onclick="performSearch()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <div class="language-switch">
+                        <select id="languageSelect">
+                            <option value="bn" selected>বাংলা</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <div class="action-item" onclick="toggleAuthModal()">
+                        <i class="fas fa-user"></i>
+                        <span>অ্যাকাউন্ট</span>
+                    </div>
+                    <div class="action-item" onclick="window.location.href='wishlist.html'">
+                        <i class="fas fa-heart"></i>
+                        <span>উইশলিস্ট</span>
+                    </div>
+                    <div class="action-item cart-icon" onclick="window.location.href='cart.html'">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>কার্ট</span>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">হোম</a></li>
+                    <li><a href="shop.html">শপ</a></li>
+                    <li><a href="categories.html">ক্যাটাগরি</a></li>
+                    <li><a href="deals.html">ডিলস</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-header">
+                <h1>আপনার কার্ট</h1>
+                <p>Cart এ আছে? তাহলে আর লুকিও না, Checkout করে ফেলো!</p>
+            </div>
+
+            <!-- Empty Cart -->
+            <div id="emptyCart" class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>আপনার কার্ট খালি</h2>
+                <p>কার্টে পণ্য যোগ করুন এবং ডিল উপভোগ করুন</p>
+                <a href="shop.html" class="btn-primary">শপিং চালিয়ে যান</a>
+            </div>
+
+            <!-- Cart Content -->
+            <div id="cartContent" class="cart-container">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <div id="cartItems">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h2>অর্ডার সারাংশ</h2>
+                    <div class="summary-row">
+                        <span>সাবটোটাল</span>
+                        <span id="subtotal">৳0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>ডেলিভারি চার্জ</span>
+                        <span id="shipping">৳120</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>মোট</span>
+                        <span id="total">৳0</span>
+                    </div>
+                    <div class="summary-actions">
+                        <button id="checkoutBtn" class="btn-checkout">চেকআউট করুন</button>
+                        <button id="continueShopping" class="btn-continue">শপিং চালিয়ে যান</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NUR - Premium Shopping</h3>
+                    <p>যেখানে শপিং = মজা</p>
+                    <p>অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি... কখনো কখনো</p>
+                </div>
+                <div class="footer-section">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                        <li><a href="contact.html">যোগাযোগ</a></li>
+                        <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
+                        <li><a href="terms.html">শর্তাবলী</a></li>
+                        <li><a href="#" target="_blank">Wholesale Site</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>কাস্টমার কেয়ার</h4>
+                    <ul>
+                        <li><a href="help.html">সাহায্য কেন্দ্র</a></li>
+                        <li><a href="returns.html">রিটার্ন পলিসি</a></li>
+                        <li><a href="shipping.html">শিপিং তথ্য</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>আমাদের অনুসরণ করুন</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 NUR - Premium Shopping. সকল অধিকার সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart -->
+    <div class="floating-cart" onclick="window.location.href='cart.html'">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">লগইন</button>
+                <button class="tab-btn" data-tab="register">রেজিস্টার</button>
+            </div>
+            
+            <div id="login" class="tab-content active">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="ইমেইল" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="পাসওয়ার্ড" required>
+                    </div>
+                    <button type="submit" class="btn-primary">লগইন</button>
+                </form>
+                <div class="social-login">
+                    <button class="btn-google" onclick="signInWithGoogle()">
+                        <i class="fab fa-google"></i> Google দিয়ে লগইন
+                    </button>
+                    <button class="btn-facebook" onclick="signInWithFacebook()">
+                        <i class="fab fa-facebook"></i> Facebook দিয়ে লগইন
+                    </button>
+                </div>
+            </div>
+            
+            <div id="register" class="tab-content">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="পুরো নাম" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="ইমেইল" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="পাসওয়ার্ড" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
+                    </div>
+                    <button type="submit" class="btn-primary">রেজিস্টার</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/cart.js"></script>
+</body>
+</html>

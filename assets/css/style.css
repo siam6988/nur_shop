@@ -51,6 +51,7 @@ body {
 .logo {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .logo h1 {
@@ -106,12 +107,6 @@ body {
     color: var(--text);
     font-size: 14px;
     cursor: pointer;
-    transition: border-color 0.3s;
-}
-
-.language-switch select:focus {
-    outline: none;
-    border-color: var(--primary);
 }
 
 .action-item {
@@ -166,7 +161,8 @@ body {
     transition: color 0.3s;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+.navbar a.active {
     color: var(--primary);
 }
 
@@ -601,47 +597,94 @@ body {
     font-size: 24px;
 }
 
-.floating-cart .cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
 }
 
-/* Toast Notifications */
-.toast {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
     background: var(--primary);
     color: white;
-    padding: 12px 20px;
+}
+
+.tab-content {
+    display: none;
+    padding: 30px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 1000;
-    animation: slideUp 0.3s ease;
+    font-size: 14px;
 }
 
-@keyframes slideUp {
-    from {
-        transform: translate(-50%, 100%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, 0);
-        opacity: 1;
-    }
+.social-login {
+    margin-top: 20px;
 }
 
-@keyframes slideDown {
-    from {
-        transform: translate(-50%, 0);
-        opacity: 1;
-    }
-    to {
-        transform: translate(-50%, 100%);
-        opacity: 0;
-    }
+.btn-google, .btn-facebook {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 /* Responsive Design */
@@ -667,10 +710,6 @@ body {
         flex: 0 0 100%;
         margin-top: 15px;
     }
-    
-    .header-actions {
-        order: 2;
-    }
 }
 
 @media (max-width: 768px) {
@@ -682,16 +721,8 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .navbar ul {
-        flex-wrap: wrap;
-    }
-    
     .floating-cart {
         display: flex;
-    }
-    
-    .language-switch {
-        margin-right: 0;
     }
 }
 
@@ -714,9 +745,5 @@ body {
     
     .slide-content p {
         font-size: 16px;
-    }
-    
-    .header-actions {
-        gap: 10px;
     }
 }

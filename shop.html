@@ -7,9 +7,259 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Shop Page Specific Styles */
+        .shop-section {
+            padding: 40px 0;
+            min-height: 70vh;
+        }
+
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .shop-header h1 {
+            font-size: 32px;
+            color: var(--text);
+        }
+
+        .shop-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-toggle {
+            display: none;
+        }
+
+        .sort-options select {
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: white;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .shop-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Filters Sidebar */
+        .filters-sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .filter-group h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .filter-options input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Price Range */
+        .price-range {
+            margin-top: 15px;
+        }
+
+        .price-slider {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .price-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Products Container */
+        .products-container {
+            flex: 1;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .products-count {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* No Products */
+        .no-products {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .no-products i {
+            font-size: 60px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .no-products h3 {
+            font-size: 20px;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .no-products p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        .page-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .shop-content {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                position: static;
+                display: none;
+            }
+
+            .filters-sidebar.active {
+                display: block;
+            }
+
+            .filter-toggle {
+                display: block;
+            }
+
+            .filter-toggle button {
+                padding: 10px 15px;
+                border: 1px solid var(--border);
+                background: white;
+                border-radius: 4px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .shop-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .shop-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header (Same as index.html) -->
+    <!-- Header Section -->
     <header class="header">
         <div class="container">
             <div class="header-top">
@@ -18,8 +268,8 @@
                     <span>Premium Shopping</span>
                 </div>
                 <div class="search-bar">
-                    <input type="text" placeholder="পণ্য খুঁজুন...">
-                    <button><i class="fas fa-search"></i></button>
+                    <input type="text" placeholder="পণ্য খুঁজুন..." id="searchInput">
+                    <button onclick="performSearch()"><i class="fas fa-search"></i></button>
                 </div>
                 <div class="header-actions">
                     <div class="language-switch">
@@ -56,7 +306,7 @@
         </div>
     </header>
 
-    <!-- Shop Content -->
+    <!-- Shop Section -->
     <section class="shop-section">
         <div class="container">
             <div class="shop-header">
@@ -123,29 +373,29 @@
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="applyFilters()">ফিল্টার প্রয়োগ করুন</button>
-                    <button class="btn-secondary" onclick="clearFilters()">ফিল্টার ক্লিয়ার করুন</button>
+                    <button class="btn-primary" onclick="applyFilters()" style="width: 100%; margin-bottom: 10px;">ফিল্টার প্রয়োগ করুন</button>
+                    <button class="btn-secondary" onclick="clearFilters()" style="width: 100%;">ফিল্টার ক্লিয়ার করুন</button>
                 </div>
 
-                <!-- Products Grid -->
+                <!-- Products Container -->
                 <div class="products-container">
                     <div class="products-header">
-                        <p id="productsCount">মোট ৮টি পণ্য পাওয়া গেছে</p>
+                        <p id="productsCount">পণ্য লোড হচ্ছে...</p>
                     </div>
                     <div class="products-grid" id="productsGrid">
-                        <!-- Products will be loaded here -->
+                        <!-- Products will be loaded here dynamically -->
                     </div>
                     <div class="pagination">
-                        <button class="page-btn" disabled>পূর্ববর্তী</button>
-                        <span class="page-info">পৃষ্ঠা 1 of 2</span>
-                        <button class="page-btn">পরবর্তী</button>
+                        <button class="page-btn" id="prevBtn" disabled>পূর্ববর্তী</button>
+                        <span class="page-info" id="pageInfo">পৃষ্ঠা 1 of 1</span>
+                        <button class="page-btn" id="nextBtn">পরবর্তী</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer (Same as index.html) -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -193,7 +443,7 @@
         <span class="cart-count">0</span>
     </div>
 
-    <!-- Authentication Modal (Same as index.html) -->
+    <!-- Authentication Modal -->
     <div id="authModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>

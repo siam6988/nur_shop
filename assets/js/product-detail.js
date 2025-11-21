@@ -16,8 +16,7 @@ function loadProductData() {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id') || '1'; // Default to product ID 1
 
-    // In real app, this would fetch from Firestore
-    // For demo, we'll use sample data
+    // Get product data
     const product = getProductById(parseInt(productId));
     
     if (product) {
@@ -30,13 +29,12 @@ function loadProductData() {
     }
 }
 
-// Get Product by ID (Sample Data)
+// Get Product by ID
 function getProductById(id) {
     const products = {
         1: {
             id: 1,
             name: "D20 Smart Watch Sport Fitness Tracker",
-            name_en: "D20 Smart Watch Sport Fitness Tracker",
             brand: "স্মার্ট টেক",
             price: 121.43,
             originalPrice: 766.07,
@@ -46,30 +44,16 @@ function getProductById(id) {
             sold: 600,
             category: "electronics",
             images: [
-                "assets/img/products/smartwatch.jpg",
-                "assets/img/products/smartwatch-2.jpg",
-                "assets/img/products/smartwatch-3.jpg"
+                "assets/img/products/smartwatch.jpg"
             ],
             sizes: ["ফ্রি সাইজ", "স্মল", "মিডিয়াম", "লার্জ"],
-            colors: ["#000000", "#1e40af", "#dc2626", "#7c3aed"],
+            colors: ["#000000", "#1e40af", "#dc2626"],
             stock: 45,
-            description: "D20 স্মার্ট ওয়াচ - আপনার ব্যক্তিগত ফিটনেস ট্র্যাকার",
-            specifications: {
-                brand: "স্মার্ট টেক",
-                model: "D20 স্মার্ট ওয়াচ",
-                screen: "১.৬৯ ইঞ্চি HD",
-                connectivity: "ব্লুটুথ ৫.০",
-                battery: "২১০mAh, ৭ দিন স্ট্যান্ডবাই",
-                waterproof: "IP67 রেটিং",
-                compatibility: "Android & iOS",
-                colors: "ব্ল্যাক, ব্লু, পিঙ্ক",
-                warranty: "১ বছর সার্ভিস ওয়ারেন্টি"
-            }
+            description: "D20 স্মার্ট ওয়াচ - আপনার ব্যক্তিগত ফিটনেস ট্র্যাকার"
         },
         2: {
             id: 2,
             name: "HD Monocular Telescope",
-            name_en: "HD Monocular Telescope",
             brand: "অপটিক্যাল টেক",
             price: 121.43,
             originalPrice: 441.57,
@@ -83,15 +67,43 @@ function getProductById(id) {
             ],
             sizes: ["স্ট্যান্ডার্ড"],
             colors: ["#000000", "#374151"],
-            stock: 23,
-            description: "২৮০x২৪ HD মনোকুলার টেলিস্কোপ",
-            specifications: {
-                magnification: "২৮০x",
-                lens: "২৪mm HD",
-                nightVision: "হ্যাঁ",
-                weight: "২০০g",
-                usage: "অপটিক্যাল, এডভেঞ্চার"
-            }
+            stock: 23
+        },
+        3: {
+            id: 3,
+            name: "Night Vision Glasses",
+            brand: "ভিশন টেক",
+            price: 112.85,
+            originalPrice: 172.95,
+            discount: 35,
+            rating: 4.5,
+            reviews: 299,
+            sold: 500,
+            category: "electronics",
+            images: [
+                "assets/img/products/glasses.jpg"
+            ],
+            sizes: ["ফ্রি সাইজ"],
+            colors: ["#000000", "#1e293b"],
+            stock: 15
+        },
+        4: {
+            id: 4,
+            name: "Fashion Stainless Steel Ring",
+            brand: "জুয়েলস",
+            price: 361.49,
+            originalPrice: 2239.62,
+            discount: 83,
+            rating: 4.2,
+            reviews: 150,
+            sold: 200,
+            category: "fashion",
+            images: [
+                "assets/img/products/ring.jpg"
+            ],
+            sizes: ["S", "M", "L", "XL"],
+            colors: ["#fef3c7", "#d1d5db", "#000000"],
+            stock: 8
         }
     };
 
@@ -103,7 +115,7 @@ function displayProductDetails() {
     if (!currentProduct) return;
 
     // Update basic info
-    document.getElementById('productTitle').textContent = currentLanguage === 'bn' ? currentProduct.name : currentProduct.name_en;
+    document.getElementById('productTitle').textContent = currentProduct.name;
     document.getElementById('productBrand').textContent = `ব্র্যান্ড: ${currentProduct.brand}`;
     document.getElementById('productRating').textContent = currentProduct.rating;
     document.getElementById('reviewCount').textContent = `(${currentProduct.reviews}+ রিভিউ)`;
@@ -146,8 +158,9 @@ function loadProductImages() {
         const thumbnail = document.createElement('div');
         thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
         thumbnail.innerHTML = `
-            <img src="${image}" alt="Thumbnail ${index + 1}" 
-                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2Y4ZmFmYyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5Mzk5YTciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZTwvdGV4dD48L3N2Zz4='">
+            <div style="width:100%;height:100%;background:#f8fafc;display:flex;align-items:center;justify-content:center;color:#64748b;">
+                <i class="fas fa-image"></i>
+            </div>
         `;
         thumbnail.onclick = () => changeMainImage(image, index);
         thumbnailsContainer.appendChild(thumbnail);
@@ -155,18 +168,17 @@ function loadProductImages() {
 
     // Set first image as main
     if (currentProduct.images.length > 0) {
-        mainImage.src = currentProduct.images[0];
+        mainImage.innerHTML = `
+            <div style="width:100%;height:100%;background:#f8fafc;display:flex;align-items:center;justify-content:center;color:#64748b;">
+                <i class="fas fa-image fa-4x"></i>
+            </div>
+        `;
     }
 }
 
 // Change Main Image
 function changeMainImage(imageUrl, index) {
-    const mainImage = document.getElementById('mainProductImage');
     const thumbnails = document.querySelectorAll('.thumbnail');
-
-    if (mainImage) {
-        mainImage.src = imageUrl;
-    }
 
     // Update active thumbnail
     thumbnails.forEach((thumb, i) => {
@@ -267,7 +279,6 @@ function addToCart() {
     const cartItem = {
         id: currentProduct.id,
         name: currentProduct.name,
-        name_en: currentProduct.name_en,
         price: currentProduct.price,
         image: currentProduct.images[0],
         quantity: currentQuantity,
@@ -300,7 +311,7 @@ function addToCart() {
     updateCartCount();
     
     // Show success message
-    showToast(currentLanguage === 'bn' ? 'পণ্য কার্টে যোগ করা হয়েছে!' : 'Product added to cart!');
+    showToast('পণ্য কার্টে যোগ করা হয়েছে!');
 }
 
 // Buy Now
@@ -324,18 +335,17 @@ function toggleWishlist() {
         // Remove from wishlist
         wishlist.splice(existingIndex, 1);
         wishlistIcon.className = 'far fa-heart';
-        showToast(currentLanguage === 'bn' ? 'উইশলিস্ট থেকে সরানো হয়েছে' : 'Removed from wishlist');
+        showToast('উইশলিস্ট থেকে সরানো হয়েছে');
     } else {
         // Add to wishlist
         wishlist.push({
             id: currentProduct.id,
             name: currentProduct.name,
-            name_en: currentProduct.name_en,
             price: currentProduct.price,
             image: currentProduct.images[0]
         });
         wishlistIcon.className = 'fas fa-heart';
-        showToast(currentLanguage === 'bn' ? 'উইশলিস্টে যোগ করা হয়েছে' : 'Added to wishlist');
+        showToast('উইশলিস্টে যোগ করা হয়েছে');
     }
 
     localStorage.setItem('nurWishlist', JSON.stringify(wishlist));
@@ -346,36 +356,17 @@ function loadRelatedProducts() {
     const relatedContainer = document.getElementById('relatedProducts');
     if (!relatedContainer) return;
 
-    // In real app, this would fetch related products from Firestore
-    // For demo, we'll show some sample products
-    const relatedProducts = [
-        {
-            id: 3,
-            name: "নাইট ভিশন গ্লাসেস",
-            name_en: "Night Vision Glasses",
-            price: 112.85,
-            originalPrice: 172.95,
-            discount: 35,
-            image: "assets/img/products/glasses.jpg",
-            rating: 4.5,
-            reviews: 299,
-            freeShipping: true
-        },
-        {
-            id: 4,
-            name: "ফ্যাশন স্টেইনলেস স্টিল রিং",
-            name_en: "Fashion Stainless Steel Ring",
-            price: 361.49,
-            originalPrice: 2239.62,
-            discount: 83,
-            image: "assets/img/products/ring.jpg",
-            rating: 4.2,
-            reviews: 150,
-            freeShipping: true
-        }
-    ];
+    // Get related products (same category)
+    const relatedProducts = Object.values(getAllProducts()).filter(
+        product => product.id !== currentProduct.id && product.category === currentProduct.category
+    ).slice(0, 4);
 
     relatedContainer.innerHTML = '';
+
+    if (relatedProducts.length === 0) {
+        relatedContainer.innerHTML = '<p>কোন সম্পর্কিত পণ্য পাওয়া যায়নি</p>';
+        return;
+    }
 
     relatedProducts.forEach(product => {
         const productCard = document.createElement('div');
@@ -389,7 +380,7 @@ function loadRelatedProducts() {
                 ${product.freeShipping ? '<div class="free-shipping-badge">ফ্রি শিপিং</div>' : ''}
             </div>
             <div class="product-info">
-                <h3 class="product-title">${currentLanguage === 'bn' ? product.name : product.name_en}</h3>
+                <h3 class="product-title">${product.name}</h3>
                 <div class="product-price">
                     <span class="current-price">৳${product.price.toLocaleString()}</span>
                     <span class="original-price">৳${product.originalPrice.toLocaleString()}</span>
@@ -412,6 +403,16 @@ function loadRelatedProducts() {
     });
 }
 
+// Get All Products
+function getAllProducts() {
+    return {
+        1: getProductById(1),
+        2: getProductById(2),
+        3: getProductById(3),
+        4: getProductById(4)
+    };
+}
+
 // Add Related Product to Cart
 function addRelatedToCart(productId) {
     const product = getProductById(productId);
@@ -420,7 +421,6 @@ function addRelatedToCart(productId) {
     const cartItem = {
         id: product.id,
         name: product.name,
-        name_en: product.name_en,
         price: product.price,
         image: product.images[0],
         quantity: 1
@@ -431,7 +431,7 @@ function addRelatedToCart(productId) {
     localStorage.setItem('nurCart', JSON.stringify(cart));
     
     updateCartCount();
-    showToast(currentLanguage === 'bn' ? 'পণ্য কার্টে যোগ করা হয়েছে!' : 'Product added to cart!');
+    showToast('পণ্য কার্টে যোগ করা হয়েছে!');
 }
 
 // Setup Event Listeners
@@ -502,6 +502,45 @@ function updateCartCount() {
     });
 }
 
+// Show Toast Message
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+    `;
+    toast.textContent = message;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        document.body.removeChild(toast);
+    }, 3000);
+}
+
+// Search Functionality
+function performSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const query = searchInput.value.trim();
+    if (query) {
+        window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+    }
+}
+
+// Modal Functions
+function toggleAuthModal() {
+    const modal = document.getElementById('authModal');
+    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('productTitle')) {
@@ -516,3 +555,5 @@ window.addToCart = addToCart;
 window.buyNow = buyNow;
 window.toggleWishlist = toggleWishlist;
 window.addRelatedToCart = addRelatedToCart;
+window.performSearch = performSearch;
+window.toggleAuthModal = toggleAuthModal;

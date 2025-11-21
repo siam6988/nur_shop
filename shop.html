@@ -502,3 +502,159 @@
     <script src="assets/js/product.js"></script>
 </body>
 </html>
+<script>
+// Simple Shop Page Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Shop page loaded');
+    loadProducts();
+    setupEventListeners();
+});
+
+function loadProducts() {
+    const productsGrid = document.getElementById('productsGrid');
+    if (!productsGrid) {
+        console.error('Products grid not found');
+        return;
+    }
+
+    // Show loading
+    productsGrid.innerHTML = '<div class="loading">পণ্য লোড হচ্ছে...</div>';
+
+    // Sample products data
+    const products = [
+        {
+            id: 1,
+            name: "মেনস কটন শার্ট",
+            price: 899,
+            originalPrice: 1299,
+            discount: 30,
+            image: "assets/img/products/shirt.jpg",
+            rating: 4.5,
+            reviews: 124,
+            freeShipping: true
+        },
+        {
+            id: 2,
+            name: "স্মার্টফোন এক্স১০",
+            price: 18999,
+            originalPrice: 21999,
+            discount: 15,
+            image: "assets/img/products/phone.jpg",
+            rating: 4.2,
+            reviews: 89,
+            freeShipping: true
+        },
+        // Add more products as needed
+    ];
+
+    // Display products after delay
+    setTimeout(() => {
+        displayProducts(products);
+    }, 1000);
+}
+
+function displayProducts(products) {
+    const productsGrid = document.getElementById('productsGrid');
+    const productsCount = document.getElementById('productsCount');
+    
+    if (!productsGrid) return;
+
+    productsGrid.innerHTML = '';
+    
+    if (products.length === 0) {
+        productsGrid.innerHTML = `
+            <div class="no-products">
+                <i class="fas fa-search"></i>
+                <h3>কোন পণ্য পাওয়া যায়নি</h3>
+                <p>আপনার সার্চ বা ফিল্টারের সাথে মিলছে না</p>
+            </div>
+        `;
+        return;
+    }
+
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <div class="product-image">
+                <div style="width:100%;height:200px;background:#f8fafc;display:flex;align-items:center;justify-content:center;color:#64748b;">
+                    <i class="fas fa-image fa-2x"></i>
+                </div>
+                ${product.discount ? `<div class="discount-badge">${product.discount}% OFF</div>` : ''}
+                ${product.freeShipping ? '<div class="free-shipping-badge">ফ্রি শিপিং</div>' : ''}
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-price">
+                    <span class="current-price">৳${product.price.toLocaleString()}</span>
+                    ${product.originalPrice ? `<span class="original-price">৳${product.originalPrice.toLocaleString()}</span>` : ''}
+                </div>
+                <div class="product-rating">
+                    <div class="stars">
+                        ${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 >= 0.5 ? '½' : ''}
+                    </div>
+                    <span class="rating-count">(${product.reviews})</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-cart" onclick="addToCart(${product.id})">কার্টে যোগ করুন</button>
+                    <button class="btn-wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        productsGrid.appendChild(productCard);
+    });
+
+    if (productsCount) {
+        productsCount.textContent = `মোট ${products.length}টি পণ্য পাওয়া গেছে`;
+    }
+}
+
+function setupEventListeners() {
+    // Filter toggle
+    const filterToggle = document.getElementById('filterToggle');
+    const filtersSidebar = document.getElementById('filtersSidebar');
+    
+    if (filterToggle && filtersSidebar) {
+        filterToggle.addEventListener('click', () => {
+            filtersSidebar.classList.toggle('active');
+        });
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+}
+
+function performSearch() {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        const query = searchInput.value.trim();
+        alert(`Searching for: ${query}`);
+        // Implement actual search logic here
+    }
+}
+
+function applyFilters() {
+    alert('ফিল্টার প্রয়োগ করা হচ্ছে...');
+    // Implement filter logic here
+}
+
+function clearFilters() {
+    alert('ফিল্টার ক্লিয়ার করা হচ্ছে...');
+    // Implement clear filter logic here
+}
+
+// Basic cart functionality
+function addToCart(productId) {
+    alert(`পণ্য ${productId} কার্টে যোগ করা হয়েছে`);
+    // Implement actual add to cart logic here
+}
+</script>

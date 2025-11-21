@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পণ্য বিবরণ - NUR Premium Shopping</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-detail-section {
+            padding: 40px 0;
+            background: #f8fafc;
+            min-height: 80vh;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        /* Product Images */
+        .product-images {
+            display: flex;
+            gap: 20px;
+        }
+
+        .image-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-image {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-image img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+        }
+
+        /* Product Info */
+        .product-info {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .product-header {
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-brand {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .product-rating-overview {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-badge {
+            background: var(--success);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rating-text {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .sold-badge {
+            background: #fee2e2;
+            color: var(--danger);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Price Section */
+        .price-section {
+            background: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .current-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .original-price {
+            font-size: 18px;
+            color: var(--text-light);
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+
+        .discount-badge {
+            background: var(--danger);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .welcome-deal {
+            background: #fffbeb;
+            border: 1px solid #f59e0b;
+            color: #92400e;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Product Options */
+        .product-options {
+            margin-bottom: 25px;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-option:hover {
+            border-color: var(--primary);
+        }
+
+        .size-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            cursor: pointer;
+        }
+
+        .color-option.selected {
+            border-color: var(--primary);
+        }
+
+        /* Quantity */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .quantity-label {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        .stock-info {
+            color: var(--success);
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn-buy-now {
+            flex: 2;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-buy-now:hover {
+            background: #e69008;
+        }
+
+        .btn-add-cart {
+            flex: 3;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-wishlist {
+            width: 50px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-wishlist:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        /* Delivery Info */
+        .delivery-info {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .delivery-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .delivery-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .delivery-item i {
+            color: var(--success);
+            width: 20px;
+        }
+
+        /* Product Tabs */
+        .product-tabs {
+            margin-top: 40px;
+        }
+
+        .tab-headers {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .tab-header {
+            padding: 15px 25px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-header.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Description */
+        .description-content {
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .description-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .description-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Specifications */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .specs-table td {
+            padding: 12px 0;
+        }
+
+        .specs-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            width: 30%;
+        }
+
+        /* Reviews */
+        .reviews-summary {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .overall-rating {
+            text-align: center;
+        }
+
+        .rating-score {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .rating-stars {
+            margin: 10px 0;
+        }
+
+        .rating-count {
+            color: var(--text-light);
+        }
+
+        .rating-bars {
+            flex: 1;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .bar-label {
+            width: 80px;
+            font-size: 14px;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--accent);
+        }
+
+        /* Review List */
+        .review-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .review-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .review-date {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .review-content {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Related Products */
+        .related-products {
+            margin-top: 60px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .product-images {
+                flex-direction: column-reverse;
+            }
+
+            .image-thumbnails {
+                flex-direction: row;
+                order: 2;
+                justify-content: center;
+            }
+
+            .main-image {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .reviews-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tab-headers {
+                flex-wrap: wrap;
+            }
+
+            .tab-header {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <h1>NUR</h1>
+                    <span>Premium Shopping</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <div class="language-switch">
+                        <select id="languageSelect">
+                            <option value="bn" selected>বাংলা</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <div class="action-item" onclick="toggleAuthModal()">
+                        <i class="fas fa-user"></i>
+                        <span>অ্যাকাউন্ট</span>
+                    </div>
+                    <div class="action-item" onclick="window.location.href='wishlist.html'">
+                        <i class="fas fa-heart"></i>
+                        <span>উইশলিস্ট</span>
+                    </div>
+                    <div class="action-item cart-icon" onclick="window.location.href='cart.html'">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>কার্ট</span>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">হোম</a></li>
+                    <li><a href="shop.html">শপ</a></li>
+                    <li><a href="categories.html">ক্যাটাগরি</a></li>
+                    <li><a href="deals.html">ডিলস</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail-section">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">হোম</a> / 
+                <a href="shop.html">শপ</a> / 
+                <a href="shop.html?category=electronics">ইলেকট্রনিক্স</a> / 
+                <span id="productCategory">স্মার্টওয়াচ</span>
+            </div>
+
+            <div class="product-container">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="image-thumbnails" id="imageThumbnails">
+                        <!-- Thumbnails will be loaded here -->
+                    </div>
+                    <div class="main-image">
+                        <img id="mainProductImage" src="" alt="Product Image">
+                    </div>
+                </div>
+
+                <!-- Product Information -->
+                <div class="product-info">
+                    <div class="product-header">
+                        <h1 class="product-title" id="productTitle">D20 Smart Watch Sport Fitness Tracker</h1>
+                        <div class="product-brand" id="productBrand">ব্র্যান্ড: স্মার্ট টেক</div>
+                        
+                        <div class="product-rating-overview">
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i>
+                                <span id="productRating">4.2</span>
+                            </div>
+                            <div class="rating-text" id="reviewCount">(১৫০+ রিভিউ)</div>
+                            <div class="sold-badge" id="soldCount">৬০০+ বিক্রিত</div>
+                        </div>
+                    </div>
+
+                    <!-- Price Section -->
+                    <div class="price-section">
+                        <div class="current-price" id="currentPrice">৳১,২১.৪৩</div>
+                        <div class="original-price" id="originalPrice">৳৭৬৬.০৭</div>
+                        <div class="discount-badge" id="discountBadge">-৭২%</div>
+                        <div class="welcome-deal">
+                            <i class="fas fa-bolt"></i>
+                            <span>ওয়েলকাম ডিল - সীমিত সময় অফার</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Options -->
+                    <div class="product-options">
+                        <div class="option-group">
+                            <div class="option-label">সাইজ:</div>
+                            <div class="size-options" id="sizeOptions">
+                                <!-- Size options will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <div class="option-label">রং:</div>
+                            <div class="color-options" id="colorOptions">
+                                <!-- Color options will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Selector -->
+                    <div class="quantity-selector">
+                        <div class="quantity-label">পরিমাণ:</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                            <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="10">
+                            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                        </div>
+                        <div class="stock-info" id="stockInfo">
+                            <i class="fas fa-check-circle"></i>
+                            <span>স্টকে আছে</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn-wishlist" onclick="toggleWishlist()">
+                            <i class="far fa-heart" id="wishlistIcon"></i>
+                        </button>
+                        <button class="btn-add-cart" onclick="addToCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            কার্টে যোগ করুন
+                        </button>
+                        <button class="btn-buy-now" onclick="buyNow()">
+                            এখনই কিনুন
+                        </button>
+                    </div>
+
+                    <!-- Delivery Information -->
+                    <div class="delivery-info">
+                        <div class="delivery-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>ফ্রি ডেলিভারি - ১০০০৳+ অর্ডারে</span>
+                        </div>
+                        <div class="delivery-item">
+                            <i class="fas fa-undo"></i>
+                            <span>৭ দিন রিটার্ন পলিসি</span>
+                        </div>
+                        <div class="delivery-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>অথেনটিক প্রোডাক্ট গ্যারান্টি</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-headers">
+                    <div class="tab-header active" data-tab="description">বিবরণ</div>
+                    <div class="tab-header" data-tab="specifications">স্পেসিফিকেশন</div>
+                    <div class="tab-header" data-tab="reviews">রিভিউ (১৫০+)</div>
+                </div>
+
+                <!-- Description Tab -->
+                <div class="tab-content active" id="description">
+                    <div class="description-content">
+                        <h3>D20 স্মার্ট ওয়াচ - আপনার ব্যক্তিগত ফিটনেস ট্র্যাকার</h3>
+                        <p>এই স্মার্টওয়াচটি আপনার দৈনন্দিন জীবনকে আরও সহজ এবং সুবিধাজনক করে তুলবে। ফিটনেস ট্র্যাকিং থেকে শুরু করে নোটিফিকেশন, সবকিছু এক জায়গায়।</p>
+                        
+                        <h4>মুখ্য বৈশিষ্ট্য:</h4>
+                        <ul>
+                            <li>হার্ট রেট মনিটরিং</li>
+                            <li>ব্লাড প্রেসার মনিটরিং</li>
+                            <li>স্লিপ ট্র্যাকিং</li>
+                            <li>কল ও মেসেজ নোটিফিকেশন</li>
+                            <li>ওয়াটার রেজিস্ট্যান্ট (IP67)</li>
+                            <li>লং লাস্টিং ব্যাটারি (৭ দিন)</li>
+                            <li>মাল্টি-স্পোর্ট মোড</li>
+                        </ul>
+
+                        <h4>বক্সে কী কী পাবেন:</h4>
+                        <ul>
+                            <li>D20 স্মার্ট ওয়াচ x 1</li>
+                            <li>চার্জিং ক্যাবল x 1</li>
+                            <li>ইউজার ম্যানুয়াল x 1</li>
+                            <li>ওয়ারেন্টি কার্ড x 1</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Specifications Tab -->
+                <div class="tab-content" id="specifications">
+                    <table class="specs-table">
+                        <tr>
+                            <td>ব্র্যান্ড</td>
+                            <td>স্মার্ট টেক</td>
+                        </tr>
+                        <tr>
+                            <td>মডেল</td>
+                            <td>D20 স্মার্ট ওয়াচ</td>
+                        </tr>
+                        <tr>
+                            <td>স্ক্রিন সাইজ</td>
+                            <td>১.৬৯ ইঞ্চি HD</td>
+                        </tr>
+                        <tr>
+                            <td>কানেক্টিভিটি</td>
+                            <td>ব্লুটুথ ৫.০</td>
+                        </tr>
+                        <tr>
+                            <td>ব্যাটারি</td>
+                            <td>২১০mAh, ৭ দিন স্ট্যান্ডবাই</td>
+                        </tr>
+                        <tr>
+                            <td>ওয়াটারপ্রুফ</td>
+                            <td>IP67 রেটিং</td>
+                        </tr>
+                        <tr>
+                            <td>কম্প্যাটিবিলিটি</td>
+                            <td>Android & iOS</td>
+                        </tr>
+                        <tr>
+                            <td>রং</td>
+                            <td>ব্ল্যাক, ব্লু, পিঙ্ক</td>
+                        </tr>
+                        <tr>
+                            <td>ওয়ারেন্টি</td>
+                            <td>১ বছর সার্ভিস ওয়ারেন্টি</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div class="tab-content" id="reviews">
+                    <div class="reviews-summary">
+                        <div class="overall-rating">
+                            <div class="rating-score">৪.২</div>
+                            <div class="rating-stars">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                            <div class="rating-count">১৫০+ রিভিউ</div>
+                        </div>
+                        <div class="rating-bars">
+                            <div class="rating-bar">
+                                <div class="bar-label">৫ স্টার</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 65%;"></div>
+                                </div>
+                                <div class="bar-count">৯৮</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="bar-label">৪ স্টার</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 20%;"></div>
+                                </div>
+                                <div class="bar-count">৩০</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="bar-label">৩ স্টার</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 8%;"></div>
+                                </div>
+                                <div class="bar-count">১২</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="bar-label">২ স্টার</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 4%;"></div>
+                                </div>
+                                <div class="bar-count">৬</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="bar-label">১ স্টার</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 3%;"></div>
+                                </div>
+                                <div class="bar-count">৪</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-list">
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-name">রহিম উদ্দিন</div>
+                                <div class="review-date">১৫ নভেম্বর, ২০২৩</div>
+                            </div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                            <div class="review-content">
+                                খুবই ভালো প্রোডাক্ট। ব্যাটারি ব্যাকআপ অসাধারণ। ৭ দিন পর্যন্ত চলে। হার্ট রেট মনিটরিং সঠিকভাবে কাজ করে।
+                            </div>
+                        </div>
+
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-name">সুমাইয়া আক্তার</div>
+                                <div class="review-date">১০ নভেম্বর, ২০২৩</div>
+                            </div>
+                            <div class="review-stars">⭐⭐⭐⭐</div>
+                            <div class="review-content">
+                                ডিজাইন খুব সুন্দর। ওজন হালকা। কিন্তু কিছু ফিচার ঠিকমতো কাজ করে না। সামগ্রিকভাবে ভালো।
+                            </div>
+                        </div>
+
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-name">আনিসুর রহমান</div>
+                                <div class="review-date">৫ নভেম্বর, ২০২৩</div>
+                            </div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                            <div class="review-content">
+                                দামের তুলনায় অনেক ভালো ফিচার। ডেলিভারি খুব দ্রুত পেয়েছি। রিকমেন্ডেড প্রোডাক্ট।
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="related-products">
+                <h2 class="section-title">সম্পর্কিত পণ্য</h2>
+                <div class="products-grid" id="relatedProducts">
+                    <!-- Related products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NUR - Premium Shopping</h3>
+                    <p>যেখানে শপিং = মজা</p>
+                    <p>অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি... কখনো কখনো</p>
+                </div>
+                <div class="footer-section">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                        <li><a href="contact.html">যোগাযোগ</a></li>
+                        <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
+                        <li><a href="terms.html">শর্তাবলী</a></li>
+                        <li><a href="#" target="_blank">Wholesale Site</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>কাস্টমার কেয়ার</h4>
+                    <ul>
+                        <li><a href="help.html">সাহায্য কেন্দ্র</a></li>
+                        <li><a href="returns.html">রিটার্ন পলিসি</a></li>
+                        <li><a href="shipping.html">শিপিং তথ্য</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>আমাদের অনুসরণ করুন</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 NUR - Premium Shopping. সকল অধিকার সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart -->
+    <div class="floating-cart" onclick="window.location.href='cart.html'">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">লগইন</button>
+                <button class="tab-btn" data-tab="register">রেজিস্টার</button>
+            </div>
+            
+            <div id="login" class="tab-content active">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="ইমেইল" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="পাসওয়ার্ড" required>
+                    </div>
+                    <button type="submit" class="btn-primary">লগইন</button>
+                </form>
+                <div class="social-login">
+                    <button class="btn-google" onclick="signInWithGoogle()">
+                        <i class="fab fa-google"></i> Google দিয়ে লগইন
+                    </button>
+                    <button class="btn-facebook" onclick="signInWithFacebook()">
+                        <i class="fab fa-facebook"></i> Facebook দিয়ে লগইন
+                    </button>
+                </div>
+            </div>
+            
+            <div id="register" class="tab-content">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="পুরো নাম" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="ইমেইল" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="পাসওয়ার্ড" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
+                    </div>
+                    <button type="submit" class="btn-primary">রেজিস্টার</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/product-detail.js"></script>
+</body>
+</html>

@@ -3,609 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শপ - NUR Premium Shopping</title>
+    <title>Shop - NUR Premium Shopping</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Shop Page Specific Styles */
-        .shop-section {
-            padding: 40px 0;
-            min-height: 70vh;
-        }
-
-        .shop-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .shop-header h1 {
-            font-size: 32px;
-            color: var(--text);
-        }
-
-        .shop-controls {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .filter-toggle {
-            display: none;
-        }
-
-        .sort-options select {
-            padding: 10px 15px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            background: white;
-            color: var(--text);
-            font-size: 14px;
-        }
-
-        .shop-content {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 30px;
-            align-items: start;
-        }
-
-        /* Filters Sidebar */
-        .filters-sidebar {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 25px;
-            position: sticky;
-            top: 100px;
-        }
-
-        .filter-group {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .filter-group:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .filter-group h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-
-        .filter-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .filter-options label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            color: var(--text);
-        }
-
-        .filter-options input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Price Range */
-        .price-range {
-            margin-top: 15px;
-        }
-
-        .price-slider {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .price-values {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        /* Products Container */
-        .products-container {
-            flex: 1;
-        }
-
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .products-count {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        /* No Products */
-        .no-products {
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .no-products i {
-            font-size: 60px;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        .no-products h3 {
-            font-size: 20px;
-            color: var(--text);
-            margin-bottom: 10px;
-        }
-
-        .no-products p {
-            color: var(--text-light);
-            margin-bottom: 25px;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 40px;
-            padding: 20px 0;
-        }
-
-        .page-btn {
-            padding: 10px 20px;
-            border: 1px solid var(--border);
-            background: white;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .page-btn:hover:not(:disabled) {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .page-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .page-info {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .shop-content {
-                grid-template-columns: 1fr;
-            }
-
-            .filters-sidebar {
-                position: static;
-                display: none;
-            }
-
-            .filters-sidebar.active {
-                display: block;
-            }
-
-            .filter-toggle {
-                display: block;
-            }
-
-            .filter-toggle button {
-                padding: 10px 15px;
-                border: 1px solid var(--border);
-                background: white;
-                border-radius: 4px;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .shop-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .shop-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pagination {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
+    <!-- Header (Same as index.html) -->
+    <div class="header-top">
         <div class="container">
-            <div class="header-top">
-                <div class="logo" onclick="window.location.href='index.html'">
-                    <h1>NUR</h1>
-                    <span>Premium Shopping</span>
-                </div>
+            <div class="header-promo">
+                🚀 নুর – যেখানে শপিং = মজা 😎🔥 | Point জমাও, Discount নাও, Hero হও 💎😎
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">NUR<span>.</span></a>
+                
                 <div class="search-bar">
-                    <input type="text" placeholder="পণ্য খুঁজুন..." id="searchInput">
-                    <button onclick="performSearch()"><i class="fas fa-search"></i></button>
+                    <input type="text" placeholder="পণ্য খুঁজুন..." id="shop-search">
+                    <button onclick="searchProducts()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
                 </div>
+                
                 <div class="header-actions">
-                    <div class="language-switch">
-                        <select id="languageSelect">
-                            <option value="bn" selected>বাংলা</option>
-                            <option value="en">English</option>
-                        </select>
-                    </div>
-                    <div class="action-item" onclick="toggleAuthModal()">
-                        <i class="fas fa-user"></i>
-                        <span>অ্যাকাউন্ট</span>
-                    </div>
-                    <div class="action-item" onclick="window.location.href='wishlist.html'">
-                        <i class="fas fa-heart"></i>
-                        <span>উইশলিস্ট</span>
-                    </div>
-                    <div class="action-item cart-icon" onclick="window.location.href='cart.html'">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>কার্ট</span>
-                        <span class="cart-count">0</span>
-                    </div>
+                    <a href="wishlist.html" class="header-action">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        Wishlist
+                    </a>
+                    
+                    <a href="auth.html" class="header-action">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Account
+                    </a>
+                    
+                    <a href="cart.html" class="header-action cart-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        Cart
+                        <div class="cart-count">0</div>
+                    </a>
                 </div>
             </div>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="index.html">হোম</a></li>
-                    <li><a href="shop.html" class="active">শপ</a></li>
-                    <li><a href="categories.html">ক্যাটাগরি</a></li>
-                    <li><a href="deals.html">ডিলস</a></li>
-                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                    <li><a href="contact.html">যোগাযোগ</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <!-- Shop Section -->
-    <section class="shop-section">
-        <div class="container">
-            <div class="shop-header">
-                <h1>সব পণ্য</h1>
-                <div class="shop-controls">
-                    <div class="filter-toggle">
-                        <button id="filterToggle"><i class="fas fa-filter"></i> ফিল্টার</button>
-                    </div>
-                    <div class="sort-options">
-                        <select id="sortSelect">
-                            <option value="default">ডিফল্ট সাজান</option>
-                            <option value="price-low">দাম: কম থেকে বেশি</option>
-                            <option value="price-high">দাম: বেশি থেকে কম</option>
-                            <option value="name">নাম অনুসারে</option>
-                            <option value="rating">রেটিং অনুসারে</option>
-                        </select>
-                    </div>
-                </div>
+    <nav>
+        <div class="container nav-container">
+            <div class="categories">
+                <button class="categories-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    All Categories
+                </button>
             </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="offers.html">Offers</a></li>
+            </ul>
+        </div>
+    </nav>
 
-            <div class="shop-content">
-                <!-- Filters Sidebar -->
-                <div class="filters-sidebar" id="filtersSidebar">
-                    <div class="filter-group">
-                        <h3>ক্যাটাগরি</h3>
-                        <div class="filter-options">
-                            <label><input type="checkbox" value="fashion"> ফ্যাশন</label>
-                            <label><input type="checkbox" value="electronics"> ইলেকট্রনিক্স</label>
-                            <label><input type="checkbox" value="home"> হোম অ্যাপ্লায়েন্স</label>
-                            <label><input type="checkbox" value="kitchen"> রান্নাঘর</label>
-                            <label><input type="checkbox" value="health"> স্বাস্থ্য</label>
-                            <label><input type="checkbox" value="sports"> খেলাধুলা</label>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <h3>দাম রেঞ্জ</h3>
-                        <div class="price-range">
-                            <input type="range" min="0" max="50000" value="50000" class="price-slider" id="priceRange">
-                            <div class="price-values">
-                                <span>0৳</span>
-                                <span id="maxPrice">50000৳</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <h3>ব্র্যান্ড</h3>
-                        <div class="filter-options">
-                            <label><input type="checkbox" value="samsung"> স্যামসাং</label>
-                            <label><input type="checkbox" value="apple"> অ্যাপল</label>
-                            <label><input type="checkbox" value="xiaomi"> শাওমি</label>
-                            <label><input type="checkbox" value="nike"> নাইকি</label>
-                            <label><input type="checkbox" value="adidas"> অ্যাডিডাস</label>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <h3>অফার</h3>
-                        <div class="filter-options">
-                            <label><input type="checkbox" value="discount"> ডিসকাউন্ট</label>
-                            <label><input type="checkbox" value="free-shipping"> ফ্রি শিপিং</label>
-                            <label><input type="checkbox" value="new"> নতুন পণ্য</label>
-                        </div>
-                    </div>
-
-                    <button class="btn-primary" onclick="applyFilters()" style="width: 100%; margin-bottom: 10px;">ফিল্টার প্রয়োগ করুন</button>
-                    <button class="btn-secondary" onclick="clearFilters()" style="width: 100%;">ফিল্টার ক্লিয়ার করুন</button>
+    <!-- Shop Content -->
+    <div class="container">
+        <div class="shop-header">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> &gt; 
+                <span>Shop</span>
+            </div>
+            
+            <div class="shop-controls">
+                <div class="filter-toggle" id="filter-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                    Filters
                 </div>
-
-                <!-- Products Container -->
-                <div class="products-container">
-                    <div class="products-header">
-                        <p id="productsCount">পণ্য লোড হচ্ছে...</p>
-                    </div>
-                    <div class="products-grid" id="productsGrid">
-                        <!-- Products will be loaded here dynamically -->
-                    </div>
-                    <div class="pagination">
-                        <button class="page-btn" id="prevBtn" disabled>পূর্ববর্তী</button>
-                        <span class="page-info" id="pageInfo">পৃষ্ঠা 1 of 1</span>
-                        <button class="page-btn" id="nextBtn">পরবর্তী</button>
-                    </div>
+                
+                <div class="sort-options">
+                    <select id="sort-by">
+                        <option value="popular">Sort by: Popular</option>
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>NUR - Premium Shopping</h3>
-                    <p>যেখানে শপিং = মজা</p>
-                    <p>অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি... কখনো কখনো</p>
-                </div>
-                <div class="footer-section">
-                    <h4>দ্রুত লিংক</h4>
-                    <ul>
-                        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                        <li><a href="contact.html">যোগাযোগ</a></li>
-                        <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
-                        <li><a href="terms.html">শর্তাবলী</a></li>
-                        <li><a href="#" target="_blank">Wholesale Site</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>কাস্টমার কেয়ার</h4>
-                    <ul>
-                        <li><a href="help.html">সাহায্য কেন্দ্র</a></li>
-                        <li><a href="returns.html">রিটার্ন পলিসি</a></li>
-                        <li><a href="shipping.html">শিপিং তথ্য</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>আমাদের অনুসরণ করুন</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="shop-content">
+            <!-- Filters Sidebar -->
+            <div class="filters-sidebar" id="filters-sidebar">
+                <div class="filter-section">
+                    <h3>Categories</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="electronics">
+                            <span>Electronics</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="fashion">
+                            <span>Fashion</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="home">
+                            <span>Home & Kitchen</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="beauty">
+                            <span>Beauty</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="sports">
+                            <span>Sports</span>
+                        </label>
                     </div>
                 </div>
+
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <div class="price-range">
+                        <input type="range" min="0" max="10000" value="5000" class="price-slider" id="price-slider">
+                        <div class="price-values">
+                            <span>৳ 0</span>
+                            <span>৳ 10,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Brand</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="brand" value="nur">
+                            <span>NUR</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="brand" value="samsung">
+                            <span>Samsung</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="brand" value="apple">
+                            <span>Apple</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="brand" value="xiaomi">
+                            <span>Xiaomi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Discount</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="discount" value="10">
+                            <span>10% & Above</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="discount" value="20">
+                            <span>20% & Above</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="discount" value="30">
+                            <span>30% & Above</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="discount" value="50">
+                            <span>50% & Above</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary apply-filters">Apply Filters</button>
+                <button class="btn btn-outline reset-filters">Reset Filters</button>
             </div>
+
+            <!-- Products Grid -->
+            <div class="products-section">
+                <div class="products-header">
+                    <h2>All Products</h2>
+                    <div class="products-count">Showing <span id="products-count">24</span> products</div>
+                </div>
+
+                <div class="products-grid" id="shop-products">
+                    <!-- Products will be loaded by JavaScript -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn prev" disabled>Previous</button>
+                    <div class="page-numbers">
+                        <span class="page-number active">1</span>
+                        <span class="page-number">2</span>
+                        <span class="page-number">3</span>
+                        <span class="page-number">...</span>
+                        <span class="page-number">10</span>
+                    </div>
+                    <button class="page-btn next">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Same as index.html) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NUR Shopping</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Policies</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>Email: support@nurshopping.com</li>
+                        <li>Phone: +880 1234-567890</li>
+                        <li>Address: 123 Shopping Street, Dhaka</li>
+                    </ul>
+                </div>
+            </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2023 NUR - Premium Shopping. সকল অধিকার সংরক্ষিত।</p>
+                <p>&copy; 2023 NUR - Premium Shopping. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Cart -->
-    <div class="floating-cart" onclick="window.location.href='cart.html'">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </div>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="firebase-config.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/product.js"></script>
+    <script src="assets/js/shop.js"></script>
 </body>
 </html>
-<script>
-// Simple Shop Page Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Shop page loaded');
-    loadProducts();
-    setupEventListeners();
-});
-
-function loadProducts() {
-    const productsGrid = document.getElementById('productsGrid');
-    if (!productsGrid) {
-        console.error('Products grid not found');
-        return;
-    }
-
-    // Show loading
-    productsGrid.innerHTML = '<div class="loading">পণ্য লোড হচ্ছে...</div>';
-
-    // Sample products data
-    const products = [
-        {
-            id: 1,
-            name: "মেনস কটন শার্ট",
-            price: 899,
-            originalPrice: 1299,
-            discount: 30,
-            image: "assets/img/products/shirt.jpg",
-            rating: 4.5,
-            reviews: 124,
-            freeShipping: true
-        },
-        {
-            id: 2,
-            name: "স্মার্টফোন এক্স১০",
-            price: 18999,
-            originalPrice: 21999,
-            discount: 15,
-            image: "assets/img/products/phone.jpg",
-            rating: 4.2,
-            reviews: 89,
-            freeShipping: true
-        },
-        // Add more products as needed
-    ];
-
-    // Display products after delay
-    setTimeout(() => {
-        displayProducts(products);
-    }, 1000);
-}
-
-function displayProducts(products) {
-    const productsGrid = document.getElementById('productsGrid');
-    const productsCount = document.getElementById('productsCount');
-    
-    if (!productsGrid) return;
-
-    productsGrid.innerHTML = '';
-    
-    if (products.length === 0) {
-        productsGrid.innerHTML = `
-            <div class="no-products">
-                <i class="fas fa-search"></i>
-                <h3>কোন পণ্য পাওয়া যায়নি</h3>
-                <p>আপনার সার্চ বা ফিল্টারের সাথে মিলছে না</p>
-            </div>
-        `;
-        return;
-    }
-
-    products.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-            <div class="product-image">
-                <div style="width:100%;height:200px;background:#f8fafc;display:flex;align-items:center;justify-content:center;color:#64748b;">
-                    <i class="fas fa-image fa-2x"></i>
-                </div>
-                ${product.discount ? `<div class="discount-badge">${product.discount}% OFF</div>` : ''}
-                ${product.freeShipping ? '<div class="free-shipping-badge">ফ্রি শিপিং</div>' : ''}
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">${product.name}</h3>
-                <div class="product-price">
-                    <span class="current-price">৳${product.price.toLocaleString()}</span>
-                    ${product.originalPrice ? `<span class="original-price">৳${product.originalPrice.toLocaleString()}</span>` : ''}
-                </div>
-                <div class="product-rating">
-                    <div class="stars">
-                        ${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 >= 0.5 ? '½' : ''}
-                    </div>
-                    <span class="rating-count">(${product.reviews})</span>
-                </div>
-                <div class="product-actions">
-                    <button class="btn-cart" onclick="addToCart(${product.id})">কার্টে যোগ করুন</button>
-                    <button class="btn-wishlist">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-        productsGrid.appendChild(productCard);
-    });
-
-    if (productsCount) {
-        productsCount.textContent = `মোট ${products.length}টি পণ্য পাওয়া গেছে`;
-    }
-}
-
-function setupEventListeners() {
-    // Filter toggle
-    const filterToggle = document.getElementById('filterToggle');
-    const filtersSidebar = document.getElementById('filtersSidebar');
-    
-    if (filterToggle && filtersSidebar) {
-        filterToggle.addEventListener('click', () => {
-            filtersSidebar.classList.toggle('active');
-        });
-    }
-
-    // Search functionality
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-    }
-}
-
-function performSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        const query = searchInput.value.trim();
-        alert(`Searching for: ${query}`);
-        // Implement actual search logic here
-    }
-}
-
-function applyFilters() {
-    alert('ফিল্টার প্রয়োগ করা হচ্ছে...');
-    // Implement filter logic here
-}
-
-function clearFilters() {
-    alert('ফিল্টার ক্লিয়ার করা হচ্ছে...');
-    // Implement clear filter logic here
-}
-
-// Basic cart functionality
-function addToCart(productId) {
-    alert(`পণ্য ${productId} কার্টে যোগ করা হয়েছে`);
-    // Implement actual add to cart logic here
-}
-</script>

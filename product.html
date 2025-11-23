@@ -1,92 +1,1740 @@
-<!-- product.html এর JavaScript অংশ আপডেট করুন -->
-<script>
-// Updated Product Detail with Real Data
-let currentProduct = null;
-
-async function initProductDetailPage() {
-    await loadProductData();
-    setupEventListeners();
-    updateCartCount();
-}
-
-async function loadProductData() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
-
-    if (!productId) {
-        window.location.href = 'shop.html';
-        return;
-    }
-
-    try {
-        // Load product with real statistics
-        currentProduct = await dataManager.getProduct(productId);
-        
-        if (!currentProduct) {
-            window.location.href = 'shop.html';
-            return;
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Name - NUR Premium Shopping</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
         }
 
-        displayProductDetails();
-        await loadProductReviews();
-        await loadRelatedProducts();
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --background: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--background);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-promo {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header-main {
+            padding: 15px 0;
+        }
+
+        .header-main .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 7px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        .header-action:hover {
+            color: var(--primary);
+        }
+
+        .header-action svg {
+            margin-bottom: 4px;
+        }
+
+        .cart-count {
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--background);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .categories {
+            position: relative;
+        }
+
+        .categories-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        /* Product Details */
+        .product-details {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-images {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .main-image {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-thumbnails {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .rating-count {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .product-price {
+            margin-bottom: 20px;
+        }
+
+        .current-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .original-price {
+            font-size: 18px;
+            color: var(--text-light);
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+
+        .discount {
+            background: var(--danger);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .product-highlights {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .highlight svg {
+            margin-right: 8px;
+            color: var(--success);
+        }
+
+        .size-selection {
+            margin-bottom: 20px;
+        }
+
+        .size-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-option:hover {
+            border-color: var(--primary);
+        }
+
+        .size-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .quantity-selection {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .quantity-title {
+            margin-right: 15px;
+            font-weight: 500;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            flex: 2;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #d97706;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+            flex: 1;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .product-meta {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .meta-label {
+            min-width: 120px;
+            color: var(--text-light);
+        }
+
+        .meta-value {
+            color: var(--text-dark);
+        }
+
+        /* Product Description & Reviews */
+        .product-tabs {
+            margin: 40px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-headers {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab-header {
+            padding: 15px 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-header.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            padding: 30px;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .description-content p {
+            margin-bottom: 15px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .specs-table td {
+            padding: 12px 15px;
+        }
+
+        .specs-table td:first-child {
+            font-weight: 500;
+            width: 30%;
+            color: var(--text-light);
+        }
+
+        .reviews-summary {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .overall-rating {
+            text-align: center;
+            margin-right: 30px;
+            min-width: 120px;
+        }
+
+        .rating-score {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .rating-stars {
+            color: var(--accent);
+            margin: 5px 0;
+        }
+
+        .rating-count {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .rating-bars {
+            flex-grow: 1;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .rating-label {
+            width: 80px;
+            font-size: 14px;
+        }
+
+        .rating-progress {
+            flex-grow: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+
+        .rating-progress-fill {
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .rating-percent {
+            width: 40px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .reviews-list {
+            margin-top: 30px;
+        }
+
+        .review-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-name {
+            font-weight: 500;
+        }
+
+        .review-date {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .review-rating {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+        }
+
+        /* Related Products */
+        .related-products {
+            margin: 50px 0;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badges {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .badge-discount {
+            background: var(--danger);
+        }
+
+        .badge-shipping {
+            background: var(--success);
+        }
+
+        .product-info-card {
+            padding: 15px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-weight: 500;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .current-price-card {
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .original-price-card {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .product-rating-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stars-card {
+            color: var(--accent);
+            margin-right: 5px;
+        }
+
+        .rating-count-card {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .product-actions-card {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-card {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn-card-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-card-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-card-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+        }
+
+        .btn-card-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 10000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Floating Cart Icon for Mobile */
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            display: none;
+        }
+
+        .floating-cart svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .floating-cart .cart-count {
+            top: 0;
+            right: 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .product-details {
+                flex-direction: column;
+            }
+            
+            .product-images {
+                max-width: 100%;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-main .container {
+                flex-wrap: wrap;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .search-bar {
+                order: 3;
+                margin: 15px 0 0;
+                max-width: 100%;
+            }
+            
+            .header-actions {
+                order: 2;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .categories {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .categories-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-links {
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .nav-links li a {
+                padding: 10px 15px;
+                border-bottom: 1px solid var(--border);
+            }
+            
+            .reviews-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .overall-rating {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .floating-cart {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-headers {
+                flex-direction: column;
+            }
+            
+            .tab-header {
+                border-bottom: 1px solid var(--border);
+                border-left: 2px solid transparent;
+            }
+            
+            .tab-header.active {
+                border-bottom-color: var(--border);
+                border-left-color: var(--primary);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="header-promo">
+                🚀 নুর – যেখানে শপিং = মজা 😎🔥 | অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি… কখনো কখনো 😅
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Main -->
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">NUR<span>.</span></a>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="header-actions">
+                    <a href="wishlist.html" class="header-action">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        Wishlist
+                    </a>
+                    
+                    <a href="profile.html" class="header-action">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Account
+                    </a>
+                    
+                    <a href="cart.html" class="header-action cart-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        Cart
+                        <div class="cart-count">3</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="categories">
+                <button class="categories-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    All Categories
+                </button>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="offers.html">Offers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb">
+        <a href="index.html">Home</a> &gt; 
+        <a href="shop.html">Shop</a> &gt; 
+        <a href="shop.html?category=electronics">Electronics</a> &gt; 
+        <span>Premium Wireless Headphones</span>
+    </div>
+
+    <!-- Product Details -->
+    <div class="container">
+        <div class="product-details">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Premium Wireless Headphones" id="main-product-image">
+                </div>
+                <div class="image-thumbnails">
+                    <div class="thumbnail active" data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Headphones Thumbnail 1">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Headphones Thumbnail 2">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1521334884684-d80222895322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Headphones Thumbnail 3">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80">
+                        <img src="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Headphones Thumbnail 4">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Premium Wireless Headphones with Noise Cancellation</h1>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        ★★★★☆
+                    </div>
+                    <div class="rating-count">(128 reviews)</div>
+                </div>
+                
+                <div class="product-price">
+                    <span class="current-price">৳ 2,499</span>
+                    <span class="original-price">৳ 3,499</span>
+                    <span class="discount">29% OFF</span>
+                </div>
+                
+                <div class="product-highlights">
+                    <div class="highlight">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Active Noise Cancellation
+                    </div>
+                    <div class="highlight">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        30 Hours Battery Life
+                    </div>
+                    <div class="highlight">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Fast Charging (15 min = 5 hours)
+                    </div>
+                    <div class="highlight">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        FREE Shipping
+                    </div>
+                </div>
+                
+                <div class="size-selection">
+                    <div class="size-title">Color:</div>
+                    <div class="size-options">
+                        <div class="size-option selected">Black</div>
+                        <div class="size-option">White</div>
+                        <div class="size-option">Blue</div>
+                        <div class="size-option">Red</div>
+                    </div>
+                </div>
+                
+                <div class="quantity-selection">
+                    <div class="quantity-title">Quantity:</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" id="decrease-qty">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" max="10" id="quantity-input">
+                        <button class="quantity-btn" id="increase-qty">+</button>
+                    </div>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="btn btn-primary" id="add-to-cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        Add to Cart
+                    </button>
+                    <button class="btn btn-secondary" id="buy-now">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        Buy Now
+                    </button>
+                    <button class="btn btn-outline" id="add-to-wishlist">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        Wishlist
+                    </button>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">SKU:</div>
+                        <div class="meta-value">NUR-HP-001</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Category:</div>
+                        <div class="meta-value">Electronics, Headphones</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tags:</div>
+                        <div class="meta-value">wireless, bluetooth, noise cancellation, premium</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Delivery:</div>
+                        <div class="meta-value">2-3 business days</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Description & Reviews -->
+    <div class="container">
+        <div class="product-tabs">
+            <div class="tab-headers">
+                <div class="tab-header active" data-tab="description">Description</div>
+                <div class="tab-header" data-tab="specifications">Specifications</div>
+                <div class="tab-header" data-tab="reviews">Reviews (128)</div>
+            </div>
+            
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    <div class="description-content">
+                        <p>Experience premium sound quality with our latest wireless headphones. Designed for comfort and performance, these headphones feature active noise cancellation technology that blocks out external noise, allowing you to immerse yourself in your music.</p>
+                        
+                        <p>With up to 30 hours of battery life, you can enjoy your favorite tunes all day long. The fast charging feature gives you 5 hours of playback with just 15 minutes of charging, perfect for when you're in a hurry.</p>
+                        
+                        <p>The ergonomic design ensures a comfortable fit even during extended use, while the premium materials provide durability and style. Compatible with all Bluetooth devices, these headphones are perfect for music lovers, gamers, and professionals alike.</p>
+                        
+                        <h3>Key Features:</h3>
+                        <ul>
+                            <li>Active Noise Cancellation technology</li>
+                            <li>30 hours of battery life</li>
+                            <li>Fast charging: 15 minutes = 5 hours playback</li>
+                            <li>Premium comfort-fit design</li>
+                            <li>High-quality audio drivers</li>
+                            <li>Bluetooth 5.0 connectivity</li>
+                            <li>Built-in microphone for calls</li>
+                            <li>Foldable design for easy storage</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="specifications">
+                    <table class="specs-table">
+                        <tr>
+                            <td>Brand</td>
+                            <td>NUR Audio</td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td>HP-2023</td>
+                        </tr>
+                        <tr>
+                            <td>Connectivity</td>
+                            <td>Bluetooth 5.0</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Life</td>
+                            <td>Up to 30 hours</td>
+                        </tr>
+                        <tr>
+                            <td>Charging Time</td>
+                            <td>2 hours (full charge)</td>
+                        </tr>
+                        <tr>
+                            <td>Fast Charging</td>
+                            <td>15 minutes for 5 hours playback</td>
+                        </tr>
+                        <tr>
+                            <td>Noise Cancellation</td>
+                            <td>Active Noise Cancellation (ANC)</td>
+                        </tr>
+                        <tr>
+                            <td>Driver Size</td>
+                            <td>40mm</td>
+                        </tr>
+                        <tr>
+                            <td>Frequency Response</td>
+                            <td>20Hz - 20kHz</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>256g</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>1 year</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="tab-pane" id="reviews">
+                    <div class="reviews-summary">
+                        <div class="overall-rating">
+                            <div class="rating-score">4.2</div>
+                            <div class="rating-stars">★★★★☆</div>
+                            <div class="rating-count">128 reviews</div>
+                        </div>
+                        
+                        <div class="rating-bars">
+                            <div class="rating-bar">
+                                <div class="rating-label">5 Stars</div>
+                                <div class="rating-progress">
+                                    <div class="rating-progress-fill" style="width: 65%;"></div>
+                                </div>
+                                <div class="rating-percent">65%</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="rating-label">4 Stars</div>
+                                <div class="rating-progress">
+                                    <div class="rating-progress-fill" style="width: 20%;"></div>
+                                </div>
+                                <div class="rating-percent">20%</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="rating-label">3 Stars</div>
+                                <div class="rating-progress">
+                                    <div class="rating-progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <div class="rating-percent">10%</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="rating-label">2 Stars</div>
+                                <div class="rating-progress">
+                                    <div class="rating-progress-fill" style="width: 3%;"></div>
+                                </div>
+                                <div class="rating-percent">3%</div>
+                            </div>
+                            <div class="rating-bar">
+                                <div class="rating-label">1 Star</div>
+                                <div class="rating-progress">
+                                    <div class="rating-progress-fill" style="width: 2%;"></div>
+                                </div>
+                                <div class="rating-percent">2%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-list">
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-name">Rahim Khan</div>
+                                <div class="review-date">March 15, 2023</div>
+                            </div>
+                            <div class="review-rating">★★★★★</div>
+                            <div class="review-text">Excellent sound quality and very comfortable to wear for long periods. The noise cancellation works perfectly in noisy environments. Battery life is as advertised. Highly recommended!</div>
+                        </div>
+                        
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-name">Sadia Ahmed</div>
+                                <div class="review-date">February 28, 2023</div>
+                            </div>
+                            <div class="review-rating">★★★★☆</div>
+                            <div class="review-text">Great headphones for the price. Sound is clear and bass is good. The only minor issue is that they feel a bit tight after 3-4 hours of continuous use. Otherwise, perfect!</div>
+                        </div>
+                        
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-name">Tanjim Hossain</div>
+                                <div class="review-date">February 10, 2023</div>
+                            </div>
+                            <div class="review-rating">★★★★★</div>
+                            <div class="review-text">Best purchase I've made this year! The fast charging is a lifesaver. I use them for work calls and the microphone quality is excellent. Delivery was super fast too.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="container related-products">
+        <h2 class="section-title">Related Products</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wireless Earbuds">
+                    <div class="product-badges">
+                        <div class="badge badge-discount">15% OFF</div>
+                    </div>
+                </div>
+                <div class="product-info-card">
+                    <div class="product-category">Electronics</div>
+                    <div class="product-name">True Wireless Earbuds with Charging Case</div>
+                    <div class="product-price-card">
+                        <span class="current-price-card">৳ 1,299</span>
+                        <span class="original-price-card">৳ 1,499</span>
+                    </div>
+                    <div class="product-rating-card">
+                        <div class="stars-card">★★★★☆</div>
+                        <div class="rating-count-card">(87)</div>
+                    </div>
+                    <div class="product-actions-card">
+                        <button class="btn-card btn-card-primary">Add to Cart</button>
+                        <button class="btn-card btn-card-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Smart Watch">
+                    <div class="product-badges">
+                        <div class="badge badge-discount">25% OFF</div>
+                        <div class="badge badge-shipping">FREE Shipping</div>
+                    </div>
+                </div>
+                <div class="product-info-card">
+                    <div class="product-category">Electronics</div>
+                    <div class="product-name">Smart Watch with Health Monitoring</div>
+                    <div class="product-price-card">
+                        <span class="current-price-card">৳ 3,499</span>
+                        <span class="original-price-card">৳ 4,499</span>
+                    </div>
+                    <div class="product-rating-card">
+                        <div class="stars-card">★★★★★</div>
+                        <div class="rating-count-card">(142)</div>
+                    </div>
+                    <div class="product-actions-card">
+                        <button class="btn-card btn-card-primary">Add to Cart</button>
+                        <button class="btn-card btn-card-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bluetooth Speaker">
+                    <div class="product-badges">
+                        <div class="badge badge-shipping">FREE Shipping</div>
+                    </div>
+                </div>
+                <div class="product-info-card">
+                    <div class="product-category">Electronics</div>
+                    <div class="product-name">Portable Bluetooth Speaker</div>
+                    <div class="product-price-card">
+                        <span class="current-price-card">৳ 1,899</span>
+                    </div>
+                    <div class="product-rating-card">
+                        <div class="stars-card">★★★★☆</div>
+                        <div class="rating-count-card">(63)</div>
+                    </div>
+                    <div class="product-actions-card">
+                        <button class="btn-card btn-card-primary">Add to Cart</button>
+                        <button class="btn-card btn-card-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gaming Headset">
+                    <div class="product-badges">
+                        <div class="badge badge-discount">30% OFF</div>
+                    </div>
+                </div>
+                <div class="product-info-card">
+                    <div class="product-category">Electronics</div>
+                    <div class="product-name">RGB Gaming Headset with Microphone</div>
+                    <div class="product-price-card">
+                        <span class="current-price-card">৳ 2,199</span>
+                        <span class="original-price-card">৳ 2,999</span>
+                    </div>
+                    <div class="product-rating-card">
+                        <div class="stars-card">★★★☆☆</div>
+                        <div class="rating-count-card">(41)</div>
+                    </div>
+                    <div class="product-actions-card">
+                        <button class="btn-card btn-card-primary">Add to Cart</button>
+                        <button class="btn-card btn-card-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NUR Shopping</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Policies</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>Email: support@nurshopping.com</li>
+                        <li>Phone: +880 1234-567890</li>
+                        <li>Address: 123 Shopping Street, Dhaka</li>
+                        <li>
+                            <div style="display: flex; gap: 15px; margin-top: 10px;">
+                                <a href="#" style="color: #cbd5e1;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" style="color: #cbd5e1;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <a href="#" style="color: #cbd5e1;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 NUR - Premium Shopping. All rights reserved. | Point জমাও, Discount নাও, Hero হও 💎😎</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="toast-message">Product added to cart successfully!</span>
+    </div>
+
+    <!-- Floating Cart Icon for Mobile -->
+    <a href="cart.html" class="floating-cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <div class="cart-count">3</div>
+    </a>
+
+    <script>
+        // Product Image Thumbnails
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                // Remove active class from all thumbnails
+                document.querySelectorAll('.thumbnail').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+                
+                // Update main image
+                const mainImage = document.getElementById('main-product-image');
+                mainImage.src = this.getAttribute('data-image');
+            });
+        });
+
+        // Quantity Controls
+        const quantityInput = document.getElementById('quantity-input');
+        const decreaseBtn = document.getElementById('decrease-qty');
+        const increaseBtn = document.getElementById('increase-qty');
         
-    } catch (error) {
-        console.error('Error loading product:', error);
-        window.location.href = 'shop.html';
-    }
-}
+        decreaseBtn.addEventListener('click', function() {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+        
+        increaseBtn.addEventListener('click', function() {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue < 10) {
+                quantityInput.value = currentValue + 1;
+            }
+        });
 
-async function loadProductReviews() {
-    if (!currentProduct) return;
+        // Size Selection
+        document.querySelectorAll('.size-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.size-option').forEach(o => {
+                    o.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
 
-    try {
-        const reviews = await dataManager.getProductReviews(currentProduct.id, 10);
-        displayProductReviews(reviews);
-    } catch (error) {
-        console.error('Error loading reviews:', error);
-    }
-}
+        // Tab Switching
+        document.querySelectorAll('.tab-header').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-header').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Hide all tab panes
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Show selected tab pane
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
 
-async function loadRelatedProducts() {
-    if (!currentProduct) return;
+        // Add to Cart Functionality
+        document.getElementById('add-to-cart').addEventListener('click', function() {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = 'Product added to cart successfully!';
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+            
+            // Update cart count
+            const cartCount = document.querySelector('.cart-count');
+            let currentCount = parseInt(cartCount.textContent);
+            cartCount.textContent = currentCount + 1;
+            
+            // Update floating cart count
+            const floatingCartCount = document.querySelector('.floating-cart .cart-count');
+            floatingCartCount.textContent = currentCount + 1;
+        });
 
-    try {
-        const relatedProducts = await dataManager.getRelatedProducts(
-            currentProduct.id, 
-            currentProduct.category, 
-            4
-        );
-        displayRelatedProducts(relatedProducts);
-    } catch (error) {
-        console.error('Error loading related products:', error);
-    }
-}
+        // Add to Wishlist
+        document.getElementById('add-to-wishlist').addEventListener('click', function() {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = 'Product added to wishlist!';
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        });
 
-function displayProductDetails() {
-    if (!currentProduct) return;
-
-    // Update product info with REAL data
-    document.getElementById('productTitle').textContent = currentProduct.name;
-    document.getElementById('productBrand').textContent = `ব্র্যান্ড: ${currentProduct.brand}`;
-    document.getElementById('productRating').textContent = currentProduct.rating.toFixed(1);
-    document.getElementById('reviewCount').textContent = `(${currentProduct.reviews}+ রিভিউ)`;
-    document.getElementById('soldCount').textContent = `${currentProduct.sold}+ বিক্রিত`;
-
-    // Update prices
-    document.getElementById('currentPrice').textContent = `৳${currentProduct.price.toLocaleString()}`;
-    document.getElementById('originalPrice').textContent = `৳${currentProduct.originalPrice.toLocaleString()}`;
-    document.getElementById('discountBadge').textContent = `-${currentProduct.discount}%`;
-
-    // Update stock info
-    document.getElementById('stockInfo').innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        <span>স্টকে আছে (${currentProduct.stock})</span>
-    `;
-
-    // Load product specifications if available
-    if (currentProduct.specifications) {
-        displaySpecifications(currentProduct.specifications);
-    }
-}
-</script>
+        // Buy Now
+        document.getElementById('buy-now').addEventListener('click', function() {
+            window.location.href = 'checkout.html';
+        });
+    </script>
+</body>
+</html>

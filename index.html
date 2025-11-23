@@ -5,129 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUR - Premium Shopping</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
+    <!-- Header Top -->
+    <div class="header-top">
         <div class="container">
-            <div class="header-top">
-                <div class="logo" onclick="window.location.href='index.html'">
-                    <h1>NUR</h1>
-                    <span>Premium Shopping</span>
-                </div>
+            <div class="header-promo">
+                🚀 নুর – যেখানে শপিং = মজা 😎🔥 | অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি… কখনো কখনো 😅
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Main -->
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">NUR<span>.</span></a>
+                
                 <div class="search-bar">
-                    <input type="text" placeholder="পণ্য খুঁজুন..." id="searchInput">
-                    <button onclick="performSearch()"><i class="fas fa-search"></i></button>
+                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
                 </div>
+                
                 <div class="header-actions">
-                    <div class="language-switch">
-                        <select id="languageSelect">
-                            <option value="bn" selected>বাংলা</option>
-                            <option value="en">English</option>
-                        </select>
-                    </div>
-                    <div class="action-item" onclick="toggleAuthModal()">
-                        <i class="fas fa-user"></i>
-                        <span>অ্যাকাউন্ট</span>
-                    </div>
-                    <div class="action-item" onclick="window.location.href='wishlist.html'">
-                        <i class="fas fa-heart"></i>
-                        <span>উইশলিস্ট</span>
-                    </div>
-                    <div class="action-item cart-icon" onclick="window.location.href='cart.html'">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>কার্ট</span>
-                        <span class="cart-count">0</span>
-                    </div>
+                    <a href="wishlist.html" class="header-action">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        Wishlist
+                    </a>
+                    
+                    <a href="auth.html" class="header-action">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Account
+                    </a>
+                    
+                    <a href="cart.html" class="header-action cart-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        Cart
+                        <div class="cart-count">0</div>
+                    </a>
                 </div>
             </div>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="index.html" class="active">হোম</a></li>
-                    <li><a href="shop.html">শপ</a></li>
-                    <li><a href="categories.html">ক্যাটাগরি</a></li>
-                    <li><a href="deals.html">ডিলস</a></li>
-                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                    <li><a href="contact.html">যোগাযোগ</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <!-- Main Banner Slider -->
-    <section class="banner-slider">
-        <div class="slider-container">
-            <div class="slide active">
-                <div class="slide-content">
-                    <h2>নুর - যেখানে শপিং = মজা</h2>
-                    <p>সেরা ব্র্যান্ডের পণ্য একই জায়গায়</p>
-                    <a href="shop.html" class="btn-primary">এখনই কিনুন</a>
-                </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="categories">
+                <button class="categories-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    All Categories
+                </button>
             </div>
-            <div class="slide">
-                <div class="slide-content">
-                    <h2>বড় ডিসকাউন্টে পণ্য কিনুন</h2>
-                    <p>৫০% পর্যন্ত ছাড়</p>
-                    <a href="shop.html" class="btn-primary">ডিলস দেখুন</a>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="slide-content">
-                    <h2>ফ্রি শিপিং</h2>
-                    <p>১০০০ টাকার উপর অর্ডারে ফ্রি ডেলিভারি</p>
-                    <a href="shop.html" class="btn-primary">শপিং করুন</a>
-                </div>
-            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="offers.html">Offers</a></li>
+            </ul>
         </div>
-        <div class="slider-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+    </nav>
+
+    <!-- Banner Slider -->
+    <section class="banner-slider">
+        <div class="container">
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slide active">
+                        <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Summer Sale">
+                        <div class="slide-content">
+                            <h2>Summer Sale 2023</h2>
+                            <p>Up to 70% OFF on all products</p>
+                            <a href="shop.html" class="btn btn-primary">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="New Arrivals">
+                        <div class="slide-content">
+                            <h2>New Arrivals</h2>
+                            <p>Discover the latest trends</p>
+                            <a href="shop.html" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Electronics">
+                        <div class="slide-content">
+                            <h2>Electronics Sale</h2>
+                            <p>Premium gadgets at amazing prices</p>
+                            <a href="shop.html" class="btn btn-primary">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-prev">‹</button>
+                    <button class="slider-next">›</button>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Categories Section -->
-    <section class="categories">
+    <section class="categories-section">
         <div class="container">
-            <h2 class="section-title">ক্যাটাগরি ব্রাউজ করুন</h2>
+            <h2 class="section-title">Shop by Category</h2>
             <div class="categories-grid">
-                <div class="category-card" onclick="window.location.href='shop.html?category=fashion'">
-                    <div class="category-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h3>ফ্যাশন</h3>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Electronics">
+                    <div class="category-name">Electronics</div>
                 </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=electronics'">
-                    <div class="category-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>ইলেকট্রনিক্স</h3>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion">
+                    <div class="category-name">Fashion</div>
                 </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=home'">
-                    <div class="category-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>হোম অ্যাপ্লায়েন্স</h3>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Home & Kitchen">
+                    <div class="category-name">Home & Kitchen</div>
                 </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=kitchen'">
-                    <div class="category-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>রান্নাঘর</h3>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1576097449790-4d4cbfeef112?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Beauty">
+                    <div class="category-name">Beauty</div>
                 </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=health'">
-                    <div class="category-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>স্বাস্থ্য</h3>
-                </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=sports'">
-                    <div class="category-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
-                    <h3>খেলাধুলা</h3>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sports">
+                    <div class="category-name">Sports</div>
                 </div>
             </div>
         </div>
@@ -136,12 +163,9 @@
     <!-- Featured Products -->
     <section class="featured-products">
         <div class="container">
-            <h2 class="section-title">ফিচার্ড পণ্য</h2>
-            <div class="products-grid" id="featuredProducts">
-                <!-- Product cards will be loaded here -->
-            </div>
-            <div class="text-center">
-                <a href="shop.html" class="btn-secondary">সব পণ্য দেখুন</a>
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid" id="featured-products">
+                <!-- Products will be loaded by JavaScript -->
             </div>
         </div>
     </section>
@@ -149,20 +173,27 @@
     <!-- Special Offers -->
     <section class="special-offers">
         <div class="container">
-            <h2 class="section-title">বিশেষ অফার</h2>
+            <h2 class="section-title">Special Offers</h2>
             <div class="offers-grid">
                 <div class="offer-card">
                     <div class="offer-content">
-                        <h3>Point জমাও, Discount নাও, Hero হও</h3>
-                        <p>প্রতি ১০০ টাকা শপিংয়ে ১ পয়েন্ট পান</p>
-                        <a href="profile.html" class="btn-outline">বিস্তারিত জানুন</a>
+                        <h3>Free Shipping</h3>
+                        <p>On orders over ৳1000</p>
+                        <span class="offer-tag">SAVE MORE</span>
                     </div>
                 </div>
                 <div class="offer-card">
                     <div class="offer-content">
-                        <h3>ফ্রি ডেলিভারি</h3>
-                        <p>১০০০ টাকার উপর অর্ডারে ফ্রি শিপিং</p>
-                        <a href="shop.html" class="btn-outline">শপিং করুন</a>
+                        <h3>Loyalty Points</h3>
+                        <p>Earn points on every purchase</p>
+                        <span class="offer-tag">EARN REWARDS</span>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-content">
+                        <h3>Cashback 10%</h3>
+                        <p>On your first order</p>
+                        <span class="offer-tag">NEW USER</span>
                     </div>
                 </div>
             </div>
@@ -170,107 +201,80 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>NUR - Premium Shopping</h3>
-                    <p>যেখানে শপিং = মজা</p>
-                    <p>অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি... কখনো কখনো</p>
-                </div>
-                <div class="footer-section">
-                    <h4>দ্রুত লিংক</h4>
-                    <ul>
-                        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                        <li><a href="contact.html">যোগাযোগ</a></li>
-                        <li><a href="privacy.html">গোপনীয়তা নীতি</a></li>
-                        <li><a href="terms.html">শর্তাবলী</a></li>
-                        <li><a href="#" target="_blank">Wholesale Site</a></li>
+                <div class="footer-column">
+                    <h3>NUR Shopping</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>কাস্টমার কেয়ার</h4>
-                    <ul>
-                        <li><a href="help.html">সাহায্য কেন্দ্র</a></li>
-                        <li><a href="returns.html">রিটার্ন পলিসি</a></li>
-                        <li><a href="shipping.html">শিপিং তথ্য</a></li>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>আমাদের অনুসরণ করুন</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                
+                <div class="footer-column">
+                    <h3>Policies</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>Email: support@nurshopping.com</li>
+                        <li>Phone: +880 1234-567890</li>
+                        <li>Address: 123 Shopping Street, Dhaka</li>
+                        <li>
+                            <div class="social-links">
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2023 NUR - Premium Shopping. সকল অধিকার সংরক্ষিত।</p>
+                <p>&copy; 2023 NUR - Premium Shopping. All rights reserved. | Point জমাও, Discount নাও, Hero হও 💎😎</p>
             </div>
         </div>
     </footer>
 
-    <!-- Authentication Modal -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="login">লগইন</button>
-                <button class="tab-btn" data-tab="register">রেজিস্টার</button>
-            </div>
-            
-            <div id="login" class="tab-content active">
-                <form id="loginForm">
-                    <div class="form-group">
-                        <input type="email" placeholder="ইমেইল" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="পাসওয়ার্ড" required>
-                    </div>
-                    <button type="submit" class="btn-primary">লগইন</button>
-                </form>
-                <div class="social-login">
-                    <button class="btn-google" onclick="signInWithGoogle()">
-                        <i class="fab fa-google"></i> Google দিয়ে লগইন
-                    </button>
-                    <button class="btn-facebook" onclick="signInWithFacebook()">
-                        <i class="fab fa-facebook"></i> Facebook দিয়ে লগইন
-                    </button>
-                </div>
-            </div>
-            
-            <div id="register" class="tab-content">
-                <form id="registerForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="পুরো নাম" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="ইমেইল" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="পাসওয়ার্ড" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
-                    </div>
-                    <button type="submit" class="btn-primary">রেজিস্টার</button>
-                </form>
-            </div>
-        </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="toast-message">Product added to cart successfully!</span>
     </div>
 
-    <!-- Floating Cart Icon (Mobile) -->
-    <div class="floating-cart" onclick="window.location.href='cart.html'">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </div>
+    <!-- Floating Cart Icon for Mobile -->
+    <a href="cart.html" class="floating-cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <div class="cart-count">0</div>
+    </a>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="firebase-config.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/auth.js"></script>
 </body>
 </html>

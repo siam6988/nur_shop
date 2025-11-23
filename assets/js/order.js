@@ -1,264 +1,230 @@
-// Order Management Functions
-let currentOrder = {
-    items: [],
-    subtotal: 0,
-    shipping: 120,
-    discount: 0,
-    total: 0,
-    pointsUsed: 0,
-    pointsDiscount: 0
-};
-
-// Initialize Checkout Page
-function initCheckoutPage() {
-    loadOrderSummary();
-    setupCheckoutEventListeners();
-    checkAuthentication();
-}
-
-// Load Order Summary
-function loadOrderSummary() {
-    const cart = JSON.parse(localStorage.getItem('nurCart')) || [];
-    
-    if (cart.length === 0) {
-        window.location.href = 'cart.html';
-        return;
+// Order Management
+class NUROrder {
+    constructor() {
+        this.orders = JSON.parse(localStorage.getItem('nur_orders')) || [];
+        this.currentOrder = null;
+        this.init();
     }
 
-    currentOrder.items = cart;
-    currentOrder.subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    currentOrder.shipping = currentOrder.subtotal > 1000 ? 0 : 120;
-    currentOrder.total = currentOrder.subtotal + currentOrder.shipping;
-
-    displayOrderItems();
-    updateOrderSummary();
-}
-
-// Display Order Items
-function displayOrderItems() {
-    const orderItemsContainer = document.getElementById('orderItems');
-    if (!orderItemsContainer) return;
-
-    orderItemsContainer.innerHTML = '';
-
-    currentOrder.items.forEach(item => {
-        const orderItem = document.createElement('div');
-        orderItem.className = 'order-item';
-        orderItem.innerHTML = `
-            <div class="order-item-image">
-                <img src="${item.image}" alt="${currentLanguage === 'bn' ? item.name : item.name_en}" 
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2Y4ZmFmYyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5Mzk5YTciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZTwvdGV4dD48L3N2Zz4='">
-            </div>
-            <div class="order-item-details">
-                <div class="order-item-name">${currentLanguage === 'bn' ? item.name : item.name_en}</div>
-                <div class="order-item-price">৳${item.price.toLocaleString()}</div>
-                <div class="order-item-quantity">পরিমাণ: ${item.quantity}</div>
-            </div>
-        `;
-        orderItemsContainer.appendChild(orderItem);
-    });
-}
-
-// Update Order Summary
-function updateOrderSummary() {
-    const subtotalElement = document.getElementById('summarySubtotal');
-    const shippingElement = document.getElementById('summaryShipping');
-    const discountElement = document.getElementById('summaryDiscount');
-    const totalElement = document.getElementById('summaryTotal');
-
-    if (subtotalElement) subtotalElement.textContent = `৳${currentOrder.subtotal.toLocaleString()}`;
-    if (shippingElement) shippingElement.textContent = currentOrder.shipping === 0 
-        ? (currentLanguage === 'bn' ? 'ফ্রি' : 'Free') 
-        : `৳${currentOrder.shipping.toLocaleString()}`;
-    if (discountElement) discountElement.textContent = `-৳${currentOrder.pointsDiscount.toLocaleString()}`;
-    if (totalElement) totalElement.textContent = `৳${currentOrder.total.toLocaleString()}`;
-}
-
-// Apply Points Discount
-function applyPoints(discountAmount) {
-    currentOrder.pointsDiscount = discountAmount;
-    currentOrder.total = (currentOrder.subtotal + currentOrder.shipping) - discountAmount;
-    
-    // Ensure total doesn't go below 0
-    if (currentOrder.total < 0) {
-        currentOrder.total = 0;
-        currentOrder.pointsDiscount = currentOrder.subtotal + currentOrder.shipping;
-    }
-    
-    updateOrderSummary();
-}
-
-// Select Payment Method
-function selectPayment(method) {
-    // Update UI
-    document.querySelectorAll('.payment-method').forEach(el => {
-        el.classList.remove('selected');
-    });
-    event.currentTarget.classList.add('selected');
-    
-    // Show/hide card form
-    const cardForm = document.getElementById('cardPaymentForm');
-    if (cardForm) {
-        cardForm.style.display = method === 'card' ? 'block' : 'none';
-    }
-    
-    currentOrder.paymentMethod = method;
-}
-
-// Setup Checkout Event Listeners
-function setupCheckoutEventListeners() {
-    // Form validation
-    const form = document.querySelector('.checkout-forms');
-    if (form) {
-        form.addEventListener('input', validateForm);
+    init() {
+        this.loadOrders();
+        this.setupOrderInteractions();
     }
 
-    // Payment method selection
-    document.querySelectorAll('.payment-method').forEach(el => {
-        el.addEventListener('click', function() {
-            selectPayment(this.querySelector('input').id);
-        });
-    });
-}
+    loadOrders() {
+        const ordersContainer = document.getElementById('orders-list');
+        if (!ordersContainer) return;
 
-// Validate Form
-function validateForm() {
-    const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
-    const placeOrderBtn = document.getElementById('placeOrderBtn');
-    
-    let isValid = true;
-    
-    requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-            isValid = false;
+        if (this.orders.length === 0) {
+            ordersContainer.innerHTML = `
+                <div class="empty-orders">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <h3>No orders yet</h3>
+                    <p>You haven't placed any orders yet</p>
+                    <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+                </div>
+            `;
+            return;
         }
-    });
-    
-    if (placeOrderBtn) {
-        placeOrderBtn.disabled = !isValid;
-    }
-    
-    return isValid;
-}
 
-// Check Authentication
-function checkAuthentication() {
-    auth.onAuthStateChanged((user) => {
+        ordersContainer.innerHTML = this.orders.map(order => `
+            <div class="order-card" data-order-id="${order.id}">
+                <div class="order-header">
+                    <div class="order-info">
+                        <h3>Order #${order.id}</h3>
+                        <span class="order-date">Placed on ${new Date(order.date).toLocaleDateString()}</span>
+                    </div>
+                    <div class="order-status ${order.status}">
+                        ${this.getStatusText(order.status)}
+                    </div>
+                </div>
+                
+                <div class="order-items">
+                    ${order.items.slice(0, 2).map(item => `
+                        <div class="order-item">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div class="item-info">
+                                <h4>${item.name}</h4>
+                                <div class="item-price">৳ ${item.price.toLocaleString()} x ${item.quantity}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                    ${order.items.length > 2 ? `
+                        <div class="more-items">+${order.items.length - 2} more items</div>
+                    ` : ''}
+                </div>
+                
+                <div class="order-footer">
+                    <div class="order-total">
+                        Total: ৳ ${order.total.toLocaleString()}
+                    </div>
+                    <div class="order-actions">
+                        <button class="btn btn-outline" onclick="nurOrder.viewOrder('${order.id}')">
+                            View Details
+                        </button>
+                        ${order.status === 'delivered' ? `
+                            <button class="btn btn-primary" onclick="nurOrder.rateOrder('${order.id}')">
+                                Rate & Review
+                            </button>
+                        ` : ''}
+                        ${order.status === 'pending' ? `
+                            <button class="btn btn-danger" onclick="nurOrder.cancelOrder('${order.id}')">
+                                Cancel Order
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    setupOrderInteractions() {
+        // Track order button
+        const trackOrderBtn = document.querySelector('.track-order-btn');
+        if (trackOrderBtn) {
+            trackOrderBtn.addEventListener('click', () => {
+                this.trackOrder();
+            });
+        }
+
+        // Place order button (from checkout)
+        const placeOrderBtn = document.querySelector('.place-order-btn');
+        if (placeOrderBtn) {
+            placeOrderBtn.addEventListener('click', () => {
+                this.placeOrder();
+            });
+        }
+    }
+
+    placeOrder() {
+        const cart = JSON.parse(localStorage.getItem('nur_cart')) || [];
+        if (cart.length === 0) {
+            this.showToast('Your cart is empty', 'warning');
+            return;
+        }
+
+        const user = JSON.parse(localStorage.getItem('nur_user'));
         if (!user) {
-            showToast(currentLanguage === 'bn' ? 'চেকআউট করতে লগইন করুন' : 'Please login to checkout');
-            window.location.href = 'auth.html?redirect=checkout';
+            this.showToast('Please login to place order', 'warning');
+            return;
         }
-    });
-}
 
-// Place Order
-function placeOrder() {
-    if (!validateForm()) {
-        showToast(currentLanguage === 'bn' ? 'সমস্ত প্রয়োজনীয় তথ্য পূরণ করুন' : 'Please fill all required fields');
-        return;
+        // Get shipping info
+        const shippingInfo = this.getShippingInfo();
+        if (!shippingInfo) return;
+
+        // Create order
+        const order = {
+            id: 'NUR' + Date.now(),
+            date: new Date().toISOString(),
+            status: 'pending',
+            items: cart,
+            subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+            delivery: 120,
+            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 120,
+            shipping: shippingInfo,
+            paymentMethod: document.querySelector('input[name="payment"]:checked')?.value || 'cod'
+        };
+
+        // Add to orders
+        this.orders.unshift(order);
+        localStorage.setItem('nur_orders', JSON.stringify(this.orders));
+
+        // Clear cart
+        localStorage.removeItem('nur_cart');
+        if (window.nurApp) {
+            window.nurApp.cart = [];
+            window.nurApp.updateCartCount();
+        }
+
+        // Show success message
+        this.showToast('Order placed successfully!', 'success');
+        
+        // Redirect to order confirmation
+        setTimeout(() => {
+            window.location.href = `order-confirmation.html?id=${order.id}`;
+        }, 1500);
     }
 
-    const user = auth.currentUser;
-    if (!user) {
-        showToast(currentLanguage === 'bn' ? 'লগইন প্রয়োজন' : 'Login required');
-        return;
+    getShippingInfo() {
+        // This would typically get data from checkout form
+        return {
+            name: "John Doe",
+            phone: "+8801234567890",
+            address: "123 Main Street, Dhaka",
+            city: "Dhaka",
+            zipCode: "1200"
+        };
     }
 
-    // Collect form data
-    const orderData = {
-        userId: user.uid,
-        items: currentOrder.items,
-        shippingInfo: {
-            fullName: document.getElementById('fullName').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            address: document.getElementById('address').value,
-            city: document.getElementById('city').value,
-            zip: document.getElementById('zip').value,
-            country: document.getElementById('country').value
-        },
-        paymentMethod: currentOrder.paymentMethod || 'cod',
-        orderSummary: {
-            subtotal: currentOrder.subtotal,
-            shipping: currentOrder.shipping,
-            pointsDiscount: currentOrder.pointsDiscount,
-            total: currentOrder.total
-        },
-        status: 'pending',
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    };
-
-    // Show loading
-    const placeOrderBtn = document.getElementById('placeOrderBtn');
-    if (placeOrderBtn) {
-        placeOrderBtn.disabled = true;
-        placeOrderBtn.textContent = currentLanguage === 'bn' ? 'অর্ডার প্রসেস হচ্ছে...' : 'Processing Order...';
+    viewOrder(orderId) {
+        window.location.href = `order-details.html?id=${orderId}`;
     }
 
-    // Save order to Firestore
-    db.collection('orders').add(orderData)
-        .then((docRef) => {
-            console.log('Order created with ID: ', docRef.id);
-            
-            // Clear cart
-            localStorage.removeItem('nurCart');
-            
-            // Update user points if used
-            if (currentOrder.pointsDiscount > 0) {
-                updateUserPoints(user.uid, -calculatePointsUsed(currentOrder.pointsDiscount));
-            }
-            
-            // Show success message
-            showToast(currentLanguage === 'bn' ? 'অর্ডার সফলভাবে তৈরি হয়েছে!' : 'Order created successfully!');
-            
-            // Redirect to order confirmation
-            setTimeout(() => {
-                window.location.href = `orders.html?order=${docRef.id}`;
-            }, 2000);
-            
-        })
-        .catch((error) => {
-            console.error('Error creating order: ', error);
-            showToast(currentLanguage === 'bn' ? 'অর্ডার তৈরি করতে সমস্যা হয়েছে' : 'Error creating order');
-            
-            if (placeOrderBtn) {
-                placeOrderBtn.disabled = false;
-                placeOrderBtn.textContent = currentLanguage === 'bn' ? 'অর্ডার নিশ্চিত করুন' : 'Place Order';
-            }
-        });
-}
+    rateOrder(orderId) {
+        const order = this.orders.find(o => o.id === orderId);
+        if (!order) return;
 
-// Calculate points used based on discount
-function calculatePointsUsed(discount) {
-    // Simple conversion - in real app, this would use the point rules
-    if (discount >= 200) return 100;
-    if (discount >= 80) return 50;
-    if (discount >= 25) return 20;
-    if (discount >= 10) return 10;
-    return 0;
-}
-
-// Update user points
-function updateUserPoints(userId, points) {
-    db.collection('users').doc(userId).update({
-        points: firebase.firestore.FieldValue.increment(points)
-    })
-    .then(() => {
-        console.log('User points updated');
-    })
-    .catch((error) => {
-        console.error('Error updating user points: ', error);
-    });
-}
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('orderItems')) {
-        initCheckoutPage();
+        // Redirect to product page for review
+        if (order.items.length > 0) {
+            window.location.href = `product.html?id=${order.items[0].id}&review=true`;
+        }
     }
-});
 
-// Export functions for global use
-window.applyPoints = applyPoints;
-window.selectPayment = selectPayment;
-window.placeOrder = placeOrder;
+    cancelOrder(orderId) {
+        if (!confirm('Are you sure you want to cancel this order?')) return;
+
+        const order = this.orders.find(o => o.id === orderId);
+        if (order && order.status === 'pending') {
+            order.status = 'cancelled';
+            localStorage.setItem('nur_orders', JSON.stringify(this.orders));
+            this.loadOrders();
+            this.showToast('Order cancelled successfully');
+        }
+    }
+
+    trackOrder() {
+        const trackInput = document.querySelector('.track-order-input');
+        if (!trackInput) return;
+
+        const orderId = trackInput.value.trim();
+        if (!orderId) {
+            this.showToast('Please enter order ID', 'warning');
+            return;
+        }
+
+        const order = this.orders.find(o => o.id === orderId);
+        if (order) {
+            window.location.href = `order-details.html?id=${orderId}`;
+        } else {
+            this.showToast('Order not found', 'error');
+        }
+    }
+
+    getStatusText(status) {
+        const statusMap = {
+            'pending': 'Pending',
+            'confirmed': 'Confirmed',
+            'shipped': 'Shipped',
+            'delivered': 'Delivered',
+            'cancelled': 'Cancelled'
+        };
+        return statusMap[status] || status;
+    }
+
+    showToast(message, type = 'success') {
+        if (window.nurApp) {
+            window.nurApp.showToast(message, type);
+        } else {
+            // Fallback toast implementation
+            console.log(`${type}: ${message}`);
+        }
+    }
+}
+
+// Initialize order management
+const nurOrder = new NUROrder();

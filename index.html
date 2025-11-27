@@ -9,11 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <div class="container">
+            <button class="lang-btn active" data-lang="bn">বাংলা</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
     <!-- Header Top -->
     <div class="header-top">
         <div class="container">
-            <div class="header-promo">
-                🚀 নুর – যেখানে শপিং = মজা 😎🔥 | অর্ডার দিলে বাতাসের থেকেও দ্রুত ডেলিভারি… কখনো কখনো 😅
+            <div class="header-promo" data-i18n="header_promo">
+                NUR - Premium Shopping Experience | Fast Delivery Guaranteed
             </div>
         </div>
     </div>
@@ -25,7 +33,7 @@
                 <a href="index.html" class="logo">NUR<span>.</span></a>
                 
                 <div class="search-bar">
-                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <input type="text" placeholder="Search products..." data-i18n-placeholder="search_placeholder">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
@@ -39,7 +47,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                         </svg>
-                        Wishlist
+                        <span data-i18n="wishlist">Wishlist</span>
                     </a>
                     
                     <a href="auth.html" class="header-action">
@@ -47,7 +55,7 @@
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
-                        Account
+                        <span data-i18n="account">Account</span>
                     </a>
                     
                     <a href="cart.html" class="header-action cart-icon">
@@ -56,7 +64,7 @@
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                         </svg>
-                        Cart
+                        <span data-i18n="cart">Cart</span>
                         <div class="cart-count">0</div>
                     </a>
                 </div>
@@ -74,16 +82,16 @@
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
-                    All Categories
+                    <span data-i18n="all_categories">All Categories</span>
                 </button>
             </div>
             
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="offers.html">Offers</a></li>
+                <li><a href="index.html" data-i18n="home">Home</a></li>
+                <li><a href="shop.html" data-i18n="shop">Shop</a></li>
+                <li><a href="about.html" data-i18n="about">About</a></li>
+                <li><a href="contact.html" data-i18n="contact">Contact</a></li>
+                <li><a href="offers.html" data-i18n="offers">Offers</a></li>
             </ul>
         </div>
     </nav>
@@ -96,25 +104,25 @@
                     <div class="slide active">
                         <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Summer Sale">
                         <div class="slide-content">
-                            <h2>Summer Sale 2023</h2>
-                            <p>Up to 70% OFF on all products</p>
-                            <a href="shop.html" class="btn btn-primary">Shop Now</a>
+                            <h2 data-i18n="banner1_title">Summer Sale 2023</h2>
+                            <p data-i18n="banner1_desc">Up to 70% OFF on all products</p>
+                            <a href="shop.html" class="btn btn-primary" data-i18n="shop_now">Shop Now</a>
                         </div>
                     </div>
                     <div class="slide">
                         <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="New Arrivals">
                         <div class="slide-content">
-                            <h2>New Arrivals</h2>
-                            <p>Discover the latest trends</p>
-                            <a href="shop.html" class="btn btn-primary">Explore</a>
+                            <h2 data-i18n="banner2_title">New Arrivals</h2>
+                            <p data-i18n="banner2_desc">Discover the latest trends</p>
+                            <a href="shop.html" class="btn btn-primary" data-i18n="explore">Explore</a>
                         </div>
                     </div>
                     <div class="slide">
                         <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Electronics">
                         <div class="slide-content">
-                            <h2>Electronics Sale</h2>
-                            <p>Premium gadgets at amazing prices</p>
-                            <a href="shop.html" class="btn btn-primary">Buy Now</a>
+                            <h2 data-i18n="banner3_title">Electronics Sale</h2>
+                            <p data-i18n="banner3_desc">Premium gadgets at amazing prices</p>
+                            <a href="shop.html" class="btn btn-primary" data-i18n="buy_now">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -134,27 +142,56 @@
     <!-- Categories Section -->
     <section class="categories-section">
         <div class="container">
-            <h2 class="section-title">Shop by Category</h2>
+            <h2 class="section-title" data-i18n="shop_by_category">Shop by Category</h2>
             <div class="categories-grid">
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Electronics">
-                    <div class="category-name">Electronics</div>
+                    <div class="category-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <div class="category-name" data-i18n="electronics">Electronics</div>
                 </div>
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fashion">
-                    <div class="category-name">Fashion</div>
+                    <div class="category-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84h6.38a1 1 0 0 0 0-2H3.85l-.58-3.47a2 2 0 0 1 1.34-2.23L8 4a2 2 0 0 0 4 0l3.38-1.54a2 2 0 0 1 1.34 2.23l-.58 3.47h-2.29a1 1 0 0 0 0 2h6.38a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 15v6"></path>
+                        </svg>
+                    </div>
+                    <div class="category-name" data-i18n="fashion">Fashion</div>
                 </div>
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Home & Kitchen">
-                    <div class="category-name">Home & Kitchen</div>
+                    <div class="category-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <div class="category-name" data-i18n="home_kitchen">Home & Kitchen</div>
                 </div>
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1576097449790-4d4cbfeef112?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Beauty">
-                    <div class="category-name">Beauty</div>
+                    <div class="category-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                    </div>
+                    <div class="category-name" data-i18n="beauty">Beauty</div>
                 </div>
                 <div class="category-card">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sports">
-                    <div class="category-name">Sports</div>
+                    <div class="category-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <div class="category-name" data-i18n="sports">Sports</div>
                 </div>
             </div>
         </div>
@@ -163,7 +200,7 @@
     <!-- Featured Products -->
     <section class="featured-products">
         <div class="container">
-            <h2 class="section-title">Featured Products</h2>
+            <h2 class="section-title" data-i18n="featured_products">Featured Products</h2>
             <div class="products-grid" id="featured-products">
                 <!-- Products will be loaded by JavaScript -->
             </div>
@@ -173,27 +210,27 @@
     <!-- Special Offers -->
     <section class="special-offers">
         <div class="container">
-            <h2 class="section-title">Special Offers</h2>
+            <h2 class="section-title" data-i18n="special_offers">Special Offers</h2>
             <div class="offers-grid">
                 <div class="offer-card">
                     <div class="offer-content">
-                        <h3>Free Shipping</h3>
-                        <p>On orders over ৳1000</p>
-                        <span class="offer-tag">SAVE MORE</span>
+                        <h3 data-i18n="free_shipping">Free Shipping</h3>
+                        <p data-i18n="free_shipping_desc">On orders over ৳1000</p>
+                        <span class="offer-tag" data-i18n="save_more">SAVE MORE</span>
                     </div>
                 </div>
                 <div class="offer-card">
                     <div class="offer-content">
-                        <h3>Loyalty Points</h3>
-                        <p>Earn points on every purchase</p>
-                        <span class="offer-tag">EARN REWARDS</span>
+                        <h3 data-i18n="loyalty_points">Loyalty Points</h3>
+                        <p data-i18n="loyalty_points_desc">Earn points on every purchase</p>
+                        <span class="offer-tag" data-i18n="earn_rewards">EARN REWARDS</span>
                     </div>
                 </div>
                 <div class="offer-card">
                     <div class="offer-content">
-                        <h3>Cashback 10%</h3>
-                        <p>On your first order</p>
-                        <span class="offer-tag">NEW USER</span>
+                        <h3 data-i18n="cashback">Cashback 10%</h3>
+                        <p data-i18n="cashback_desc">On your first order</p>
+                        <span class="offer-tag" data-i18n="new_user">NEW USER</span>
                     </div>
                 </div>
             </div>
@@ -205,41 +242,41 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>NUR Shopping</h3>
+                    <h3 data-i18n="nur_shopping">NUR Shopping</h3>
                     <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html" data-i18n="about_us">About Us</a></li>
+                        <li><a href="contact.html" data-i18n="contact_us">Contact Us</a></li>
+                        <li><a href="careers.html" data-i18n="careers">Careers</a></li>
+                        <li><a href="blog.html" data-i18n="blog">Blog</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Customer Service</h3>
+                    <h3 data-i18n="customer_service">Customer Service</h3>
                     <ul class="footer-links">
-                        <li><a href="help.html">Help Center</a></li>
-                        <li><a href="returns.html">Returns & Refunds</a></li>
-                        <li><a href="shipping.html">Shipping Info</a></li>
-                        <li><a href="size-guide.html">Size Guide</a></li>
+                        <li><a href="help.html" data-i18n="help_center">Help Center</a></li>
+                        <li><a href="returns.html" data-i18n="returns_refunds">Returns & Refunds</a></li>
+                        <li><a href="shipping.html" data-i18n="shipping_info">Shipping Info</a></li>
+                        <li><a href="size_guide.html" data-i18n="size_guide">Size Guide</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Policies</h3>
+                    <h3 data-i18n="policies">Policies</h3>
                     <ul class="footer-links">
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="cookies.html">Cookie Policy</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html" data-i18n="privacy_policy">Privacy Policy</a></li>
+                        <li><a href="terms.html" data-i18n="terms_service">Terms of Service</a></li>
+                        <li><a href="cookies.html" data-i18n="cookie_policy">Cookie Policy</a></li>
+                        <li><a href="faq.html" data-i18n="faq">FAQ</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Contact Info</h3>
+                    <h3 data-i18n="contact_info">Contact Info</h3>
                     <ul class="footer-links">
                         <li>Email: support@nurshopping.com</li>
-                        <li>Phone: +880 1234-567890</li>
-                        <li>Address: 123 Shopping Street, Dhaka</li>
+                        <li data-i18n="phone">Phone: +880 1234-567890</li>
+                        <li data-i18n="address">Address: 123 Shopping Street, Dhaka</li>
                         <li>
                             <div class="social-links">
                                 <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
@@ -252,7 +289,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 NUR - Premium Shopping. All rights reserved. | Point জমাও, Discount নাও, Hero হও 💎😎</p>
+                <p data-i18n="copyright">&copy; 2023 NUR - Premium Shopping. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -276,5 +313,6 @@
     </a>
 
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/language.js"></script>
 </body>
 </html>

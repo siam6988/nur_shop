@@ -7,21 +7,25 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <div class="container">
-            <button class="lang-btn active" data-lang="bn">বাংলা</button>
-            <button class="lang-btn" data-lang="en">English</button>
-        </div>
-    </div>
-
     <!-- Header Top -->
     <div class="header-top">
         <div class="container">
             <div class="header-promo" data-i18n="header_promo">
                 NUR - Premium Shopping Experience | Fast Delivery Guaranteed
+            </div>
+            <div class="header-utilities">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="bn">বাংলা</button>
+                    <button class="lang-btn" data-lang="en">English</button>
+                </div>
             </div>
         </div>
     </div>
@@ -68,6 +72,13 @@
                         <div class="cart-count">0</div>
                     </a>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
@@ -84,6 +95,39 @@
                     </svg>
                     <span data-i18n="all_categories">All Categories</span>
                 </button>
+                
+                <!-- Categories Dropdown -->
+                <div class="categories-dropdown">
+                    <div class="category-menu">
+                        <div class="category-column">
+                            <h4 data-i18n="electronics">Electronics</h4>
+                            <ul>
+                                <li><a href="shop.html?category=smartphones">Smartphones</a></li>
+                                <li><a href="shop.html?category=laptops">Laptops</a></li>
+                                <li><a href="shop.html?category=headphones">Headphones</a></li>
+                                <li><a href="shop.html?category=smartwatches">Smart Watches</a></li>
+                            </ul>
+                        </div>
+                        <div class="category-column">
+                            <h4 data-i18n="fashion">Fashion</h4>
+                            <ul>
+                                <li><a href="shop.html?category=men">Men's Fashion</a></li>
+                                <li><a href="shop.html?category=women">Women's Fashion</a></li>
+                                <li><a href="shop.html?category=shoes">Shoes</a></li>
+                                <li><a href="shop.html?category=accessories">Accessories</a></li>
+                            </ul>
+                        </div>
+                        <div class="category-column">
+                            <h4 data-i18n="home_kitchen">Home & Kitchen</h4>
+                            <ul>
+                                <li><a href="shop.html?category=furniture">Furniture</a></li>
+                                <li><a href="shop.html?category=kitchen">Kitchen Appliances</a></li>
+                                <li><a href="shop.html?category=decor">Home Decor</a></li>
+                                <li><a href="shop.html?category=lighting">Lighting</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <ul class="nav-links">
@@ -96,44 +140,42 @@
         </div>
     </nav>
 
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="mobile-nav-close" id="mobile-nav-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.html" data-i18n="home">Home</a>
+            <a href="shop.html" data-i18n="shop">Shop</a>
+            <a href="about.html" data-i18n="about">About</a>
+            <a href="contact.html" data-i18n="contact">Contact</a>
+            <a href="offers.html" data-i18n="offers">Offers</a>
+            <a href="wishlist.html" data-i18n="wishlist">Wishlist</a>
+            <a href="cart.html" data-i18n="cart">Cart</a>
+            <a href="auth.html" data-i18n="account">Account</a>
+        </div>
+    </div>
+
     <!-- Banner Slider -->
     <section class="banner-slider">
         <div class="container">
             <div class="slider-container">
-                <div class="slider">
-                    <div class="slide active">
-                        <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Summer Sale">
-                        <div class="slide-content">
-                            <h2 data-i18n="banner1_title">Summer Sale 2023</h2>
-                            <p data-i18n="banner1_desc">Up to 70% OFF on all products</p>
-                            <a href="shop.html" class="btn btn-primary" data-i18n="shop_now">Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="New Arrivals">
-                        <div class="slide-content">
-                            <h2 data-i18n="banner2_title">New Arrivals</h2>
-                            <p data-i18n="banner2_desc">Discover the latest trends</p>
-                            <a href="shop.html" class="btn btn-primary" data-i18n="explore">Explore</a>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Electronics">
-                        <div class="slide-content">
-                            <h2 data-i18n="banner3_title">Electronics Sale</h2>
-                            <p data-i18n="banner3_desc">Premium gadgets at amazing prices</p>
-                            <a href="shop.html" class="btn btn-primary" data-i18n="buy_now">Buy Now</a>
-                        </div>
-                    </div>
+                <div class="slider" id="banner-slider">
+                    <!-- Banners will be loaded from Firebase -->
                 </div>
                 <div class="slider-controls">
                     <button class="slider-prev">‹</button>
                     <button class="slider-next">›</button>
                 </div>
-                <div class="slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                <div class="slider-dots" id="slider-dots">
+                    <!-- Dots will be generated dynamically -->
                 </div>
             </div>
         </div>
@@ -144,7 +186,7 @@
         <div class="container">
             <h2 class="section-title" data-i18n="shop_by_category">Shop by Category</h2>
             <div class="categories-grid">
-                <div class="category-card">
+                <div class="category-card" onclick="window.location.href='shop.html?category=electronics'">
                     <div class="category-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -154,7 +196,7 @@
                     </div>
                     <div class="category-name" data-i18n="electronics">Electronics</div>
                 </div>
-                <div class="category-card">
+                <div class="category-card" onclick="window.location.href='shop.html?category=fashion'">
                     <div class="category-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84h6.38a1 1 0 0 0 0-2H3.85l-.58-3.47a2 2 0 0 1 1.34-2.23L8 4a2 2 0 0 0 4 0l3.38-1.54a2 2 0 0 1 1.34 2.23l-.58 3.47h-2.29a1 1 0 0 0 0 2h6.38a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
@@ -164,7 +206,7 @@
                     </div>
                     <div class="category-name" data-i18n="fashion">Fashion</div>
                 </div>
-                <div class="category-card">
+                <div class="category-card" onclick="window.location.href='shop.html?category=home'">
                     <div class="category-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -173,7 +215,7 @@
                     </div>
                     <div class="category-name" data-i18n="home_kitchen">Home & Kitchen</div>
                 </div>
-                <div class="category-card">
+                <div class="category-card" onclick="window.location.href='shop.html?category=beauty'">
                     <div class="category-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
@@ -184,7 +226,7 @@
                     </div>
                     <div class="category-name" data-i18n="beauty">Beauty</div>
                 </div>
-                <div class="category-card">
+                <div class="category-card" onclick="window.location.href='shop.html?category=sports'">
                     <div class="category-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
@@ -312,6 +354,7 @@
         <div class="cart-count">0</div>
     </a>
 
+    <script src="assets/js/firebase-config.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/language.js"></script>
 </body>

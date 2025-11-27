@@ -7,13 +7,231 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .shop-page {
+            padding: 30px 0;
+        }
+
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .shop-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .filter-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .sort-options select {
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: white;
+            font-size: 14px;
+        }
+
+        .shop-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+
+        .filters-sidebar {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .filter-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .filter-option input {
+            margin: 0;
+        }
+
+        .price-range {
+            margin-top: 15px;
+        }
+
+        .price-slider {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .price-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .products-section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .products-header h2 {
+            font-size: 24px;
+            color: var(--text-dark);
+        }
+
+        .products-count {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .page-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-numbers {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-number {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-number:hover, .page-number.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .shop-content {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                position: static;
+            }
+
+            .shop-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .shop-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header (Same as index.html) -->
     <div class="header-top">
         <div class="container">
             <div class="header-promo">
-                🚀 নুর – যেখানে শপিং = মজা 😎🔥 | Point জমাও, Discount নাও, Hero হও 💎😎
+                NUR - Premium Shopping Experience | Fast Delivery Guaranteed
+            </div>
+            <div class="header-utilities">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="bn">বাংলা</button>
+                    <button class="lang-btn" data-lang="en">English</button>
+                </div>
             </div>
         </div>
     </div>
@@ -24,8 +242,8 @@
                 <a href="index.html" class="logo">NUR<span>.</span></a>
                 
                 <div class="search-bar">
-                    <input type="text" placeholder="পণ্য খুঁজুন..." id="shop-search">
-                    <button onclick="searchProducts()">
+                    <input type="text" placeholder="Search products...">
+                    <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -59,6 +277,12 @@
                         <div class="cart-count">0</div>
                     </a>
                 </div>
+
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
@@ -87,7 +311,7 @@
     </nav>
 
     <!-- Shop Content -->
-    <div class="container">
+    <div class="container shop-page">
         <div class="shop-header">
             <div class="breadcrumb">
                 <a href="index.html">Home</a> &gt; 
@@ -95,7 +319,7 @@
             </div>
             
             <div class="shop-controls">
-                <div class="filter-toggle" id="filter-toggle">
+                <button class="filter-toggle" id="filter-toggle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="4" y1="21" x2="4" y2="14"></line>
                         <line x1="4" y1="10" x2="4" y2="3"></line>
@@ -108,7 +332,7 @@
                         <line x1="17" y1="16" x2="23" y2="16"></line>
                     </svg>
                     Filters
-                </div>
+                </button>
                 
                 <div class="sort-options">
                     <select id="sort-by">

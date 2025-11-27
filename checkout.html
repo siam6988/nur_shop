@@ -189,6 +189,11 @@
             font-weight: 600;
         }
 
+        .order-item-stock {
+            font-size: 12px;
+            color: var(--success);
+        }
+
         .summary-row {
             display: flex;
             justify-content: space-between;
@@ -243,7 +248,13 @@
     <div class="header-top">
         <div class="container">
             <div class="header-promo">
-                🚀 নুর – যেখানে শপিং = মজা 😎🔥 | Secure Checkout | SSL Protected
+                NUR - Premium Shopping Experience | Fast Delivery Guaranteed
+            </div>
+            <div class="header-utilities">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="bn">বাংলা</button>
+                    <button class="lang-btn" data-lang="en">English</button>
+                </div>
             </div>
         </div>
     </div>
@@ -254,7 +265,7 @@
                 <a href="index.html" class="logo">NUR<span>.</span></a>
                 
                 <div class="search-bar">
-                    <input type="text" placeholder="পণ্য খুঁজুন...">
+                    <input type="text" placeholder="Search products...">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
@@ -289,6 +300,12 @@
                         <div class="cart-count">0</div>
                     </a>
                 </div>
+
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
@@ -432,11 +449,27 @@
                 
                 <div class="order-items" id="checkout-items">
                     <!-- Order items will be loaded by JavaScript -->
+                    <div class="order-item">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Wireless Headphones">
+                        <div class="order-item-details">
+                            <h4>Premium Wireless Headphones</h4>
+                            <div class="order-item-price">৳ 2,499 x 1</div>
+                            <div class="order-item-stock">In Stock: 45 units</div>
+                        </div>
+                    </div>
+                    <div class="order-item">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Wireless Earbuds">
+                        <div class="order-item-details">
+                            <h4>True Wireless Earbuds</h4>
+                            <div class="order-item-price">৳ 1,299 x 1</div>
+                            <div class="order-item-stock">In Stock: 78 units</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="summary-row">
                     <span>Subtotal</span>
-                    <span id="checkout-subtotal">৳ 0</span>
+                    <span id="checkout-subtotal">৳ 3,798</span>
                 </div>
                 
                 <div class="summary-row">
@@ -451,7 +484,7 @@
                 
                 <div class="summary-row summary-total">
                     <span>Total</span>
-                    <span id="checkout-total">৳ 120</span>
+                    <span id="checkout-total">৳ 3,918</span>
                 </div>
 
                 <button class="place-order-btn" id="place-order-btn">Place Order</button>

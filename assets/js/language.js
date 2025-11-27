@@ -1,198 +1,214 @@
-// Language switching functionality
-class LanguageManager {
+// Language Support for NUR Shopping
+class NURLanguage {
     constructor() {
-        this.currentLang = 'bn';
+        this.currentLang = localStorage.getItem('nur_language') || 'bn';
         this.translations = {
             'bn': {
                 // Header & Navigation
-                'site_name': 'নুর',
-                'site_tagline': 'যেখানে শপিং হয় জমজমাট!',
-                'search_placeholder': 'আপনি কি খুঁজছেন?',
-                'search_btn': 'খুঁজুন',
-                'login_btn': 'লগইন',
-                'signup_btn': 'সাইন আপ',
+                'header_promo': 'NUR - প্রিমিয়াম শপিং এক্সপেরিয়েন্স | দ্রুত ডেলিভারি গ্যারান্টি',
+                'search_placeholder': 'পণ্য খুঁজুন...',
                 'wishlist': 'উইশলিস্ট',
+                'account': 'অ্যাকাউন্ট',
                 'cart': 'কার্ট',
+                'all_categories': 'সব ক্যাটাগরি',
                 'home': 'হোম',
-                'mens_fashion': 'পুরুষদের ফ্যাশন',
-                'watches': 'ঘড়ি',
-                'electronics': 'ইলেকট্রনিক্স',
-                'home_appliances': 'ঘরোয়া যন্ত্রপাতি',
+                'shop': 'শপ',
                 'about': 'আমাদের সম্পর্কে',
                 'contact': 'যোগাযোগ',
-                'flash_offer': 'ঝলক অফার!',
-                'todays_deal': 'আজকের ডিল উপভোগ করুন',
-                
-                // Hero Section
-                'welcome_title': 'স্বাগতম নুর ই-কমার্সে',
-                'welcome_subtitle': 'আপনার পছন্দের পণ্য, আমাদের আস্থার সার্ভিস',
-                'start_shopping': 'শপিং শুরু করুন',
-                'our_features': 'আমাদের সুবিধা',
-                'special_discount': 'চমক ডিসকাউন্ট',
-                'discount_text': 'আপাত ৫০% পর্যন্ত ছাড়!',
-                'today_only': 'শুধুমাত্র আজ',
-                
+                'offers': 'অফার',
+
+                // Banner
+                'banner1_title': 'সামার সেল ২০২৩',
+                'banner1_desc': 'সব পণ্যে ৭০% পর্যন্ত ছাড়',
+                'banner2_title': 'নতুন পণ্য',
+                'banner2_desc': 'সবচেয়ে নতুন ট্রেন্ডগুলো দেখুন',
+                'banner3_title': 'ইলেকট্রনিক্স সেল',
+                'banner3_desc': 'প্রিমিয়াম গ্যাজেট আকর্ষণীয় দামে',
+                'shop_now': 'এখনই কিনুন',
+                'explore': 'এক্সপ্লোর করুন',
+                'buy_now': 'কিনুন',
+
                 // Categories
-                'our_categories': 'আমাদের ক্যাটেগরি',
-                'mens_fashion_desc': 'ট্রেন্ডি ও স্টাইলিশ পোশাক',
-                'watches_desc': 'ইলিগ্যান্ট ও ফাংশনাল',
-                'electronics_desc': 'স্মার্ট ডিভাইস ও গ্যাজেট',
-                'home_appliances_desc': 'আধুনিক জীবনযাপন',
-                'browse': 'ব্রাউজ করুন',
-                
+                'shop_by_category': 'ক্যাটাগরি অনুযায়ী শপ করুন',
+                'electronics': 'ইলেকট্রনিক্স',
+                'fashion': 'ফ্যাশন',
+                'home_kitchen': 'হোম ও কিচেন',
+                'beauty': 'বিউটি',
+                'sports': 'স্পোর্টস',
+
                 // Products
-                'power_deals': 'পাওয়ার ডিল',
-                'view_all': 'সব দেখুন',
-                'hot': 'হট',
-                'new': 'নতুন',
-                'sale': 'সেল',
-                'add_to_cart': 'কার্টে যোগ',
-                
-                // Special Offer
-                'special_discount_today': 'শুধুমাত্র আজকের জন্য বিশেষ ডিসকাউন্ট',
-                'buy_now': 'এখনই কিনুন',
-                
+                'featured_products': 'ফিচার্ড পণ্য',
+                'add_to_cart': 'কার্টে যোগ করুন',
+
+                // Offers
+                'special_offers': 'বিশেষ অফার',
+                'free_shipping': 'ফ্রি শিপিং',
+                'free_shipping_desc': '১০০০ টাকার বেশি অর্ডারে',
+                'loyalty_points': 'লয়্যালটি পয়েন্ট',
+                'loyalty_points_desc': 'প্রতিটি কেনাকাটায় পয়েন্ট অর্জন করুন',
+                'cashback': 'ক্যাশব্যাক ১০%',
+                'cashback_desc': 'আপনার প্রথম অর্ডারে',
+                'save_more': 'আরও সাশ্রয় করুন',
+                'earn_rewards': 'রিওয়ার্ড অর্জন করুন',
+                'new_user': 'নতুন ইউজার',
+
                 // Footer
-                'footer_description': 'আপনার বিশ্বস্ত শপিং পার্টনার। আমরা সর্বোচ্চ মানের প্রোডাক্ট এবং সার্ভিস নিশ্চিত করি।',
-                'facebook': 'ফেসবুক',
-                'instagram': 'ইনস্টাগ্রাম',
-                'quick_links': 'দ্রুত লিংক',
-                'shop': 'শপ',
+                'nur_shopping': 'NUR শপিং',
+                'about_us': 'আমাদের সম্পর্কে',
+                'contact_us': 'যোগাযোগ করুন',
+                'careers': 'ক্যারিয়ার',
+                'blog': 'ব্লগ',
                 'customer_service': 'গ্রাহক সেবা',
-                'privacy_policy': 'প্রাইভেসি পলিসি',
-                'return_policy': 'রিটার্ন পলিসি',
+                'help_center': 'হেল্প সেন্টার',
+                'returns_refunds': 'রিটার্ন ও রিফান্ড',
                 'shipping_info': 'শিপিং তথ্য',
+                'size_guide': 'সাইজ গাইড',
+                'policies': 'পলিসি',
+                'privacy_policy': 'প্রাইভেসি পলিসি',
+                'terms_service': 'সেবার শর্তাবলী',
+                'cookie_policy': 'কুকি পলিসি',
+                'faq': 'সচরাচর জিজ্ঞাসা',
                 'contact_info': 'যোগাযোগ তথ্য',
-                'address': 'হকার্স মার্কেট, বন্দর বাজার, সিলেট',
-                'working_hours': 'শনি-বৃহস্পতি: সকাল ৯টা - রাত ১১টা',
-                'all_rights_reserved': 'সমস্ত অধিকার সংরক্ষিত।'
+                'phone': 'ফোন: +৮৮০ ১২৩৪-৫৬৭৮৯০',
+                'address': 'ঠিকানা: ১২৩ শপিং স্ট্রিট, ঢাকা',
+                'copyright': 'কপিরাইট © ২০২৩ NUR - প্রিমিয়াম শপিং। সর্বস্বত্ব সংরক্ষিত।'
             },
             'en': {
                 // Header & Navigation
-                'site_name': 'Nur',
-                'site_tagline': 'Where Shopping Gets Exciting!',
-                'search_placeholder': 'What are you looking for?',
-                'search_btn': 'Search',
-                'login_btn': 'Login',
-                'signup_btn': 'Sign Up',
+                'header_promo': 'NUR - Premium Shopping Experience | Fast Delivery Guaranteed',
+                'search_placeholder': 'Search products...',
                 'wishlist': 'Wishlist',
+                'account': 'Account',
                 'cart': 'Cart',
+                'all_categories': 'All Categories',
                 'home': 'Home',
-                'mens_fashion': "Men's Fashion",
-                'watches': 'Watches',
-                'electronics': 'Electronics',
-                'home_appliances': 'Home Appliances',
-                'about': 'About Us',
-                'contact': 'Contact',
-                'flash_offer': 'Flash Offer!',
-                'todays_deal': 'Enjoy Today\'s Deal',
-                
-                // Hero Section
-                'welcome_title': 'Welcome to Nur E-Commerce',
-                'welcome_subtitle': 'Your Preferred Products, Our Trusted Service',
-                'start_shopping': 'Start Shopping',
-                'our_features': 'Our Features',
-                'special_discount': 'Special Discount',
-                'discount_text': 'Up to 50% OFF!',
-                'today_only': 'Today Only',
-                
-                // Categories
-                'our_categories': 'Our Categories',
-                'mens_fashion_desc': 'Trendy & Stylish Clothing',
-                'watches_desc': 'Elegant & Functional',
-                'electronics_desc': 'Smart Devices & Gadgets',
-                'home_appliances_desc': 'Modern Lifestyle',
-                'browse': 'Browse',
-                
-                // Products
-                'power_deals': 'Power Deals',
-                'view_all': 'View All',
-                'hot': 'Hot',
-                'new': 'New',
-                'sale': 'Sale',
-                'add_to_cart': 'Add to Cart',
-                
-                // Special Offer
-                'special_discount_today': 'Special discount for today only',
-                'buy_now': 'Buy Now',
-                
-                // Footer
-                'footer_description': 'Your trusted shopping partner. We ensure highest quality products and services.',
-                'facebook': 'Facebook',
-                'instagram': 'Instagram',
-                'quick_links': 'Quick Links',
                 'shop': 'Shop',
+                'about': 'About',
+                'contact': 'Contact',
+                'offers': 'Offers',
+
+                // Banner
+                'banner1_title': 'Summer Sale 2023',
+                'banner1_desc': 'Up to 70% OFF on all products',
+                'banner2_title': 'New Arrivals',
+                'banner2_desc': 'Discover the latest trends',
+                'banner3_title': 'Electronics Sale',
+                'banner3_desc': 'Premium gadgets at amazing prices',
+                'shop_now': 'Shop Now',
+                'explore': 'Explore',
+                'buy_now': 'Buy Now',
+
+                // Categories
+                'shop_by_category': 'Shop by Category',
+                'electronics': 'Electronics',
+                'fashion': 'Fashion',
+                'home_kitchen': 'Home & Kitchen',
+                'beauty': 'Beauty',
+                'sports': 'Sports',
+
+                // Products
+                'featured_products': 'Featured Products',
+                'add_to_cart': 'Add to Cart',
+
+                // Offers
+                'special_offers': 'Special Offers',
+                'free_shipping': 'Free Shipping',
+                'free_shipping_desc': 'On orders over ৳1000',
+                'loyalty_points': 'Loyalty Points',
+                'loyalty_points_desc': 'Earn points on every purchase',
+                'cashback': 'Cashback 10%',
+                'cashback_desc': 'On your first order',
+                'save_more': 'SAVE MORE',
+                'earn_rewards': 'EARN REWARDS',
+                'new_user': 'NEW USER',
+
+                // Footer
+                'nur_shopping': 'NUR Shopping',
+                'about_us': 'About Us',
+                'contact_us': 'Contact Us',
+                'careers': 'Careers',
+                'blog': 'Blog',
                 'customer_service': 'Customer Service',
-                'privacy_policy': 'Privacy Policy',
-                'return_policy': 'Return Policy',
+                'help_center': 'Help Center',
+                'returns_refunds': 'Returns & Refunds',
                 'shipping_info': 'Shipping Info',
+                'size_guide': 'Size Guide',
+                'policies': 'Policies',
+                'privacy_policy': 'Privacy Policy',
+                'terms_service': 'Terms of Service',
+                'cookie_policy': 'Cookie Policy',
+                'faq': 'FAQ',
                 'contact_info': 'Contact Info',
-                'address': 'Hokars Market, Bondor Bazar, Sylhet',
-                'working_hours': 'Sat-Thu: 9 AM - 11 PM',
-                'all_rights_reserved': 'All rights reserved.'
+                'phone': 'Phone: +880 1234-567890',
+                'address': 'Address: 123 Shopping Street, Dhaka',
+                'copyright': '&copy; 2023 NUR - Premium Shopping. All rights reserved.'
             }
         };
-        
         this.init();
     }
-    
+
     init() {
-        this.loadLanguage();
-        this.setupEventListeners();
+        this.setActiveLanguage();
+        this.applyTranslations();
+        this.setupLanguageSwitcher();
     }
-    
-    loadLanguage() {
-        const savedLang = localStorage.getItem('nur_language') || 'bn';
-        this.switchLanguage(savedLang);
-    }
-    
-    setupEventListeners() {
+
+    setActiveLanguage() {
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const lang = e.target.dataset.lang;
-                this.switchLanguage(lang);
+            btn.classList.remove('active');
+            if (btn.dataset.lang === this.currentLang) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Set HTML lang attribute
+        document.documentElement.lang = this.currentLang;
+    }
+
+    applyTranslations() {
+        // Translate elements with data-i18n attribute
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (this.translations[this.currentLang][key]) {
+                element.textContent = this.translations[this.currentLang][key];
+            }
+        });
+
+        // Translate placeholder attributes
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            if (this.translations[this.currentLang][key]) {
+                element.placeholder = this.translations[this.currentLang][key];
+            }
+        });
+    }
+
+    setupLanguageSwitcher() {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.switchLanguage(btn.dataset.lang);
             });
         });
     }
-    
+
     switchLanguage(lang) {
         this.currentLang = lang;
         localStorage.setItem('nur_language', lang);
+        this.setActiveLanguage();
+        this.applyTranslations();
         
-        // Update active button
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
-        });
-        
-        // Update all translatable elements
-        this.updateContent();
-        
-        // Update HTML lang attribute
-        document.documentElement.lang = lang;
+        // Show toast notification
+        if (window.nurApp) {
+            window.nurApp.showToast(
+                lang === 'bn' ? 'ভাষা বাংলায় পরিবর্তন করা হয়েছে' : 'Language switched to English'
+            );
+        }
     }
-    
-    updateContent() {
-        const translation = this.translations[this.currentLang];
-        
-        // Update elements with data-i18n attribute
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            if (translation[key]) {
-                element.textContent = translation[key];
-            }
-        });
-        
-        // Update placeholder attributes
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-            const key = element.getAttribute('data-i18n-placeholder');
-            if (translation[key]) {
-                element.placeholder = translation[key];
-            }
-        });
+
+    getText(key) {
+        return this.translations[this.currentLang][key] || key;
     }
 }
 
-// Initialize language manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new LanguageManager();
-});
+// Initialize language support
+const nurLanguage = new NURLanguage();

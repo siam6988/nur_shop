@@ -1,4 +1,3 @@
-// Firebase Configuration
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDSYALT_jaIQrTq-oZP9sMyUJWXaLSjTY4",
@@ -10,16 +9,19 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+try {
+    firebase.initializeApp(firebaseConfig);
+    console.log('Firebase initialized successfully');
+} catch (error) {
+    console.error('Firebase initialization error:', error);
+}
 
 // Firebase Services
-const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
+const auth = firebase.auth();
 
 // Export Firebase services
-window.firebaseAuth = auth;
 window.firebaseDB = db;
 window.firebaseStorage = storage;
-
-console.log('Firebase initialized successfully');
+window.firebaseAuth = auth;

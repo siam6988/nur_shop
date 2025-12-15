@@ -4,378 +4,548 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUR - Premium Shopping</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Top -->
-    <div class="header-top">
+    <!-- Top Header -->
+    <header class="top-header">
         <div class="container">
-            <div class="header-promo">
-                NUR - Premium Shopping Experience | Fast Delivery Guaranteed
-            </div>
-            <div class="header-utilities">
-                <div class="language-switcher">
-                    <button class="lang-btn active" data-lang="bn">বাংলা</button>
-                    <button class="lang-btn" data-lang="en">English</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header Main -->
-    <header>
-        <div class="header-main">
-            <div class="container">
-                <a href="index.html" class="logo">NUR<span>.</span></a>
-                
-                <div class="search-bar">
-                    <input type="text" placeholder="Search products...">
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <div class="header-top-content">
+                <div class="header-top-left">
+                    <span class="header-info">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
-                    </button>
+                        support@nurshopping.com
+                    </span>
+                    <span class="header-info">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C9.61 21 3 14.39 3 6c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        09613-787878
+                    </span>
                 </div>
-                
-                <div class="header-actions">
-                    <a href="wishlist.html" class="header-action">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                <div class="header-top-right">
+                    <a href="wishlist.html" class="header-link">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                         </svg>
                         Wishlist
                     </a>
-                    
-                    <a href="auth.html" class="header-action">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
+                    <a href="orders.html" class="header-link">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
                         </svg>
-                        Account
+                        Track Order
                     </a>
-                    
-                    <a href="cart.html" class="header-action cart-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    <a href="auth.html" id="auth-link" class="header-link">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
-                        Cart
-                        <div class="cart-count">0</div>
+                        Sign In / Register
                     </a>
                 </div>
-
-                <!-- Mobile Menu Button -->
-                <button class="mobile-menu-btn" id="mobile-menu-btn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <div class="categories">
-                <button class="categories-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                    All Categories
-                </button>
-                
-                <!-- Categories Dropdown -->
-                <div class="categories-dropdown">
-                    <div class="category-menu">
-                        <div class="category-column">
-                            <h4>Electronics</h4>
-                            <ul>
-                                <li><a href="shop.html?category=smartphones">Smartphones</a></li>
-                                <li><a href="shop.html?category=laptops">Laptops</a></li>
-                                <li><a href="shop.html?category=headphones">Headphones</a></li>
-                                <li><a href="shop.html?category=smartwatches">Smart Watches</a></li>
-                            </ul>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-main">
+                <!-- Logo -->
+                <div class="logo-section">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
+                                <rect width="40" height="40" rx="8" fill="#2563eb"/>
+                                <text x="20" y="25" text-anchor="middle" fill="white" font-size="20" font-weight="bold">N</text>
+                            </svg>
                         </div>
-                        <div class="category-column">
-                            <h4>Fashion</h4>
-                            <ul>
-                                <li><a href="shop.html?category=men">Men's Fashion</a></li>
-                                <li><a href="shop.html?category=women">Women's Fashion</a></li>
-                                <li><a href="shop.html?category=shoes">Shoes</a></li>
-                                <li><a href="shop.html?category=accessories">Accessories</a></li>
-                            </ul>
+                        <div class="logo-text">
+                            <h1>NUR</h1>
+                            <p class="logo-subtitle">Premium Shopping</p>
                         </div>
-                        <div class="category-column">
-                            <h4>Home & Kitchen</h4>
-                            <ul>
-                                <li><a href="shop.html?category=furniture">Furniture</a></li>
-                                <li><a href="shop.html?category=kitchen">Kitchen Appliances</a></li>
-                                <li><a href="shop.html?category=decor">Home Decor</a></li>
-                                <li><a href="shop.html?category=lighting">Lighting</a></li>
-                            </ul>
+                    </a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <select class="category-select">
+                            <option value="all">All Categories</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="home">Home & Living</option>
+                            <option value="beauty">Beauty</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                        <div class="search-input-container">
+                            <input type="text" class="search-input" placeholder="Search for products...">
+                            <button class="search-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M21 21L16.65 16.65" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- Cart & User -->
+                <div class="action-section">
+                    <a href="cart.html" class="action-item cart-action">
+                        <div class="action-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </div>
+                        <span class="action-text">Cart</span>
+                    </a>
+                    
+                    <a href="profile.html" class="action-item user-action" id="user-action">
+                        <div class="action-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <span class="action-text">Account</span>
+                    </a>
+                </div>
             </div>
-            
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="offers.html">Offers</a></li>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="index.html">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="shop.html">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24">
+                            <path d="M16 6V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H2v13c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6h-6zm-6-2h4v2h-4V4zm10 15H4V8h16v11zM9 18l7.5-5L9 9z"/>
+                        </svg>
+                        Shop
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24">
+                            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                        </svg>
+                        Categories
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="shop.html?category=men">Men's Fashion</a>
+                        <a href="shop.html?category=women">Women's Fashion</a>
+                        <a href="shop.html?category=electronics">Electronics</a>
+                        <a href="shop.html?category=home">Home & Living</a>
+                        <a href="shop.html?category=beauty">Beauty & Health</a>
+                        <a href="shop.html?category=sports">Sports & Outdoors</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="shop.html?flash=true">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24">
+                            <path d="M7 2v11h3v9l7-12h-4l4-8H7z"/>
+                        </svg>
+                        Flash Sale
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        About Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html">
+                        <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+                        </svg>
+                        Contact
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Mobile Navigation Menu -->
-    <div class="mobile-nav" id="mobile-nav">
-        <div class="mobile-nav-header">
-            <h3>Menu</h3>
-            <button class="mobile-nav-close" id="mobile-nav-close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-        <div class="mobile-nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="offers.html">Offers</a>
-            <a href="wishlist.html">Wishlist</a>
-            <a href="cart.html">Cart</a>
-            <a href="auth.html">Account</a>
-        </div>
-    </div>
-
-    <!-- Banner Slider -->
-    <section class="banner-slider">
-        <div class="container">
-            <div class="slider-container">
-                <div class="slider" id="banner-slider">
-                    <!-- Banner 1 -->
-                    <div class="slide active">
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Electronics Sale">
-                        <div class="slide-content">
-                            <h2>Electronics Sale</h2>
-                            <p>Premium gadgets at amazing prices</p>
-                            <a href="shop.html?category=electronics" class="btn btn-primary">Shop Now</a>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Slider -->
+        <section class="hero-slider-section">
+            <div class="container">
+                <div class="hero-slider">
+                    <div class="slider-container">
+                        <div class="slide active">
+                            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da" alt="Summer Sale">
+                            <div class="slide-content">
+                                <h2 class="slide-title">Mega Summer Sale</h2>
+                                <p class="slide-description">Up to 70% OFF on Fashion Collection</p>
+                                <a href="shop.html" class="btn btn-primary">Shop Now</a>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8" alt="Free Shipping">
+                            <div class="slide-content">
+                                <h2 class="slide-title">Free Shipping</h2>
+                                <p class="slide-description">Free Delivery on Orders Above ৳1000</p>
+                                <a href="shop.html" class="btn btn-accent">Browse Products</a>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d" alt="New Collection">
+                            <div class="slide-content">
+                                <h2 class="slide-title">New Collection 2024</h2>
+                                <p class="slide-description">Premium Quality Products</p>
+                                <a href="shop.html" class="btn btn-primary">Explore</a>
+                            </div>
                         </div>
                     </div>
-                    <!-- Banner 2 -->
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="New Arrivals">
-                        <div class="slide-content">
-                            <h2>New Arrivals</h2>
-                            <p>Discover the latest trends</p>
-                            <a href="shop.html" class="btn btn-primary">Explore</a>
+                    <div class="slider-controls">
+                        <button class="slider-prev">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                            </svg>
+                        </button>
+                        <button class="slider-next">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="slider-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="section-title">Browse Categories</h2>
+                <div class="categories-grid">
+                    <a href="shop.html?category=men" class="category-card">
+                        <div class="category-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                        </div>
+                        <h3>Men's Fashion</h3>
+                        <p>1200+ Products</p>
+                    </a>
+                    <a href="shop.html?category=women" class="category-card">
+                        <div class="category-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M12 6c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0 1c-2.33 0-7 1.17-7 3.5V19h14v-8.5c0-2.33-4.67-3.5-7-3.5zm4 9H8v-3h8v3z"/>
+                            </svg>
+                        </div>
+                        <h3>Women's Fashion</h3>
+                        <p>1500+ Products</p>
+                    </a>
+                    <a href="shop.html?category=electronics" class="category-card">
+                        <div class="category-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                            </svg>
+                        </div>
+                        <h3>Electronics</h3>
+                        <p>800+ Products</p>
+                    </a>
+                    <a href="shop.html?category=home" class="category-card">
+                        <div class="category-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                            </svg>
+                        </div>
+                        <h3>Home & Living</h3>
+                        <p>900+ Products</p>
+                    </a>
+                    <a href="shop.html?category=beauty" class="category-card">
+                        <div class="category-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                            </svg>
+                        </div>
+                        <h3>Beauty & Health</h3>
+                        <p>600+ Products</p>
+                    </a>
+                    <a href="shop.html?category=sports" class="category-card">
+                        <div class="category-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                            </svg>
+                        </div>
+                        <h3>Sports & Outdoors</h3>
+                        <p>400+ Products</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="featured-products-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Products</h2>
+                    <a href="shop.html" class="view-all-btn">
+                        View All
+                        <svg width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="products-grid" id="featured-products">
+                    <!-- Products will be loaded from JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Loyalty Points Banner -->
+        <section class="points-banner-section">
+            <div class="container">
+                <div class="points-banner">
+                    <div class="points-content">
+                        <div class="points-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                            </svg>
+                        </div>
+                        <div class="points-info">
+                            <h2>Earn Points & Get Discounts</h2>
+                            <p>Shop and earn loyalty points that you can use for discounts on future purchases</p>
+                            <div class="points-rules">
+                                <div class="rule">
+                                    <span class="points">10</span>
+                                    <span class="equals">=</span>
+                                    <span class="discount">৳10</span>
+                                </div>
+                                <div class="rule">
+                                    <span class="points">20</span>
+                                    <span class="equals">=</span>
+                                    <span class="discount">৳25</span>
+                                </div>
+                                <div class="rule">
+                                    <span class="points">50</span>
+                                    <span class="equals">=</span>
+                                    <span class="discount">৳80</span>
+                                </div>
+                                <div class="rule">
+                                    <span class="points">100</span>
+                                    <span class="equals">=</span>
+                                    <span class="discount">৳200</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Banner 3 -->
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Summer Collection">
-                        <div class="slide-content">
-                            <h2>Summer Collection</h2>
-                            <p>Fresh styles for the season</p>
-                            <a href="shop.html?category=fashion" class="btn btn-primary">Discover</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flash Sale -->
+        <section class="flash-sale-section">
+            <div class="container">
+                <div class="section-header flash-header">
+                    <div class="flash-title">
+                        <h2 class="section-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M7 2v11h3v9l7-12h-4l4-8H7z"/>
+                            </svg>
+                            Flash Sale
+                        </h2>
+                        <div class="timer">
+                            <div class="time-box">
+                                <span id="hours">02</span>
+                                <span class="time-label">HOURS</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-box">
+                                <span id="minutes">45</span>
+                                <span class="time-label">MINUTES</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-box">
+                                <span id="seconds">30</span>
+                                <span class="time-label">SECONDS</span>
+                            </div>
                         </div>
                     </div>
+                    <a href="shop.html?flash=true" class="view-all-btn">
+                        View All
+                        <svg width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </a>
                 </div>
-                <div class="slider-controls">
-                    <button class="slider-prev">‹</button>
-                    <button class="slider-next">›</button>
-                </div>
-                <div class="slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                <div class="products-grid" id="flash-sale-products">
+                    <!-- Flash sale products will be loaded from JavaScript -->
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="categories-section">
-        <div class="container">
-            <h2 class="section-title">Shop by Category</h2>
-            <div class="categories-grid">
-                <div class="category-card" onclick="window.location.href='shop.html?category=electronics'">
-                    <div class="category-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                    </div>
-                    <div class="category-name">Electronics</div>
-                </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=fashion'">
-                    <div class="category-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84h6.38a1 1 0 0 0 0-2H3.85l-.58-3.47a2 2 0 0 1 1.34-2.23L8 4a2 2 0 0 0 4 0l3.38-1.54a2 2 0 0 1 1.34 2.23l-.58 3.47h-2.29a1 1 0 0 0 0 2h6.38a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M12 15v6"></path>
-                        </svg>
-                    </div>
-                    <div class="category-name">Fashion</div>
-                </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=home'">
-                    <div class="category-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
-                    </div>
-                    <div class="category-name">Home & Kitchen</div>
-                </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=beauty'">
-                    <div class="category-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                        </svg>
-                    </div>
-                    <div class="category-name">Beauty</div>
-                </div>
-                <div class="category-card" onclick="window.location.href='shop.html?category=sports'">
-                    <div class="category-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                    </div>
-                    <div class="category-name">Sports</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="featured-products">
-        <div class="container">
-            <h2 class="section-title">Featured Products</h2>
-            <div class="products-grid" id="featured-products">
-                <!-- Products will be loaded by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Special Offers -->
-    <section class="special-offers">
-        <div class="container">
-            <h2 class="section-title">Special Offers</h2>
-            <div class="offers-grid">
-                <div class="offer-card">
-                    <div class="offer-content">
-                        <h3>Free Shipping</h3>
-                        <p>On orders over ৳1000</p>
-                        <span class="offer-tag">SAVE MORE</span>
-                    </div>
-                </div>
-                <div class="offer-card">
-                    <div class="offer-content">
-                        <h3>Loyalty Points</h3>
-                        <p>Earn points on every purchase</p>
-                        <span class="offer-tag">EARN REWARDS</span>
-                    </div>
-                </div>
-                <div class="offer-card">
-                    <div class="offer-content">
-                        <h3>Cashback 10%</h3>
-                        <p>On your first order</p>
-                        <span class="offer-tag">NEW USER</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="main-footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-column">
-                    <h3>NUR Shopping</h3>
+                    <div class="footer-logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40">
+                            <rect width="40" height="40" rx="8" fill="#2563eb"/>
+                            <text x="20" y="25" text-anchor="middle" fill="white" font-size="20" font-weight="bold">N</text>
+                        </svg>
+                        <div class="footer-logo-text">
+                            <h3>NUR Shopping</h3>
+                            <p>Premium Shopping Experience</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Your one-stop destination for premium quality products with the best prices and service.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 7.097a4.903 4.903 0 1 0 0 9.806 4.903 4.903 0 0 0 0-9.806zm0 8.075a3.172 3.172 0 1 1 0-6.344 3.172 3.172 0 0 1 0 6.344zm5.202-9.178a1.151 1.151 0 1 0 0 2.302 1.151 1.151 0 0 0 0-2.302z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Customer Service</h3>
-                    <ul class="footer-links">
-                        <li><a href="help.html">Help Center</a></li>
-                        <li><a href="returns.html">Returns & Refunds</a></li>
-                        <li><a href="shipping.html">Shipping Info</a></li>
-                        <li><a href="size-guide.html">Size Guide</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Policies</h3>
-                    <ul class="footer-links">
                         <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="cookies.html">Cookie Policy</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Return Policy</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-column">
-                    <h3>Contact Info</h3>
+                    <h4 class="footer-title">Customer Service</h4>
                     <ul class="footer-links">
-                        <li>Email: support@nurshopping.com</li>
-                        <li>Phone: +880 1234-567890</li>
-                        <li>Address: 123 Shopping Street, Dhaka</li>
-                        <li>
-                            <div class="social-links">
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
-                            </div>
-                        </li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">How to Order</a></li>
+                        <li><a href="orders.html">Track Your Order</a></li>
+                        <li><a href="#">Return & Refund</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <span>123 Shopping Street, Dhaka 1212</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C9.61 21 3 14.39 3 6c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            <span>09613-787878</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+                            </svg>
+                            <span>support@nurshopping.com</span>
+                        </div>
+                    </div>
+                    <div class="payment-methods">
+                        <h5>Payment Methods</h5>
+                        <div class="payment-icons">
+                            <svg width="30" height="20" viewBox="0 0 24 24">
+                                <path d="M22 4H2v16h20V4zm-2 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                            </svg>
+                            <svg width="30" height="20" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-10 6H8v1h2v2H8v1h2v2H8v1h2v2H6V8h4v2zm8 6h-6v-2h6v2zm0-4h-6v-2h6v2z"/>
+                            </svg>
+                            <svg width="30" height="20" viewBox="0 0 24 24">
+                                <path d="M4 6h16v2H4zm0 6h16v2H4zm0 6h16v2H4z"/>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2023 NUR - Premium Shopping. All rights reserved.</p>
+                <p>&copy; 2024 NUR - Premium Shopping. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Sitemap</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Security</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <span id="toast-message">Product added to cart successfully!</span>
+    <!-- Floating Cart -->
+    <div class="floating-cart" id="floating-cart">
+        <a href="cart.html">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+            <span class="cart-badge" id="floating-cart-count">0</span>
+        </a>
     </div>
 
-    <!-- Floating Cart Icon for Mobile -->
-    <a href="cart.html" class="floating-cart">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-        <div class="cart-count">0</div>
-    </a>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <svg class="toast-icon" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span class="toast-message" id="toast-message">Product added to cart</span>
+        </div>
+    </div>
 
+    <!-- Firebase and App Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
 </body>
 </html>
